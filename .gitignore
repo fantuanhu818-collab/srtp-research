@@ -1,0 +1,36 @@
+# Python与编辑器环境
+.venv/
+.vscode/
+__pycache__/
+*.py[cod]
+
+# 本机路径与凭据
+config/storage_paths.json
+.env
+
+# 大型数据与临时文件
+data/
+local_data/
+logs/
+temp/
+diagnostics/
+*.dta
+*.parquet
+*.feather
+*.duckdb
+*.db
+*.log
+*.tmp
+*.zip
+*.7z
+
+# 办公和答辩文件另存于 D:\SRTP\答辩材料
+*.docx
+*.pptx
+*.xlsx
+*.pdf
+
+# 系统文件
+Thumbs.db
+.DS_Store
+.codex_doc_review/

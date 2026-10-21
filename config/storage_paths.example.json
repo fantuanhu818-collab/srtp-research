@@ -1,0 +1,16 @@
+{
+  "project_root": "D:/SRTP科研",
+  "raw_root": "D:/SRTP/分年份保存数据",
+  "curated_root": "D:/SRTP/工作数据/curated",
+  "features_root": "D:/SRTP/工作数据/features",
+  "evidence_root": "D:/SRTP/工作数据/evidence",
+  "analysis_root": "D:/SRTP/工作数据/analysis",
+  "stata_data_root": "D:/SRTP/工作数据/stata",
+  "python_temp": "D:/SRTP/工作数据/temp/python",
+  "duckdb_temp": "D:/SRTP/工作数据/temp/duckdb",
+  "stata_temp": "D:/SRTP/工作数据/temp/stata",
+  "uv_cache": "D:/SRTP/工作数据/temp/uv",
+  "logs_root": "D:/SRTP科研/logs",
+  "manifests_root": "D:/SRTP科研/manifests",
+  "qc_root": "D:/SRTP科研/outputs/qc"
+}
