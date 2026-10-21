@@ -6,7 +6,7 @@
 
 ## 接手方式
 
-1. B打开GitHub仓库：`https://github.com/fantuanhu818-collab/srtp-research`。仓库目前公开，因此可以直接查看和克隆；如果以后改为私有仓库，A需要把B的GitHub账号加入协作者。
+1. B打开GitHub仓库：`https://github.com/fantuanhu818-collab/srtp-research`。仓库目前公开，因此可以直接查看和克隆。若要让B直接向同一仓库推送更新，A仍需把B的GitHub账号加入协作者。
 2. B在自己的电脑上克隆整个仓库，并在Codex中打开仓库根目录。
 3. B把原始数据保存在自己电脑上，不通过GitHub传输；再按照`config/storage_paths.example.json`建立本机的`config/storage_paths.json`。
 4. B向Codex发送下面这段指令：
