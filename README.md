@@ -14,6 +14,8 @@ scripts/    Python程序和运行工具
 
 本机实际路径保存在`config/storage_paths.json`。该文件不会上传GitHub；其他电脑应复制`config/storage_paths.example.json`并填写自己的路径。
 
+B及其Codex首次接手项目时，请先阅读`docs/B的Codex项目说明.md`。
+
 ## 运行Python
 
 ```powershell
