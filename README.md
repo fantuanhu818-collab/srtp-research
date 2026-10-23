@@ -16,6 +16,8 @@ scripts/    Python程序和运行工具
 
 B及其Codex首次接手项目时，请先阅读`docs/agent交接.md`。
 
+学习和审核回归代码时，请阅读`docs/AI技能工资溢价研究与Stata学习手册.md`。
+
 ## 运行Python
 
 ```powershell
