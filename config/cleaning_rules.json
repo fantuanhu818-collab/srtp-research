@@ -1,5 +1,6 @@
 {
   "schema_version": "2026-11-15-v1",
+  "cleaning_version": "2026-11-15-v1",
   "official_field_count": 23,
   "official_fields": [
     "企业名称",
@@ -36,5 +37,32 @@
   "raw_data_policy": {
     "read_only": true,
     "do_not_overwrite": true
+  },
+  "record_cleaning_policy": {
+    "duplicate_ads": {
+      "action": "keep_one",
+      "key_fields": ["企业名称", "招聘岗位", "工作城市", "招聘发布日期", "职位描述"],
+      "keep_priority": ["valid_salary_endpoint_count", "education_present", "end_date_present", "overall_completeness", "source_record_id"]
+    },
+    "salary": {
+      "valid_endpoint": "numeric_and_greater_than_zero",
+      "both_invalid_action": "delete_record",
+      "one_valid_action": "keep_valid_endpoint_and_set_other_endpoint_missing",
+      "reversed_bounds_action": "swap_endpoints",
+      "representative_value": "mean_when_two_valid_otherwise_the_single_valid_endpoint"
+    },
+    "dates": {
+      "end_before_publish_action": "swap_dates",
+      "missing_end_date_action": "keep_record_and_mark_missing"
+    },
+    "education": {
+      "missing_action": "keep_record_and_mark_missing"
+    },
+    "traceability": {
+      "preserve_standardized_input": true,
+      "add_source_record_id": true,
+      "add_action_flags": true,
+      "export_deleted_record_evidence": true
+    }
   }
 }

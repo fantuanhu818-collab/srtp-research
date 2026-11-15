@@ -29,6 +29,8 @@ diagnostics/
 *.pptx
 *.xlsx
 *.pdf
+*.inspect.ndjson
+*_previews/
 
 # 系统文件
 Thumbs.db

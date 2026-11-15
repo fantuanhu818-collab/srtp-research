@@ -51,6 +51,26 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 - `outputs/qc/full_audit/typical_issue_slices.csv`：19条可追溯的典型记录；
 - `outputs/qc/full_audit/数据问题典型切片与处理建议.xlsx`：便于项目成员查看的本地Excel版本。
 
+## 已确认的全量清洗规则与输出
+
+项目组已确认：重复广告只保留一条；工资上下限和日期顺序颠倒时直接交换；结束日期或学历缺失时保留并标记；两个工资端点均无效时删除，只有一个有效端点时保留有效值。
+
+运行全量清洗：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/04_clean_recruitment_data.py
+```
+
+独立复核：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/05_validate_cleaning.py
+```
+
+清洗数据保存在`D:\SRTP\工作数据\curated\cleaned_v1`。删除记录证据保存在`D:\SRTP\工作数据\evidence\cleaning_v1\deleted_records.parquet`。年度统计、规则表、前后对照切片和验证说明位于`outputs/qc/cleaning_v1_*`；便于组内查看的Excel为`outputs/qc/cleaning_v1_report.xlsx`。
+
 ## 运行Python
 
 ```powershell
