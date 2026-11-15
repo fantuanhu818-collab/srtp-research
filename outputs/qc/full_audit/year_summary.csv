@@ -1,0 +1,9 @@
+﻿year,csv_rows,dta_rows,csv_minus_dta_rows,csv_variables,dta_variables,unnamed_csv_columns,unnamed_column_nonblank,exact_duplicate_rows_after_first,content_duplicate_rows_after_first,scan_seconds
+2018,1584089,1584088,1,24,23,Unnamed: 23,1,0,59389,196.415
+2019,704762,704761,1,24,23,Unnamed: 23,1,0,30273,81.166
+2020,858406,858405,1,24,23,Unnamed: 23,1,0,40163,134.852
+2021,992790,992789,1,24,23,Unnamed: 23,1,0,54847,109.519
+2022,356114,356114,0,23,23,,0,0,15683,33.649
+2023,247937,247937,0,23,23,,0,0,11760,19.12
+2024,662162,662161,1,24,23,Unnamed: 23,1,0,88067,78.429
+2025,643828,643827,1,24,23,Unnamed: 23,1,0,52136,79.448

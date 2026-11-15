@@ -18,6 +18,23 @@ B及其Codex首次接手项目时，请先阅读`docs/agent交接.md`。
 
 学习和审核回归代码时，请阅读`docs/AI技能工资溢价研究与Stata学习手册.md`。
 
+## 数据审计与清洗交接
+
+2018—2025年原始数据全量审计已于2026年11月15日完成。项目成员先阅读：
+
+- `outputs/qc/full_audit/data_audit_report.md`：通俗版审计结论和术语说明；
+- `outputs/qc/full_audit/cleaning_handoff.md`：下一步清洗程序的输入、输出和约束；
+- `outputs/qc/full_audit/issue_register.csv`：每项问题的数量、影响、建议动作和决策责任人。
+
+重新运行全量审计：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/01_audit_raw_data.py
+```
+
+运行成功时应同时出现`AUDIT_GATE=PASS`和`PYTHON_TASK=PASS`。
+
 ## 运行Python
 
 ```powershell
