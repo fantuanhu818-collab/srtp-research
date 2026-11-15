@@ -1,0 +1,40 @@
+{
+  "schema_version": "2026-11-15-v1",
+  "official_field_count": 23,
+  "official_fields": [
+    "企业名称",
+    "股票简称",
+    "关联股票代码",
+    "与上市公司关系",
+    "上市公司行业",
+    "招聘发布年份",
+    "招聘结束年份",
+    "招聘岗位",
+    "工作城市",
+    "工作区域",
+    "最低月薪",
+    "最高月薪",
+    "职位描述",
+    "学历要求",
+    "要求经验",
+    "招聘人数",
+    "招聘类别",
+    "初级分类",
+    "公司地点",
+    "工作地点",
+    "招聘发布日期",
+    "招聘结束日期",
+    "来源"
+  ],
+  "extra_column_policy": {
+    "decision": "drop_from_standardized_data",
+    "matched_headers": ["", "Unnamed: 23"],
+    "keep_source_record": true,
+    "keep_audit_evidence": true,
+    "explanation": "标准化数据只保留23个正式字段。第24个无名列不进入标准化数据；原始CSV保持不变，非空异常仍保留在审计证据中。"
+  },
+  "raw_data_policy": {
+    "read_only": true,
+    "do_not_overwrite": true
+  }
+}

@@ -674,8 +674,8 @@ def build_outputs(csv_results: list[dict[str, Any]], dta_results: dict[int, dict
                 "空白列出现非空值",
                 result["extra_column_nonblank"],
                 "直接丢弃空白列可能损失信息或掩盖错位记录。",
-                "先导出异常记录的来源行号和相邻字段，再判断是误写、错位还是可安全删除。",
-                "数据负责人确认",
+                "已确认：标准化数据仅保留23个正式字段，第24个无名列删除；原始CSV和异常记录证据继续保留。",
+                "项目组已确认",
             ),
             (
                 "SALARY_ANY_NONPOSITIVE",
@@ -918,6 +918,8 @@ def build_outputs(csv_results: list[dict[str, Any]], dta_results: dict[int, dict
             "",
             "**怎样理解：**CSV 将作为清洗主输入；DTA 用来核对记录数和结构。若同一年两者记录数不同，后续必须保留差异说明，不能在两个文件之间随意切换。",
             "",
+            "**已确认的字段规则：**标准化数据统一保留23个正式字段，第24个无名列不进入清洗结果。删除的是多余列，不是整条招聘记录；原始CSV保持只读，6条无名列非空记录继续保存在审计证据中。正式字段清单和规则版本见 `config/cleaning_rules.json`。",
+            "",
             "## 3 直接影响清洗的问题",
             "",
             "下表只显示数量大于零的问题。‘建议动作’是下一步做法，不代表已经决定删除或修改记录。",
@@ -1004,6 +1006,9 @@ def build_outputs(csv_results: list[dict[str, Any]], dta_results: dict[int, dict
             "- `special_record_examples.csv`：部分异常记录的可追溯例子，不含完整职位描述。",
             "- `invalid_value_patterns.csv`：工资和日期无法转换时的原始写法及频数。",
             "- `audit_details.json`：程序可直接读取的完整审计结果。",
+            "- `typical_issue_slices.csv`：重复、逻辑问题和字段缺失的19条典型切片。",
+            "- `issue_examples_and_solutions.md`：面向项目组的处理建议。",
+            "- `../schema_23fields_summary.csv`：23字段标准化输出的年度验收结果。",
         ]
     )
     (OUT_ROOT / "data_audit_report.md").write_text("\n".join(report_lines) + "\n", encoding="utf-8")
@@ -1020,6 +1025,8 @@ def build_outputs(csv_results: list[dict[str, Any]], dta_results: dict[int, dict
         "3. 编写清洗程序时读取 `audit_details.json` 与各 CSV 汇总表，不要从报告文字中手工抄数字。",
         "4. 原始目录严格只读；清洗结果写入 `D:/SRTP/工作数据/curated`。",
         "",
+        "23字段结构标准化已经完成，输出目录为 `D:/SRTP/工作数据/curated/schema_23fields_v1`。每年输出记录数与原CSV一致，验收结果见 `outputs/qc/schema_23fields_summary.csv`。下一步从这些Parquet继续处理缺失、逻辑异常和重复标记。",
+        "",
         "## 2 重新运行审计",
         "",
         "在仓库根目录执行：",
@@ -1034,7 +1041,8 @@ def build_outputs(csv_results: list[dict[str, Any]], dta_results: dict[int, dict
         "## 3 清洗程序必须继承的约束",
         "",
         "- 不覆盖、移动或重命名原始 CSV/DTA。",
-        "- 保留全部23个正式字段的原始值。",
+        "- 标准化数据只输出 `config/cleaning_rules.json` 中的23个正式字段；第24个无名列删除，但对应招聘记录保留。",
+        "- 保留全部23个正式字段的原始值，再另外生成清洗值和标记。",
         "- 新生成清洗值时，同时保留解析失败和异常标记。",
         "- 每一步记录输入数、输出数、删除数和删除原因。",
         "- 工资、日期、重复广告和企业识别规则必须可配置，不写成无法追溯的隐含操作。",
@@ -1062,6 +1070,8 @@ def build_outputs(csv_results: list[dict[str, Any]], dta_results: dict[int, dict
         "- 完全重复或疑似重复广告；",
         "- 一个股票代码对应多个企业名称；",
         "- CSV 与 DTA 不一致记录的取舍。",
+        "",
+        "第24个无名列的处理已经确认，不再属于未决事项：标准化数据删除该列，但保留对应招聘记录和审计证据。",
     ]
     (OUT_ROOT / "cleaning_handoff.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

@@ -25,6 +25,7 @@ B及其Codex首次接手项目时，请先阅读`docs/agent交接.md`。
 - `outputs/qc/full_audit/data_audit_report.md`：通俗版审计结论和术语说明；
 - `outputs/qc/full_audit/cleaning_handoff.md`：下一步清洗程序的输入、输出和约束；
 - `outputs/qc/full_audit/issue_register.csv`：每项问题的数量、影响、建议动作和决策责任人。
+- `config/cleaning_rules.json`：已确认的23字段清单和第24列处理规则。
 
 重新运行全量审计：
 
@@ -34,6 +35,21 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 ```
 
 运行成功时应同时出现`AUDIT_GATE=PASS`和`PYTHON_TASK=PASS`。
+
+已确认标准化数据采用23个正式字段，第24个无名列不进入输出。运行字段结构标准化：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/03_standardize_23_fields.py
+```
+
+输出保存在`D:\SRTP\工作数据\curated\schema_23fields_v1`，大型Parquet不进入Git。年度记录数与字段检查结果保存在`outputs/qc/schema_23fields_summary.csv`。
+
+问题切片和处理建议：
+
+- `outputs/qc/full_audit/issue_examples_and_solutions.md`：三类问题的解释和清洗建议；
+- `outputs/qc/full_audit/typical_issue_slices.csv`：19条可追溯的典型记录；
+- `outputs/qc/full_audit/数据问题典型切片与处理建议.xlsx`：便于项目成员查看的本地Excel版本。
 
 ## 运行Python
 

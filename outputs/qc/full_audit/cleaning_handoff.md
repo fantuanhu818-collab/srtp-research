@@ -9,6 +9,8 @@
 3. 编写清洗程序时读取 `audit_details.json` 与各 CSV 汇总表，不要从报告文字中手工抄数字。
 4. 原始目录严格只读；清洗结果写入 `D:/SRTP/工作数据/curated`。
 
+23字段结构标准化已经完成，输出目录为 `D:/SRTP/工作数据/curated/schema_23fields_v1`。每年输出记录数与原CSV一致，验收结果见 `outputs/qc/schema_23fields_summary.csv`。下一步从这些Parquet继续处理缺失、逻辑异常和重复标记。
+
 ## 2 重新运行审计
 
 在仓库根目录执行：
@@ -23,7 +25,8 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 ## 3 清洗程序必须继承的约束
 
 - 不覆盖、移动或重命名原始 CSV/DTA。
-- 保留全部23个正式字段的原始值。
+- 标准化数据只输出 `config/cleaning_rules.json` 中的23个正式字段；第24个无名列删除，但对应招聘记录保留。
+- 保留全部23个正式字段的原始值，再另外生成清洗值和标记。
 - 新生成清洗值时，同时保留解析失败和异常标记。
 - 每一步记录输入数、输出数、删除数和删除原因。
 - 工资、日期、重复广告和企业识别规则必须可配置，不写成无法追溯的隐含操作。
@@ -51,3 +54,5 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 - 完全重复或疑似重复广告；
 - 一个股票代码对应多个企业名称；
 - CSV 与 DTA 不一致记录的取舍。
+
+第24个无名列的处理已经确认，不再属于未决事项：标准化数据删除该列，但保留对应招聘记录和审计证据。

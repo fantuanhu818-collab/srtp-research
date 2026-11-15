@@ -1,0 +1,9 @@
+﻿year,input_rows,output_rows,input_field_count,output_field_count,dropped_columns,dropped_column_nonblank_count,output_path,output_size_bytes,schema_version
+2018,1584089,1584089,24,23,Unnamed: 23,1,D:\SRTP\工作数据\curated\schema_23fields_v1\jobs_2018_23fields.parquet,576540547,2026-11-15-v1
+2019,704762,704762,24,23,Unnamed: 23,1,D:\SRTP\工作数据\curated\schema_23fields_v1\jobs_2019_23fields.parquet,286577776,2026-11-15-v1
+2020,858406,858406,24,23,Unnamed: 23,1,D:\SRTP\工作数据\curated\schema_23fields_v1\jobs_2020_23fields.parquet,340277185,2026-11-15-v1
+2021,992790,992790,24,23,Unnamed: 23,1,D:\SRTP\工作数据\curated\schema_23fields_v1\jobs_2021_23fields.parquet,386529209,2026-11-15-v1
+2022,356114,356114,23,23,,0,D:\SRTP\工作数据\curated\schema_23fields_v1\jobs_2022_23fields.parquet,146248870,2026-11-15-v1
+2023,247937,247937,23,23,,0,D:\SRTP\工作数据\curated\schema_23fields_v1\jobs_2023_23fields.parquet,108122609,2026-11-15-v1
+2024,662162,662162,24,23,Unnamed: 23,1,D:\SRTP\工作数据\curated\schema_23fields_v1\jobs_2024_23fields.parquet,224241811,2026-11-15-v1
+2025,643828,643828,24,23,Unnamed: 23,1,D:\SRTP\工作数据\curated\schema_23fields_v1\jobs_2025_23fields.parquet,212737240,2026-11-15-v1
