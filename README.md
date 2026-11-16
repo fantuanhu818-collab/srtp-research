@@ -22,7 +22,7 @@ B及其Codex首次接手项目时，请先阅读`docs/agent交接.md`。
 
 构造正式分析变量前，请阅读精简后的`docs/变量构建清单与口径表_v0.2.md`；机器可读清单位于`config/variable_dictionary_v0.2.csv`。当前只建设13个基准核心变量，AI技能识别细则由AI技能工作线负责。
 
-讨论并试运行职业分类前，请阅读`docs/occupation_id两层分类与关键词规则_v0.1.md`。该文件规定两层职业组、关键词边界、优先级、冲突处理和一年试运行验收方式；当前只生成了2022年诊断性`occupation_id`，尚未形成正式变量。
+职业分类v0.1规则见`docs/occupation_id两层分类与关键词规则_v0.1.md`；基于职业大典正式版的v0.2方案见`docs/occupation_id职业大典模糊匹配方案_v0.2.md`。2022年v0.2试运行已经完成，但800条分层人工复核尚未填写，因此尚未并入正式回归底表。
 
 2022年职业分类试运行已经完成，结果仅用于修改规则，尚未进入正式回归数据。结论和问题见`outputs/qc/occupation_pilot_2022_report.md`。复现命令：
 
@@ -34,7 +34,18 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
   -ScriptPath code/python/13_validate_occupation_pilot_2022.py
 ```
 
-结合职业大典和模糊匹配的无模型训练修订方案见`docs/occupation_id职业大典模糊匹配方案_v0.2.md`。该方案保留现有规则，增加职业细类标准库、RapidFuzz模糊匹配、70/80/90阈值比较和独立人工验证；尚未按v0.2重新试跑。
+职业大典代码表、别名表和2022年v0.2试运行可复现运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/14_prepare_occupation_dictionary_v02.py
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/15_pilot_occupation_dictionary_2022.py
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/16_validate_occupation_dictionary_pilot_2022.py
+```
+
+v0.2使用职业大典小类作为`occupation_id`。2022年扩展版覆盖174,033条（52.97%），其中高置信度45,938条（13.98%）；程序独立验证通过，人工准确率待复核。
 
 ## 数据审计与清洗交接
 
@@ -113,7 +124,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
   -ScriptPath code/python/11_validate_confirmed_core_v2.py
 ```
 
-v2输出保存在`D:\SRTP\工作数据\features\confirmed_core_v2`，共5,235,398条，已经独立复核。它包含`wage_mid`、`ln_wage`、`education`、`experience`、初版`firm_id`、初版`city_id`和`year_month`。企业与城市口径仍是不完善的中期初版，限制见`outputs/qc/confirmed_core_v2_validation.md`。正式`occupation_id`和三类非AI技能变量暂未构建；2022年职业分类目前只是诊断性试运行。
+v2输出保存在`D:\SRTP\工作数据\features\confirmed_core_v2`，共5,235,398条，已经独立复核。它包含`wage_mid`、`ln_wage`、`education`、`experience`、初版`firm_id`、初版`city_id`和`year_month`。企业与城市口径仍是不完善的中期初版，限制见`outputs/qc/confirmed_core_v2_validation.md`。三类非AI技能变量暂未构建；`occupation_id`已完成2022年v0.2诊断性试运行，但尚未完成人工复核和全量构建。
 
 ## 运行Python
 

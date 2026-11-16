@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "standard": "中华人民共和国职业分类大典（2022年正式版）",
+  "fine_occupations": 1639,
+  "major_classes": 8,
+  "middle_classes": 79,
+  "substantive_small_classes": 449,
+  "small_codes_including_8_00_00": 450,
+  "green_occupations": 134,
+  "digital_occupations": 97,
+  "green_and_digital": 23,
+  "aliases_total": 2797,
+  "aliases_usable": 2797,
+  "aliases_ambiguous": 0,
+  "manual_aliases": 155,
+  "dictionary_sha256": "12e725ee2d7b430b2f2b42af6cbc7fbb503e686f39ff0039f4c1250083743efa",
+  "hierarchy_sha256": "a09e3443303c8e4104a5b8e63a805ee817bcdf7f995181f63619b9d24b5e91cc",
+  "alias_sha256": "ebbdfa11426e9a004fc5cef098f769af6dd46dc447a65d2cec4994b05fec4334",
+  "source_repository": "https://github.com/synkarta/Classification_Code_of_Occupations-China",
+  "source_license": "CC-BY-4.0（结构化数据与文档）",
+  "source_commit": "d845c000dcf2c95a35f30f7db1fe195627630c36",
+  "source_files": {
+    "fine": {
+      "name": "dadian2022_official_1639.csv",
+      "url": "https://raw.githubusercontent.com/synkarta/Classification_Code_of_Occupations-China/d845c000dcf2c95a35f30f7db1fe195627630c36/data/dadian2022_official_1639.csv",
+      "sha256": "bcf219a07d6655b0c7001ed2b2f2af1e820ceee134a668e9fcca52ec32e881a8"
+    },
+    "hierarchy": {
+      "name": "hierarchy_2022.csv",
+      "url": "https://raw.githubusercontent.com/synkarta/Classification_Code_of_Occupations-China/d845c000dcf2c95a35f30f7db1fe195627630c36/data/hierarchy_2022.csv",
+      "sha256": "c7701c970c174691687071c91d6b8e4da5c0cf9e055b06eaed3af687f670ee70"
+    }
+  },
+  "official_release_url": "https://chinajob.mohrss.gov.cn/h5/c/2022-10-08/361551.shtml",
+  "government_code_table_url": "https://srsj.cngy.gov.cn/Files/UploadFile/SiteFile/20160720104022026/2023/03/28/33236d995ac3404a99de2429f1e92f52.pdf",
+  "government_code_table_local_sha256": "43b86f85a730627ad0941354ccf4e32cca6140a343c1bdb5dc0b4629386ebf8d",
+  "government_code_table_verified": true,
+  "limitation": "结构化底表为非官方机器整理件；如与国家正式出版文本不符，以正式出版文本为准。"
+}

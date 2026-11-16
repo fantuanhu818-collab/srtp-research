@@ -1,0 +1,4 @@
+﻿threshold,records_score_at_least,share_score_at_least,records_score_and_margin5,share_score_and_margin5
+70,114521,0.34856703,101961,0.31033822
+80,80902,0.24624104,75673,0.23032555
+90,46106,0.14033262,46092,0.14029
