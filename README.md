@@ -73,6 +73,20 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 
 清洗数据保存在`D:\SRTP\工作数据\curated\cleaned_v1`。删除记录证据保存在`D:\SRTP\工作数据\evidence\cleaning_v1\deleted_records.parquet`。年度统计、规则表、前后对照切片和验证说明位于`outputs/qc/cleaning_v1_*`；便于组内查看的Excel为`outputs/qc/cleaning_v1_report.xlsx`。
 
+## 已确认核心变量构造
+
+当前只构造规则已经明确的`wage_mid`、`ln_wage`、`education`、`experience`和`year_month`：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/08_build_confirmed_core_variables.py
+
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/09_validate_confirmed_core_variables.py
+```
+
+输出保存在`D:\SRTP\工作数据\features\confirmed_core_v1`。`firm_id`、`occupation_id`、`city_id`和三类非AI技能变量在口径讨论完成前暂不生成。
+
 ## 运行Python
 
 ```powershell

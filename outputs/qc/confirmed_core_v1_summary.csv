@@ -1,0 +1,9 @@
+﻿year,input_rows,output_rows,education_raw_missing,education_unmapped,education_mapping_rate_nonmissing,experience_raw_missing,experience_unmapped,experience_mapping_rate_nonmissing,year_month_missing,output_path
+2018,1337081,1337081,135,761,0.99943079,89,0,1.0,0,D:\SRTP\工作数据\features\confirmed_core_v1\jobs_2018_confirmed_core.parquet
+2019,579180,579180,12,123,0.99978763,7,0,1.0,0,D:\SRTP\工作数据\features\confirmed_core_v1\jobs_2019_confirmed_core.parquet
+2020,730193,730193,22,3,0.99999589,56,0,1.0,0,D:\SRTP\工作数据\features\confirmed_core_v1\jobs_2020_confirmed_core.parquet
+2021,892023,892023,12397,14,0.99998408,20313,1,0.99999885,0,D:\SRTP\工作数据\features\confirmed_core_v1\jobs_2021_confirmed_core.parquet
+2022,328548,328548,0,4,0.99998783,0,0,1.0,0,D:\SRTP\工作数据\features\confirmed_core_v1\jobs_2022_confirmed_core.parquet
+2023,228739,228739,0,1,0.99999563,0,0,1.0,0,D:\SRTP\工作数据\features\confirmed_core_v1\jobs_2023_confirmed_core.parquet
+2024,560440,560440,9741,2,0.99999637,25,0,1.0,0,D:\SRTP\工作数据\features\confirmed_core_v1\jobs_2024_confirmed_core.parquet
+2025,579257,579257,9580,0,1.0,30,0,1.0,0,D:\SRTP\工作数据\features\confirmed_core_v1\jobs_2025_confirmed_core.parquet
