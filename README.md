@@ -22,7 +22,7 @@ B及其Codex首次接手项目时，请先阅读`docs/agent交接.md`。
 
 构造正式分析变量前，请阅读精简后的`docs/变量构建清单与口径表_v0.2.md`；机器可读清单位于`config/variable_dictionary_v0.2.csv`。当前只建设13个基准核心变量，AI技能识别细则由AI技能工作线负责。
 
-职业分类v0.1规则见`docs/occupation_id两层分类与关键词规则_v0.1.md`；职业大典小类v0.2试运行见`docs/occupation_id职业大典模糊匹配方案_v0.2.md`。v0.2在2022年的覆盖率低于原规则，因此基准回归采用“37个职业组为主、职业大典名称和模糊匹配辅助补漏”的v0.3方案，详见`docs/occupation_id粗分类与模糊匹配方案_v0.3.md`。v0.3已完成2022年诊断性试运行，覆盖率70.75%，待人工复核，不得并入正式回归底表。
+职业分类v0.1规则见`docs/occupation_id两层分类与关键词规则_v0.1.md`；职业大典小类v0.2试运行见`docs/occupation_id职业大典模糊匹配方案_v0.2.md`。基准回归采用“37个职业组为主、职业大典名称和模糊匹配辅助补漏”的v0.3方案，详见`docs/occupation_id粗分类与模糊匹配方案_v0.3.md`。v0.3已应用到2018—2025年全部5,235,398条回归底表记录，总覆盖率73.40%，全量候选结果待分层人工复核。
 
 2022年职业分类试运行已经完成，结果仅用于修改规则，尚未进入正式回归数据。结论和问题见`outputs/qc/occupation_pilot_2022_report.md`。复现命令：
 
@@ -57,6 +57,17 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
   -ScriptPath code/python/19_validate_occupation_coarse_2022.py
 ```
+
+2018—2025年全量构建和独立验证命令：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/20_build_occupation_v03_all_years.py
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/21_validate_occupation_v03_all_years.py
+```
+
+全量职业特征位于`D:\SRTP\工作数据\features\occupation_v0.3`，按`source_record_id`与`confirmed_core_v2`逐年一一对应。构建报告和验证报告分别为`outputs/qc/occupation_v03_all_years_report.md`和`outputs/qc/occupation_v03_all_years_validation.md`。
 
 ## 数据审计与清洗交接
 
@@ -135,7 +146,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
   -ScriptPath code/python/11_validate_confirmed_core_v2.py
 ```
 
-v2输出保存在`D:\SRTP\工作数据\features\confirmed_core_v2`，共5,235,398条，已经独立复核。它包含`wage_mid`、`ln_wage`、`education`、`experience`、初版`firm_id`、初版`city_id`和`year_month`。企业与城市口径仍是不完善的中期初版，限制见`outputs/qc/confirmed_core_v2_validation.md`。三类非AI技能变量暂未构建；`occupation_id`已完成2022年v0.2诊断性试运行，但尚未完成人工复核和全量构建。
+v2输出保存在`D:\SRTP\工作数据\features\confirmed_core_v2`，共5,235,398条，已经独立复核。它包含`wage_mid`、`ln_wage`、`education`、`experience`、初版`firm_id`、初版`city_id`和`year_month`。企业与城市口径仍是不完善的中期初版，限制见`outputs/qc/confirmed_core_v2_validation.md`。三类非AI技能变量暂未构建；v0.3候选`occupation_id`已全量构建并独立验证，待人工准确性复核后冻结。
 
 ## 运行Python
 
