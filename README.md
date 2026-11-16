@@ -34,6 +34,8 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
   -ScriptPath code/python/13_validate_occupation_pilot_2022.py
 ```
 
+结合职业大典和模糊匹配的无模型训练修订方案见`docs/occupation_id职业大典模糊匹配方案_v0.2.md`。该方案保留现有规则，增加职业细类标准库、RapidFuzz模糊匹配、70/80/90阈值比较和独立人工验证；尚未按v0.2重新试跑。
+
 ## 数据审计与清洗交接
 
 2018—2025年原始数据全量审计已于2026年11月15日完成。项目成员先阅读：
