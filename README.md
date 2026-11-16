@@ -22,7 +22,7 @@ B及其Codex首次接手项目时，请先阅读`docs/agent交接.md`。
 
 构造正式分析变量前，请阅读精简后的`docs/变量构建清单与口径表_v0.2.md`；机器可读清单位于`config/variable_dictionary_v0.2.csv`。当前只建设13个基准核心变量，AI技能识别细则由AI技能工作线负责。
 
-职业分类v0.1规则见`docs/occupation_id两层分类与关键词规则_v0.1.md`；职业大典小类v0.2试运行见`docs/occupation_id职业大典模糊匹配方案_v0.2.md`。v0.2在2022年的覆盖率低于原规则，因此基准回归改用“37个职业组为主、职业大典名称和模糊匹配辅助补漏”的v0.3方案，详见`docs/occupation_id粗分类与模糊匹配方案_v0.3.md`。v0.3尚未试运行，不得并入正式回归底表。
+职业分类v0.1规则见`docs/occupation_id两层分类与关键词规则_v0.1.md`；职业大典小类v0.2试运行见`docs/occupation_id职业大典模糊匹配方案_v0.2.md`。v0.2在2022年的覆盖率低于原规则，因此基准回归采用“37个职业组为主、职业大典名称和模糊匹配辅助补漏”的v0.3方案，详见`docs/occupation_id粗分类与模糊匹配方案_v0.3.md`。v0.3已完成2022年诊断性试运行，覆盖率70.75%，待人工复核，不得并入正式回归底表。
 
 2022年职业分类试运行已经完成，结果仅用于修改规则，尚未进入正式回归数据。结论和问题见`outputs/qc/occupation_pilot_2022_report.md`。复现命令：
 
@@ -46,6 +46,17 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 ```
 
 v0.2使用职业大典小类作为`occupation_id`。2022年扩展版覆盖174,033条（52.97%），其中高置信度45,938条（13.98%）；程序独立验证通过，人工准确率待复核。
+
+v0.3的词典构建、2022年试跑和独立验证命令：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/17_prepare_occupation_anchor_dictionary_v03.py
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/18_pilot_occupation_coarse_2022.py
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/19_validate_occupation_coarse_2022.py
+```
 
 ## 数据审计与清洗交接
 
