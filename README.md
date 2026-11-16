@@ -18,7 +18,7 @@ B及其Codex首次接手项目时，请先阅读`docs/agent交接.md`。
 
 学习和审核回归代码时，请阅读`docs/AI技能工资溢价研究与Stata学习手册.md`。
 
-构造正式分析变量前，请阅读`docs/变量构建清单与口径表_v0.1.md`；机器可读的变量清单位于`config/variable_dictionary_v0.1.csv`。
+构造正式分析变量前，请阅读精简后的`docs/变量构建清单与口径表_v0.2.md`；机器可读清单位于`config/variable_dictionary_v0.2.csv`。当前只建设13个基准核心变量，AI技能识别细则由AI技能工作线负责。
 
 ## 数据审计与清洗交接
 
