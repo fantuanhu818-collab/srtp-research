@@ -1,0 +1,10 @@
+﻿year,input_rows,deleted_invalid_education,output_rows,education_raw_missing,education_unmapped,experience_raw_missing,experience_unmapped,firm_missing,firm_unmapped,city_raw_missing,city_withheld_initial_rule,output_path
+2018,1337081,62,1337019,135,0,89,0,0,0,1447,2430,D:\SRTP\工作数据\features\confirmed_core_v2\jobs_2018_confirmed_core.parquet
+2019,579180,0,579180,12,0,7,0,0,0,3964,239,D:\SRTP\工作数据\features\confirmed_core_v2\jobs_2019_confirmed_core.parquet
+2020,730193,0,730193,22,0,56,0,0,0,7424,422,D:\SRTP\工作数据\features\confirmed_core_v2\jobs_2020_confirmed_core.parquet
+2021,892023,1,892022,12397,0,20313,0,0,0,211,1570,D:\SRTP\工作数据\features\confirmed_core_v2\jobs_2021_confirmed_core.parquet
+2022,328548,0,328548,0,0,0,0,0,0,0,8,D:\SRTP\工作数据\features\confirmed_core_v2\jobs_2022_confirmed_core.parquet
+2023,228739,0,228739,0,0,0,0,0,0,0,28,D:\SRTP\工作数据\features\confirmed_core_v2\jobs_2023_confirmed_core.parquet
+2024,560440,0,560440,9741,0,25,0,0,0,3238,1015,D:\SRTP\工作数据\features\confirmed_core_v2\jobs_2024_confirmed_core.parquet
+2025,579257,0,579257,9580,0,30,0,0,0,2781,802,D:\SRTP\工作数据\features\confirmed_core_v2\jobs_2025_confirmed_core.parquet
+合计,5235461,63,5235398,31887,0,20520,0,0,0,19065,6514,D:\SRTP\工作数据\features\confirmed_core_v2

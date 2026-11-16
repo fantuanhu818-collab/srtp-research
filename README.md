@@ -77,7 +77,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 
 ## 已确认核心变量构造
 
-当前只构造规则已经明确的`wage_mid`、`ln_wage`、`education`、`experience`和`year_month`：
+第一版五个变量仍可复现：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
@@ -87,7 +87,19 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
   -ScriptPath code/python/09_validate_confirmed_core_variables.py
 ```
 
-输出保存在`D:\SRTP\工作数据\features\confirmed_core_v1`。`firm_id`、`occupation_id`、`city_id`和三类非AI技能变量在口径讨论完成前暂不生成。
+第一版输出保存在`D:\SRTP\工作数据\features\confirmed_core_v1`，保持只读。
+
+项目组进一步确认学历处理、上市公司集团层级`firm_id`和保守城市标准化后，运行v2：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/10_build_confirmed_core_v2.py
+
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/11_validate_confirmed_core_v2.py
+```
+
+v2输出保存在`D:\SRTP\工作数据\features\confirmed_core_v2`，共5,235,398条，已经独立复核。它包含`wage_mid`、`ln_wage`、`education`、`experience`、初版`firm_id`、初版`city_id`和`year_month`。企业与城市口径仍是不完善的中期初版，限制见`outputs/qc/confirmed_core_v2_validation.md`。`occupation_id`和三类非AI技能变量暂未构建。
 
 ## 运行Python
 
