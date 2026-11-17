@@ -22,7 +22,7 @@ B及其Codex首次接手项目时，请先阅读`docs/agent交接.md`。
 
 构造正式分析变量前，请阅读精简后的`docs/变量构建清单与口径表_v0.2.md`；机器可读清单位于`config/variable_dictionary_v0.2.csv`。当前只建设13个基准核心变量，AI技能识别细则由AI技能工作线负责。
 
-职业分类v0.1规则见`docs/occupation_id两层分类与关键词规则_v0.1.md`；职业大典小类v0.2试运行见`docs/occupation_id职业大典模糊匹配方案_v0.2.md`。基准回归采用“37个职业组为主、职业大典名称和模糊匹配辅助补漏”的v0.3方案，详见`docs/occupation_id粗分类与模糊匹配方案_v0.3.md`。v0.3已应用到2018—2025年全部5,235,398条回归底表记录，总覆盖率73.40%，全量候选结果待分层人工复核。
+职业分类v0.1规则见`docs/occupation_id两层分类与关键词规则_v0.1.md`；职业大典小类v0.2试运行见`docs/occupation_id职业大典模糊匹配方案_v0.2.md`。基准回归采用“37个职业组为主、职业大典名称和模糊匹配辅助补漏”的v0.3方案，详见`docs/occupation_id粗分类与模糊匹配方案_v0.3.md`。v0.3已应用到2018—2025年全部5,235,398条回归底表记录，总覆盖率73.40%；人工复核入口为`outputs/occupation_review_20261117/occupation_manual_review_v0.3.xlsx`。
 
 2022年职业分类试运行已经完成，结果仅用于修改规则，尚未进入正式回归数据。结论和问题见`outputs/qc/occupation_pilot_2022_report.md`。复现命令：
 
