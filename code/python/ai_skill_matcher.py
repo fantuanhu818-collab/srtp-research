@@ -50,7 +50,8 @@ class AISkillMatcher:
             for term_id in ex["terms"]:
                 if term_id not in known:
                     raise ValueError(f"排除规则引用了不存在的词条：{term_id}")
-                self.exclusions.setdefault(term_id, []).append(re.compile(ex["clause_pattern"]))
+                flags = re.IGNORECASE if spec["matching"].get("exclusion_case_insensitive") else 0
+                self.exclusions.setdefault(term_id, []).append(re.compile(ex["clause_pattern"], flags))
         # 快速预筛：绝大多数广告不含任何AI词，直接返回0。
         self.prefilter = re.compile("|".join(f"(?:{t['pattern']})" for t in spec["terms"]), re.IGNORECASE)
         self.split = re.compile(spec["matching"]["clause_split_regex"])
@@ -99,13 +100,12 @@ class AISkillMatcher:
         broad: dict[str, Term] = {}
         review = False
         intro_hit = False
-        evidence = ""
+        evidence = {"strict": "", "broad": ""}
 
         def record(term: Term, clause: str) -> None:
-            nonlocal evidence
             (strict if term.tier == "strict" else broad)[term.id] = term
-            if not evidence:
-                evidence = clause[:EVIDENCE_CHARS]
+            if not evidence[term.tier]:
+                evidence[term.tier] = clause[:EVIDENCE_CHARS]
 
         # 标题：本身就是岗位，不做公司介绍判断。
         if title and self.prefilter.search(title):
@@ -130,19 +130,24 @@ class AISkillMatcher:
                     elif term.tier == "strict" or requirement:
                         record(term, clause)
 
+        # v1为确定性规则，不产生 uncertain；该状态留给以后的模型方法。
         if not desc and not strict and not broad:
             ai_skill = ai_broad = None
+            status = "text_missing"
         else:
             ai_skill = int(bool(strict))
             ai_broad = int(bool(strict) or bool(broad))
+            status = "positive" if ai_skill else "negative"
         return {
             "ai_skill": ai_skill,
+            "ai_status": status,
             "ai_skill_broad": ai_broad,
             "ai_genai": None if ai_skill is None else int(any(t.category == "generative" for t in strict.values())),
             "ai_traditional": None if ai_skill is None else int(any(t.category == "traditional" for t in strict.values())),
-            "ai_strict_terms": "|".join(sorted(strict)),
+            "ai_hit_terms": "|".join(sorted(strict)),
             "ai_broad_terms": "|".join(sorted(broad)),
             "ai_intro_only": int(intro_hit and not strict and not broad),
             "ai_review_flag": int(review),
-            "ai_evidence": evidence,
+            # 证据优先展示决定 ai_skill 的严格词所在句
+            "ai_evidence": evidence["strict"] or evidence["broad"],
         }

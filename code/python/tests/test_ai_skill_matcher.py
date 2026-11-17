@@ -63,6 +63,23 @@ CASES = [
     ("预测模型降为宽泛", "财务分析", "具备搭建预测模型的能力。", 0, 1),
     ("PS图像处理", "美工", "熟练使用PS进行图像处理。", 0, 0),
     ("婚恋情感分析师", "情感分析师", "为客户提供婚恋情感咨询与情感分析。", 0, 0),
+
+    # ---- 2022年真实数据中发现的误判（文字为改写的同类句子） ----
+    ("考核方法", "绩效专员", "熟悉各类绩效考核方法和工具。", 0, 0),
+    ("审核方法", "体系工程师", "熟练掌握分层审核等审核方法。", 0, 0),
+    ("氮化镓GaN", "射频工程师", "熟悉GaAs/GaN工艺射频器件的制作流程。", 0, 0),
+    ("智能体验", "设计师", "负责智能体验厅的方案设计。", 0, 0),
+    ("质量目标跟踪", "供应商工程师", "负责制定质量目标跟踪达成情况。", 0, 0),
+    ("雷达目标检测", "雷达算法工程师", "负责目标检测、目标跟踪雷达信号处理算法研究。", 0, 0),
+    ("安防人脸识别运维", "安防运维", "熟练掌握门禁系统、人脸识别系统等设备的操作及维护。", 0, 0),
+    ("放大模型", "研究员", "开展发酵工艺放大效应分析、放大模型建立。", 0, 0),
+    ("MCU定时器GPT", "嵌入式工程师", "熟悉单片机SPI、I2C、PWM、GPT等驱动开发。", 0, 0),
+    ("业务模式识别", "风控审核", "负责对商户业务模式识别和分析。", 0, 0),
+    ("专业名称模式识别", "算法工程师", "模式识别与智能系统等相关专业。", 0, 1),
+    ("小写ps和coreldraw", "市场策划", "要求熟练使用AI、coreldraw、ps软件。", 0, 0),
+    ("SMT自动插件", "SMT/AI/焊接作业员", "负责产线插件作业。", 0, 0),
+    ("真正的GAN", "图像算法", "熟悉GAN、扩散模型等生成模型。", 1, 1),
+    ("真正的大模型", "后端开发", "有AI大模型应用开发经验。", 1, 1),
 ]
 
 
@@ -73,11 +90,14 @@ class TestCases(unittest.TestCase):
             r = M.classify(title, desc)
             if (r["ai_skill"], r["ai_skill_broad"]) != (want_strict, want_broad):
                 failures.append(f"{note}: 期望{(want_strict, want_broad)} 实际{(r['ai_skill'], r['ai_skill_broad'])} "
-                                f"strict={r['ai_strict_terms']} broad={r['ai_broad_terms']}")
+                                f"strict={r['ai_hit_terms']} broad={r['ai_broad_terms']}")
         self.assertEqual(failures, [], "\n" + "\n".join(failures))
 
     def test_missing_text_is_not_zero(self):
         self.assertIsNone(M.classify("销售", None)["ai_skill"])
+        self.assertEqual(M.classify("销售", None)["ai_status"], "text_missing")
+        self.assertEqual(M.classify("销售", "负责客户维护。")["ai_status"], "negative")
+        self.assertEqual(M.classify("工程师", "熟悉深度学习。")["ai_status"], "positive")
         self.assertIsNone(M.classify("销售", "  ")["ai_skill_broad"])
         self.assertEqual(M.classify("深度学习工程师", None)["ai_skill"], 1)
 

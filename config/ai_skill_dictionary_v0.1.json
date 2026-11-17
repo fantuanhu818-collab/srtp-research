@@ -1,5 +1,5 @@
 {
-  "rule_version": "ai_skill_dict_v0.1_2026-11-16_aahr",
+  "rule_version": "ai_skill_dict_v0.1.1_2026-11-16_aahr",
   "status": "draft: 未经人工标注验证，不得作为正式结果",
   "text_fields": {
     "title": "招聘岗位",
@@ -8,7 +8,8 @@
   "matching": {
     "case_insensitive_default": true,
     "word_boundary_note": "word=true 的英文词前后不能紧邻英文字母或数字，例如 ML 不匹配 HTML、500ml；AI 不匹配 MAIL、OpenAI 以外的拼写",
-    "clause_split_regex": "[。；;！!？?\\n\\r]+|(?:^|\\s)(?:\\d{1,2}|[一二三四五六七八九十]{1,2})[、.．)）]|[（(]\\d{1,2}[)）]"
+    "clause_split_regex": "[。；;！!？?\\n\\r]+|(?:^|\\s)(?:\\d{1,2}|[一二三四五六七八九十]{1,2})[、.．)）]|[（(]\\d{1,2}[)）]",
+    "exclusion_case_insensitive": true
   },
   "tiers": {
     "strict": "含义基本唯一的AI技术词。出现在非公司介绍句中即计入 ai_skill。",
@@ -86,11 +87,12 @@
     },
     {
       "id": "aahr_pattern_recognition",
-      "pattern": "模式识别",
+      "pattern": "(?<!业务|商业|经营)模式识别(?!与智能系统)",
       "category": "traditional",
       "tier": "strict",
       "source": "AAHR2022_narrow",
-      "source_skill": "pattern recognition"
+      "source_skill": "pattern recognition",
+      "note": "2022年真实数据核查后修订：排除“业务模式识别”；“模式识别与智能系统”是专业名称，归入b_ai_major"
     },
     {
       "id": "aahr_object_recognition",
@@ -211,11 +213,12 @@
     },
     {
       "id": "aahr_kernel_methods",
-      "pattern": "核方法|Kernel Methods?",
+      "pattern": "核函数|Kernel Methods?",
       "category": "traditional",
       "tier": "strict",
       "source": "AAHR2022_narrow",
-      "source_skill": "kernel methods"
+      "source_skill": "kernel methods",
+      "note": "2022年真实数据核查后修订：中文“核方法”几乎全部是“审核方法/考核方法”，改用“核函数”"
     },
     {
       "id": "aahr_keras",
@@ -305,7 +308,7 @@
     },
     {
       "id": "x_nn_architectures",
-      "pattern": "卷积神经|循环神经|RNN|LSTM|GAN|生成对抗网络",
+      "pattern": "卷积神经|循环神经|RNN|LSTM|生成对抗网络",
       "word": true,
       "category": "traditional",
       "tier": "strict",
@@ -313,14 +316,15 @@
     },
     {
       "id": "x_cv_tasks",
-      "pattern": "人脸识别|目标检测|图像分割|语义分割|目标跟踪|OCR识别",
+      "pattern": "人脸识别|目标检测|图像分割|语义分割|OCR识别",
       "category": "traditional",
       "tier": "strict",
-      "source": "project_extension"
+      "source": "project_extension",
+      "note": "2022年真实数据核查后修订：删除“目标跟踪”（误中“质量目标跟踪”）"
     },
     {
       "id": "x_speech_synthesis",
-      "pattern": "语音合成|TTS|声纹识别",
+      "pattern": "语音合成|声纹识别",
       "word": true,
       "category": "traditional",
       "tier": "strict",
@@ -357,10 +361,11 @@
     },
     {
       "id": "g_llm_zh",
-      "pattern": "大语言模型|大模型",
+      "pattern": "大语言模型|(?:AI|人工智能|预训练|多模态|通用|行业|垂直|开源)大模型|大模型(?:技术|算法|应用|训练|微调|推理|开发|产品|能力)",
       "category": "generative",
       "tier": "strict",
-      "source": "project_genai"
+      "source": "project_genai",
+      "note": "2022年真实数据核查后修订：单独“大模型”会误中“放大模型”等，单独出现时放入broad"
     },
     {
       "id": "g_llm_en",
@@ -447,10 +452,11 @@
     },
     {
       "id": "g_agent",
-      "pattern": "AI ?Agent|智能体|LLM ?Agent",
+      "pattern": "AI ?Agent|智能体(?!验)|LLM ?Agent",
       "category": "generative",
       "tier": "strict",
-      "source": "project_genai"
+      "source": "project_genai",
+      "note": "2022年真实数据核查后修订：排除“智能体验”"
     },
     {
       "id": "g_finetune",
@@ -599,6 +605,41 @@
       "category": "unspecified",
       "tier": "review",
       "source": "project_extension"
+    },
+    {
+      "id": "x_gan",
+      "pattern": "GAN",
+      "word": true,
+      "case_sensitive": true,
+      "category": "traditional",
+      "tier": "strict",
+      "source": "project_extension",
+      "note": "2022年真实数据核查后修订：区分大小写，并排除氮化镓（GaN）语境"
+    },
+    {
+      "id": "b_llm_bare",
+      "pattern": "(?<![放扩最巨庞])大模型",
+      "category": "generative",
+      "tier": "broad",
+      "source": "project_genai",
+      "note": "2022年真实数据核查后修订"
+    },
+    {
+      "id": "b_tts",
+      "pattern": "TTS",
+      "word": true,
+      "category": "traditional",
+      "tier": "broad",
+      "source": "project_extension",
+      "note": "2022年真实数据核查后修订：TTS多见于数据质检和导航功能描述"
+    },
+    {
+      "id": "b_ai_major",
+      "pattern": "模式识别与智能系统|智能科学与技术",
+      "category": "unspecified",
+      "tier": "broad",
+      "source": "project_extension",
+      "note": "2022年真实数据核查后修订：专业名称，与“人工智能相关专业”同样处理"
     }
   ],
   "term_exclusions": [
@@ -622,8 +663,8 @@
       "terms": [
         "g_gpt"
       ],
-      "clause_pattern": "分区|MBR|磁盘|硬盘|UEFI",
-      "note": "GPT在运维语境中可指GUID分区表"
+      "clause_pattern": "分区|MBR|磁盘|硬盘|UEFI|单片机|MCU|SPI|I2C|PWM|UART|定时器|GPT团队",
+      "note": "GPT在运维语境中可指GUID分区表；MCU语境中GPT指通用定时器"
     },
     {
       "terms": [
@@ -646,6 +687,28 @@
       ],
       "clause_pattern": "情感咨询|情感导师|情感分析师|婚恋|恋爱|挽回|心理咨询|情感顾问|两性",
       "note": "中文“情感分析师”多为婚恋情感咨询岗位，不是文本情感分析"
+    },
+    {
+      "terms": [
+        "x_gan"
+      ],
+      "clause_pattern": "射频|半导体|功放|功率|GaAs|SiC|SIC|工艺|器件|芯片|氮化镓|外延|晶圆",
+      "note": "GaN/GAN在射频和功率半导体中指氮化镓"
+    },
+    {
+      "terms": [
+        "x_cv_tasks",
+        "aahr_object_recognition"
+      ],
+      "clause_pattern": "雷达|毫米波|信号处理|门禁|安防|监控|闸机|考勤|设备的操作|弱电",
+      "note": "雷达信号处理中的目标检测/识别，以及安防设备的人脸识别运维，不算AI技能"
+    },
+    {
+      "terms": [
+        "b_ai_en"
+      ],
+      "clause_pattern": "SMT|DIP|插件|焊接|贴片|波峰焊|AOI",
+      "note": "电子装配中AI指自动插件（Auto Insertion）"
     }
   ],
   "context": {
