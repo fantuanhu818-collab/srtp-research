@@ -146,7 +146,21 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
   -ScriptPath code/python/11_validate_confirmed_core_v2.py
 ```
 
-v2输出保存在`D:\SRTP\工作数据\features\confirmed_core_v2`，共5,235,398条，已经独立复核。它包含`wage_mid`、`ln_wage`、`education`、`experience`、初版`firm_id`、初版`city_id`和`year_month`。企业与城市口径仍是不完善的中期初版，限制见`outputs/qc/confirmed_core_v2_validation.md`。三类非AI技能变量暂未构建；v0.3候选`occupation_id`已全量构建并独立验证，待人工准确性复核后冻结。
+v2输出保存在`D:\SRTP\工作数据\features\confirmed_core_v2`，共5,235,398条，已经独立复核。它包含`wage_mid`、`ln_wage`、`education`、`experience`、初版`firm_id`、初版`city_id`和`year_month`。企业与城市口径仍是不完善的中期初版，限制见`outputs/qc/confirmed_core_v2_validation.md`。非AI技能中的认知和社交技能已完成2022年候选试运行并通过结构验证，待240条人工复核；软件技能尚未构建。v0.3候选`occupation_id`已全量构建并独立验证，待人工准确性复核后冻结。
+
+## 非AI技能2022年试运行
+
+方法见`docs/非AI技能变量构建方法.md`。当前只试跑`skill_cognitive`和`skill_social`，不依赖尚未完成的AI词典：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/22_pilot_non_ai_cognitive_social_2022.py
+
+powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
+  -ScriptPath code/python/23_validate_non_ai_cognitive_social_2022.py
+```
+
+2022年328,548条中，认知技能候选命中70,532条（21.47%），社交技能候选命中167,487条（50.98%）；结构验证通过。候选特征位于`D:\SRTP\工作数据\features\non_ai_skills_pilot_v0.1`，人工复核前不能作为正式冻结变量。
 
 ## 运行Python
 

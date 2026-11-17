@@ -1,0 +1,22 @@
+rule_id,skill_group,term_level,standard_term,pattern,exclude_pattern,notes
+C001,cognitive,strict,逻辑思维,"逻辑思维|逻辑分析|逻辑清晰",,完整逻辑思维表达
+C002,cognitive,conditional,问题解决,"解决.{0,8}(?:复杂|实际|业务|技术|工作|现场|客户)?问题|问题.{0,8}(?:分析|处理|解决).{0,4}能力",,允许岗位职责中的明确问题解决任务
+C003,cognitive,conditional,分析判断能力,"(?:分析|判断|研判).{0,4}能力",,单独出现分析或判断不命中
+C004,cognitive,strict,独立思考与分析,"独立(?:思考|分析|判断|解决)",,必须出现独立和具体认知动作
+C005,cognitive,strict,数据敏感性,"数据敏感|数字敏感|商业敏感",,完整敏感性表达
+C006,cognitive,strict,归纳总结,"归纳总结|总结归纳",,完整认知动作表达
+C007,cognitive,strict,定量定性分析,"定量分析|定性分析|量化分析",,具体分析方法
+C008,cognitive,strict,高级思维方式,"批判性思维|创新思维|结构化思维|系统性思维",,完整思维方式
+C009,cognitive,conditional,研究分析能力,"研究分析.{0,4}能力|分析研究.{0,4}能力",,研究或分析单独出现不命中
+C010,cognitive,strict,决策能力,"决策.{0,3}能力|决断.{0,3}能力",,完整决策能力表达
+C011,cognitive,strict,英文认知技能,"problem[- ]solving|analytical (?:skill|ability)|critical thinking|logical thinking|decision[- ]making",,常见英文完整表达
+S001,social,conditional,沟通能力,"沟通(?:协调|表达|应变)?.{0,4}能力",,单独出现沟通不命中
+S002,social,strict,沟通协调,"沟通协调|协调沟通",,完整复合短语
+S003,social,strict,团队协作,"团队(?:协作|合作|配合)(?:能力|精神|意识)?|协作精神|合作精神",团队氛围|团队建设活动,排除仅描述公司氛围
+S004,social,strict,跨部门协作,"(?:跨|各|相关|内外)部门.{0,8}(?:沟通|协调|协作)|与.{0,10}(?:部门|团队).{0,6}(?:沟通|协调|协作)|(?:沟通|协调|协作).{0,8}(?:跨|各|相关)部门",,明确跨部门或相关部门互动
+S005,social,conditional,客户沟通,"客户.{0,6}(?:沟通|协调|谈判)|(?:沟通|协调|谈判).{0,6}客户",,允许职责中的明确客户沟通任务
+S006,social,strict,商务谈判,"商务谈判|谈判.{0,4}(?:能力|技巧|经验)",,完整谈判表达
+S007,social,conditional,表达能力,"(?:语言|口头|书面|文字|演讲|汇报).{0,4}表达.{0,4}能力|表达.{0,4}能力|表达沟通.{0,4}能力",,单独出现表达不命中
+S008,social,strict,人际交往,"人际(?:交往|沟通|关系).{0,4}(?:能力)?",,完整人际互动表达
+S009,social,conditional,组织协调能力,"组织协调.{0,4}能力|组织.{0,4}协调.{0,4}能力",,单独出现组织或协调不命中
+S010,social,strict,英文社交技能,"communication (?:skill|ability)|team[ -]?work|collaboration|negotiation (?:skill|ability)|interpersonal (?:skill|ability)|cross[- ]functional",,常见英文完整表达
