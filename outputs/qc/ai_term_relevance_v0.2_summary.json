@@ -1,0 +1,44 @@
+{
+  "rule_version_input": "ai_skill_dict_v0.1.1_2026-11-16_aahr",
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "thresholds": {
+    "strict_min": 0.3,
+    "conditional_min": 0.1,
+    "min_ads": 30,
+    "max_candidates": 400
+  },
+  "core_terms": {
+    "traditional": [
+      "aahr_computer_vision",
+      "aahr_machine_learning",
+      "aahr_nlp"
+    ],
+    "generative": [
+      "g_llm_en",
+      "g_llm_zh"
+    ]
+  },
+  "candidates_raw": 498,
+  "candidates_ge30_ads": 423,
+  "candidates_in_sheet": 400,
+  "existing_term_tier_changes": {
+    "strict→conditional": 7,
+    "broad→conditional": 5,
+    "broad→strict": 14
+  },
+  "candidate_suggested_tiers": {
+    "broad": 87,
+    "strict": 219,
+    "conditional": 94
+  },
+  "elapsed_seconds": 2829
+}
