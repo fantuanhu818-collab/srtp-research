@@ -1,0 +1,25 @@
+{
+  "n_candidates": 400,
+  "design": "重点词（单独出现≥100条）两人都筛；其余按编号交替分给A、B，单人筛",
+  "n_double_coded": 120,
+  "n_single_A": 140,
+  "n_single_B": 140,
+  "key_include_agreement": 0.975,
+  "key_include_kappa": 0.915,
+  "key_tier_agreement_when_both_include": 0.85,
+  "key_n_include_A": 22,
+  "key_n_include_B": 21,
+  "merged_tiers": {
+    "strict": 100,
+    "conditional": 82,
+    "not_added": 213,
+    "broad": 5
+  },
+  "merged_tiers_double_coded": {
+    "not_added": 100,
+    "conditional": 13,
+    "strict": 5,
+    "broad": 2
+  },
+  "n_disagreements_key": 6
+}

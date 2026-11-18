@@ -8,6 +8,8 @@
   门槛（预先写定）：≥30% 严格词；10%—30% 条件词；<10% 宽泛词；出现不足30条 → 条件词。
   现有词用 ai_skill_matcher 的正则（含排除规则）匹配；候选词按 jieba 分词后的整词匹配（与训练语料一致）。
   候选词：出现广告数≥30；超过400个时按最高相似度取前400个。
+  单独出现：广告的要求句里有该候选词、但没有任何现有严格词（v0.1.1词典层级）。筛词表单列这类广告数，
+          3条例句中至少2条取自单独出现的广告（不足时用其他广告补齐），帮助判断第5.1节第3条标准。
 
 输入（只读）：cleaned_v1；<features_root>/ai_skill_v0.2_work/w2v/{candidates_raw.csv, phrases.pkl}
 输出（不进Git，含广告原句）：
@@ -53,12 +55,14 @@ TIER_ZH = {"strict": "严格词", "conditional": "条件词", "broad": "宽泛�
 _matcher: AISkillMatcher | None = None
 _phrases = None
 _cands: set[str] = set()
+_strict: set[str] = set()
 
 
 def _init_worker(dictionary: str, phrases_path: str, cands: list[str]) -> None:
-    global _matcher, _phrases, _cands
+    global _matcher, _phrases, _cands, _strict
     from gensim.models.phrases import FrozenPhrases
     _matcher = AISkillMatcher(dictionary)
+    _strict = {t.id for t in _matcher.terms if t.tier == "strict"}
     T.init_jieba(json.loads(Path(dictionary).read_text(encoding="utf-8"))["terms"])
     _phrases = FrozenPhrases.load(phrases_path)
     _cands = set(cands)
@@ -84,10 +88,20 @@ def excerpt(clause: str, tok: str) -> str:
             + ("…" if end < len(clause) else ""))
 
 
+def _push(examples: dict, key: tuple, item: tuple) -> None:
+    heap = examples.setdefault(key, [])  # 保留hash最小的N_EXAMPLES条
+    if len(heap) < N_EXAMPLES:
+        heapq.heappush(heap, item)
+    elif item > heap[0]:
+        heapq.heapreplace(heap, item)
+
+
 def _count_batch(rows: list[tuple]) -> tuple[Counter, Counter, Counter, dict]:
-    """返回 n[(key, period)]、co_trad[key]（全部年份）、co_gen[key]（ChatGPT后）、例句堆。key = T:词条id 或 C:候选词。"""
+    """返回 n[(key, period)]、co_trad[key]（全部年份）、co_gen[key]（ChatGPT后）、例句堆。
+    key = T:词条id 或 C:候选词；n[(C:候选词, "alone")] 为单独出现（无现有严格词）的广告数。
+    例句堆的键为 (候选词, 是否单独出现)。"""
     n, co_trad, co_gen = Counter(), Counter(), Counter()
-    examples: dict[str, list] = {}
+    examples: dict[tuple, list] = {}
     for rid, title, desc, pub in rows:
         terms: set[str] = set()
         cand_clause: dict[str, str] = {}
@@ -106,14 +120,21 @@ def _count_batch(rows: list[tuple]) -> tuple[Counter, Counter, Counter, dict]:
                 co_trad[key] += 1
             if period == "post" and gen - {self_id}:
                 co_gen[key] += 1
+        alone = not (terms & _strict)
         for c, clause in cand_clause.items():
-            heap = examples.setdefault(c, [])
-            item = (-_example_key(rid, c), rid, excerpt(clause, c))  # 保留key最小的3条
-            if len(heap) < N_EXAMPLES:
-                heapq.heappush(heap, item)
-            elif item > heap[0]:
-                heapq.heapreplace(heap, item)
+            if alone:
+                n[(f"C:{c}", "alone")] += 1
+            _push(examples, (c, alone), (-_example_key(rid, c), rid, excerpt(clause, c)))
     return n, co_trad, co_gen, examples
+
+
+def pick_examples(examples: dict, cand: str) -> list[str]:
+    """至少2条取自单独出现的广告，第3条取自含严格词的广告；任一类不足时用另一类补齐。"""
+    alone = ["（单独出现）" + c for _, _, c in sorted(examples.get((cand, True), []), reverse=True)]
+    other = ["（有其他AI词）" + c for _, _, c in sorted(examples.get((cand, False), []), reverse=True)]
+    out = alone[:2] + other[:1]
+    rest = alone[2:] + other[1:]
+    return (out + rest)[:N_EXAMPLES]
 
 
 def tier_for(rel: float | None, n_basis: int) -> str:
@@ -178,13 +199,9 @@ def main() -> int:
             n.update(bn)
             co_trad.update(bco_t)
             co_gen.update(bco_g)
-            for c, items in bex.items():
-                heap = examples.setdefault(c, [])
+            for key, items in bex.items():
                 for item in items:
-                    if len(heap) < N_EXAMPLES:
-                        heapq.heappush(heap, item)
-                    elif item > heap[0]:
-                        heapq.heapreplace(heap, item)
+                    _push(examples, key, item)
             done += 1
             if done % 25 == 0:
                 print(f"  batches={done} ads≈{done * 20_000:,} elapsed={time.time() - t0:.0f}s", flush=True)
@@ -218,8 +235,9 @@ def main() -> int:
     for r in raw:
         basis = "generative" if r["groups"] == "生成式AI" else "traditional"
         s = stats_for(f"C:{r['candidate']}", basis, n, co_trad, co_gen)
-        ex = [clause for _, _, clause in sorted(examples.get(r["candidate"], []), reverse=True)]
-        cand_rows.append({**r, **s, "suggested_tier": tier_for(s["relevance"], s["n_basis"]),
+        ex = pick_examples(examples, r["candidate"])
+        cand_rows.append({**r, **s, "n_alone": n[(f"C:{r['candidate']}", "alone")],
+                          "suggested_tier": tier_for(s["relevance"], s["n_basis"]),
                           **{f"example_{i + 1}": ex[i] if i < len(ex) else "" for i in range(N_EXAMPLES)}})
     kept = [r for r in cand_rows if r["n_all"] >= MIN_ADS]
     kept.sort(key=lambda r: -float(r["max_sim"]))
@@ -239,7 +257,8 @@ def main() -> int:
     for i, r in enumerate(capped, 1):
         sheet.append({"编号": i, "候选词": r["candidate"], "来源组": r["groups"], "最高相似度": r["max_sim"],
                       "最接近的种子词": r["best_seed"], "出现广告数_ChatGPT前": r["n_pre"],
-                      "出现广告数_ChatGPT后": r["n_post"], "共现相关度": pct(r["relevance"]),
+                      "出现广告数_ChatGPT后": r["n_post"], "不含现有严格词的广告数": r["n_alone"],
+                      "共现相关度": pct(r["relevance"]),
                       "相关度口径": "生成式AI核心词，ChatGPT后" if r["basis"] == "generative" else "传统AI核心词，全部年份",
                       "例句1": r["example_1"], "例句2": r["example_2"], "例句3": r["example_3"],
                       "筛选结果(1严格/2条件/3宽泛/0不加入)": "", "备注": ""})

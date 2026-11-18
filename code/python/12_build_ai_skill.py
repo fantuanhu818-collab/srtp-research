@@ -13,6 +13,9 @@
   .venv/bin/python code/python/12_build_ai_skill.py                 # 全部年份（约1小时）
   .venv/bin/python code/python/12_build_ai_skill.py --years 2022
   .venv/bin/python code/python/12_build_ai_skill.py --check-only     # 只做交付检查
+  .venv/bin/python code/python/12_build_ai_skill.py --dictionary config/ai_skill_dictionary_v0.2_draft.json --workers 7
+v0.2（方案第6.2节）：新增 ai_skill_2cat、ai_intensity、ai_conditional_terms 三列；输出目录仍为 ai_skill_v1，
+  规则版本变化时，先把旧结果整目录改名为 ai_skill_v1_rule_<旧版本> 备份，再写新结果。
 成功时依次输出 AI_DELIVERY_GATE=PASS 和 PYTHON_TASK=PASS。
 """
 
@@ -24,6 +27,7 @@ import json
 import sys
 import time
 from datetime import datetime
+from multiprocessing import Pool
 from pathlib import Path
 
 import duckdb
@@ -47,7 +51,9 @@ SCHEMA = pa.schema([
     ("ai_hit_terms", pa.string()), ("ai_evidence", pa.string()),
     ("ai_skill_broad", pa.int8()), ("ai_genai", pa.int8()), ("ai_traditional", pa.int8()),
     ("ai_broad_terms", pa.string()), ("ai_intro_only", pa.int8()), ("ai_review_flag", pa.int8()),
+    ("ai_skill_2cat", pa.int8()), ("ai_intensity", pa.float32()), ("ai_conditional_terms", pa.string()),
 ])
+COUNT_KEYS = ("ai_skill_broad", "ai_genai", "ai_traditional", "ai_intro_only", "ai_review_flag", "ai_skill_2cat")
 STATUSES = ["positive", "negative", "text_missing", "uncertain"]
 
 def sql_path(path: Path) -> str:
@@ -60,8 +66,7 @@ def build_year(matcher: AISkillMatcher, src: Path, dst: Path, year: int) -> dict
     tmp = dst.with_suffix(".parquet.tmp")
     writer = pq.ParquetWriter(tmp, SCHEMA)
     stats = {"year": year, "input_rows": reader.metadata.num_rows, "output_rows": 0,
-             **{s: 0 for s in STATUSES}, "ai_skill_broad": 0, "ai_genai": 0,
-             "ai_traditional": 0, "ai_intro_only": 0, "ai_review_flag": 0}
+             **{s: 0 for s in STATUSES}, **{k: 0 for k in COUNT_KEYS}, "ai_conditional_unpaired": 0}
     try:
         for batch in reader.iter_batches(batch_size=50_000, columns=[ID, TITLE, DESC]):
             cols = batch.to_pydict()
@@ -73,8 +78,9 @@ def build_year(matcher: AISkillMatcher, src: Path, dst: Path, year: int) -> dict
                 for name in SCHEMA.names:
                     rows[name].append(r[name])
                 stats[r["ai_status"]] += 1
-                for key in ("ai_skill_broad", "ai_genai", "ai_traditional", "ai_intro_only", "ai_review_flag"):
+                for key in COUNT_KEYS:
                     stats[key] += r[key] or 0
+                stats["ai_conditional_unpaired"] += bool(r["ai_conditional_terms"])
             stats["output_rows"] += len(rows["source_record_id"])
             writer.write_table(pa.table(rows, schema=SCHEMA))
     finally:
@@ -85,6 +91,32 @@ def build_year(matcher: AISkillMatcher, src: Path, dst: Path, year: int) -> dict
     stats["missing_rate"] = round((stats["text_missing"] + stats["uncertain"]) / stats["output_rows"], 6)
     stats["broad_rate"] = round(stats["ai_skill_broad"] / judged, 6) if judged else None
     return stats
+
+
+def _build_one(args: tuple) -> dict:
+    dictionary, src, dst, year = args
+    t0 = time.time()
+    stats = build_year(AISkillMatcher(dictionary), Path(src), Path(dst), year)
+    stats["seconds"] = round(time.time() - t0, 1)
+    print(stats, flush=True)
+    return stats
+
+
+def backup_if_rule_changed(out_dir: Path, rule_version: str) -> None:
+    """规则版本变化时，把旧结果整目录改名备份（方案第6.2节），不覆盖旧结果。"""
+    manifest = out_dir / "manifest.json"
+    if not manifest.exists():
+        return
+    old = json.loads(manifest.read_text(encoding="utf-8"))["ai_rule_version"]
+    if old == rule_version:
+        return
+    short = old.removeprefix("ai_skill_dict_").split("_")[0]
+    backup = out_dir.with_name(f"{out_dir.name}_rule_{short}")
+    if backup.exists():
+        raise SystemExit(f"备份目录已存在，请先确认：{backup}")
+    out_dir.rename(backup)
+    out_dir.mkdir()
+    print(f"BACKUP {old} → {backup}", flush=True)
 
 
 def validate(out_dir: Path, curated: Path, years: list[int]) -> dict:
@@ -142,6 +174,7 @@ def main() -> int:
     ap.add_argument("--dictionary", type=Path, default=DEFAULT_DICTIONARY)
     ap.add_argument("--storage-config", type=Path, default=PROJECT_ROOT / "config" / "storage_paths.json")
     ap.add_argument("--check-only", action="store_true")
+    ap.add_argument("--workers", type=int, default=1, help="按年份并行的进程数")
     args = ap.parse_args()
 
     storage = json.loads(args.storage_config.read_text(encoding="utf-8"))
@@ -152,16 +185,17 @@ def main() -> int:
     print(f"RULE_VERSION={matcher.rule_version}")
 
     if not args.check_only:
-        summary = []
         for year in args.years:
-            src = curated / f"jobs_{year}_cleaned.parquet"
-            if not src.exists():
-                raise FileNotFoundError(src)
-            t0 = time.time()
-            stats = build_year(matcher, src, out_dir / f"jobs_{year}_ai_skill.parquet", year)
-            stats["seconds"] = round(time.time() - t0, 1)
-            print(stats, flush=True)
-            summary.append(stats)
+            if not (curated / f"jobs_{year}_cleaned.parquet").exists():
+                raise FileNotFoundError(curated / f"jobs_{year}_cleaned.parquet")
+        backup_if_rule_changed(out_dir, matcher.rule_version)
+        jobs = [(str(args.dictionary), str(curated / f"jobs_{y}_cleaned.parquet"),
+                 str(out_dir / f"jobs_{y}_ai_skill.parquet"), y) for y in args.years]
+        if args.workers > 1:
+            with Pool(min(args.workers, len(jobs))) as pool:
+                summary = pool.map(_build_one, jobs, chunksize=1)
+        else:
+            summary = [_build_one(j) for j in jobs]
         with (QC_DIR / "ai_skill_v1_summary.csv").open("w", encoding="utf-8-sig", newline="") as f:
             w = csv.DictWriter(f, fieldnames=list(summary[0]))
             w.writeheader()

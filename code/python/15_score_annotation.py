@@ -1,9 +1,9 @@
 """根据人工标注计算AI技能识别的一致率、查准率和查全率。
 
-输入：<analysis_root>/ai_annotation_v1/ 下填好的 标注表_A.csv、标注表_B.csv、annotation_key.csv，
-      可选 分歧裁定.csv（列：编号, 最终标注），以及 outputs/qc/ai_annotation_v1_strata.csv（各层总体数）。
-输出：outputs/qc/ai_annotation_v1_metrics.csv（指标，无原文，进Git）
-      <analysis_root>/ai_annotation_v1/分歧清单.csv、误判漏判清单.csv（含原文，不进Git）
+输入：<analysis_root>/ai_annotation_v0.2/ 下填好的 标注表_A.csv、标注表_B.csv、annotation_key.csv，
+      可选 分歧裁定.csv（列：编号, 最终标注），以及 outputs/qc/ai_annotation_v0.2_strata.csv（各层总体数）。
+输出：outputs/qc/ai_annotation_v0.2_metrics.csv（指标，无原文，进Git）
+      <analysis_root>/ai_annotation_v0.2/分歧清单.csv、误判漏判清单.csv（含原文，不进Git）
 
 指标按分层抽样权重换算到总体：某层的“真AI比例”乘以该层总体数，加总得到总体真AI数。
   查准率 = 程序判1的广告中真AI的比例；查全率 = 真AI广告中被程序判1的比例。
@@ -21,7 +21,8 @@ import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 LABEL = "是否要求AI技能(1/0/9)"
-POSITIVE_STRATA = {"strict": ["strict_hit"], "broad": ["strict_hit", "broad_only"]}
+POSITIVE_STRATA = {"strict": ["strict_hit", "new_terms_only"],
+                   "broad": ["strict_hit", "new_terms_only", "conditional_only", "broad_only"]}
 
 
 def read_sheet(path: Path) -> pd.Series:
@@ -51,7 +52,7 @@ def totals(labeled: pd.DataFrame, pop: pd.DataFrame, version: str) -> tuple[floa
 
 def main() -> int:
     storage = json.loads((PROJECT_ROOT / "config" / "storage_paths.json").read_text(encoding="utf-8"))
-    d = Path(storage["analysis_root"]) / "ai_annotation_v1"
+    d = Path(storage["analysis_root"]) / "ai_annotation_v0.2"
     key = pd.read_csv(d / "annotation_key.csv", encoding="utf-8-sig").set_index("annotation_no")
     a, b = read_sheet(d / "标注表_A.csv"), read_sheet(d / "标注表_B.csv")
 
@@ -85,7 +86,7 @@ def main() -> int:
     labeled = labeled[labeled.label.isin([0, 1])]
 
     # 3. 加权查准率、查全率：每个时期单独加权，合计时把两个时期的估计数相加
-    strata = pd.read_csv(PROJECT_ROOT / "outputs" / "qc" / "ai_annotation_v1_strata.csv", encoding="utf-8-sig")
+    strata = pd.read_csv(PROJECT_ROOT / "outputs" / "qc" / "ai_annotation_v0.2_strata.csv", encoding="utf-8-sig")
     rows = []
     for version in ("strict", "broad"):
         per = {p: totals(labeled[labeled.period == p], strata[strata.period == p], version) for p in ("pre", "post")}
@@ -97,7 +98,7 @@ def main() -> int:
                          "est_true_ai_share": tt / n if n else None})
     metrics = pd.DataFrame(rows)
     by_stratum = labeled.groupby(["period", "stratum"])["label"].agg(n="size", true_ai_share="mean").reset_index()
-    out = PROJECT_ROOT / "outputs" / "qc" / "ai_annotation_v1_metrics.csv"
+    out = PROJECT_ROOT / "outputs" / "qc" / "ai_annotation_v0.2_metrics.csv"
     pd.concat([metrics.assign(kind="overall"), by_stratum.assign(kind="by_stratum"),
                pd.DataFrame([{"kind": "agreement", "n_labeled": len(usable), "precision": agree, "recall": kappa,
                               "version": "A_vs_B（precision列=一致率，recall列=kappa）"},
@@ -106,8 +107,8 @@ def main() -> int:
     print(by_stratum.round(3).to_string(index=False))
 
     # 4. 误判（程序1、人工0）按命中词统计；漏判（程序0、人工1）按层列出
-    fp = labeled[(labeled.stratum == "strict_hit") & (labeled.label == 0)]
-    fn = labeled[(labeled.stratum != "strict_hit") & (labeled.label == 1)]
+    fp = labeled[labeled.stratum.isin(POSITIVE_STRATA["strict"]) & (labeled.label == 0)]
+    fn = labeled[~labeled.stratum.isin(POSITIVE_STRATA["strict"]) & (labeled.label == 1)]
     print("FALSE_POSITIVE_TERMS", fp.ai_hit_terms.str.split("|").explode().value_counts().to_dict())
     print("FALSE_NEGATIVE_BY_STRATUM", fn.stratum.value_counts().to_dict())
     pd.concat([fp.assign(error="误判FP"), fn.assign(error="漏判FN")]).to_csv(d / "误判漏判清单.csv", encoding="utf-8-sig")

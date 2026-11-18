@@ -3,7 +3,9 @@
 读取 config/ai_skill_dictionary_*.json，对一条招聘广告的“招聘岗位”和“职位描述”判断：
 
 - ai_skill：严格词出现在非公司介绍句中 → 1；
-- ai_skill_broad：ai_skill=1，或宽泛词出现在带岗位要求/职责线索的句子中 → 1；
+  条件词（v0.2新增层级）出现在非公司介绍句中，且广告里还有另一个不同的严格词或条件词 → 1；
+- ai_skill_broad：ai_skill=1，或宽泛词出现在带岗位要求/职责线索的句子中，或有没搭配上的条件词 → 1；
+- v0.2词典另输出 ai_skill_2cat、ai_intensity、ai_conditional_terms（v0.1词典没有条件词和分组，结果与原来一致）；
 - 职位描述缺失且标题无命中 → None（不得自动编码为0）。
 
 规则说明见 docs/AI技能识别方案与人工标注规则_v0.1.md。
@@ -26,6 +28,8 @@ class Term:
     regex: re.Pattern
     category: str
     tier: str
+    group: str | None = None
+    relevance: float | None = None
 
 
 def _term_regex(spec: dict, default_ignore_case: bool) -> re.Pattern:
@@ -42,7 +46,8 @@ class AISkillMatcher:
         self.rule_version: str = spec["rule_version"]
         ignore_case = spec["matching"]["case_insensitive_default"]
         self.terms = [
-            Term(t["id"], _term_regex(t, ignore_case), t["category"], t["tier"]) for t in spec["terms"]
+            Term(t["id"], _term_regex(t, ignore_case), t["category"], t["tier"], t.get("group"), t.get("relevance_v02"))
+            for t in spec["terms"]
         ]
         known = {t.id for t in self.terms}
         self.exclusions: dict[str, list[re.Pattern]] = {}
@@ -85,35 +90,39 @@ class AISkillMatcher:
             return section != "requirement" or not has_req
         return bool(self.weak_intro.search(clause)) and not has_req
 
-    def _hits(self, clause: str) -> list[Term]:
+    def _hits(self, clause: str) -> list[tuple[Term, str]]:
         found = []
         for term in self.terms:
-            if term.regex.search(clause) and not any(p.search(clause) for p in self.exclusions.get(term.id, [])):
-                found.append(term)
+            m = term.regex.search(clause)
+            if m and not any(p.search(clause) for p in self.exclusions.get(term.id, [])):
+                found.append((term, m.group(0)))
         return found
 
     # ---------- 单条广告 ----------
     def classify(self, title: object, description: object) -> dict:
         title = title.strip() if isinstance(title, str) else ""
         desc = description.strip() if isinstance(description, str) else ""
-        strict: dict[str, Term] = {}
-        broad: dict[str, Term] = {}
+        found: dict[str, dict[str, Term]] = {"strict": {}, "conditional": {}, "broad": {}}
         review = False
         intro_hit = False
-        evidence = {"strict": "", "broad": ""}
+        evidence = {"strict": "", "conditional": "", "broad": ""}
 
-        def record(term: Term, clause: str) -> None:
-            (strict if term.tier == "strict" else broad)[term.id] = term
+        cond_texts: set[str] = set()  # 条件词实际匹配到的文字（去空格、小写）
+
+        def record(term: Term, clause: str, text: str) -> None:
+            found[term.tier][term.id] = term
+            if term.tier == "conditional":
+                cond_texts.add(re.sub(r"[\s_-]+", "", text).lower())
             if not evidence[term.tier]:
                 evidence[term.tier] = clause[:EVIDENCE_CHARS]
 
         # 标题：本身就是岗位，不做公司介绍判断。
         if title and self.prefilter.search(title):
-            for term in self._hits(title):
+            for term, text in self._hits(title):
                 if term.tier == "review":
                     review = True
                 else:
-                    record(term, f"[标题]{title}")
+                    record(term, f"[标题]{title}", text)
 
         if desc and self.prefilter.search(desc):
             for clause, section in self.clauses(desc):
@@ -122,22 +131,40 @@ class AISkillMatcher:
                     continue
                 intro = self.is_intro(clause, section)
                 requirement = section == "requirement" or bool(self.req_cue.search(clause))
-                for term in hits:
+                for term, text in hits:
                     if term.tier == "review":
                         review = True
                     elif intro:
                         intro_hit = True
-                    elif term.tier == "strict" or requirement:
-                        record(term, clause)
+                    elif term.tier in ("strict", "conditional") or requirement:
+                        record(term, clause, text)
+
+        strict, cond, broad = found["strict"], found["conditional"], found["broad"]
+        # 条件词：有严格词，或至少两个不同的条件词时才计入；否则只算宽泛。
+        # “不同”按匹配到的文字算：同一处文字被几个写法相近的词同时匹配（如LDA、VisionPro/Cognex VisionPro），只算一个。
+        distinct = {t for t in cond_texts if not any(t != u and t in u for u in cond_texts)}
+        if strict or len(distinct) >= 2:
+            strict = {**strict, **cond}
+            unpaired: dict[str, Term] = {}
+        else:
+            unpaired = cond
+            if cond and not evidence["broad"]:
+                evidence["broad"] = evidence["conditional"]
+        if not strict:
+            evidence["strict"] = ""
+        elif not evidence["strict"]:
+            evidence["strict"] = evidence["conditional"]
 
         # v1为确定性规则，不产生 uncertain；该状态留给以后的模型方法。
-        if not desc and not strict and not broad:
+        if not desc and not strict and not broad and not unpaired:
             ai_skill = ai_broad = None
             status = "text_missing"
         else:
             ai_skill = int(bool(strict))
-            ai_broad = int(bool(strict) or bool(broad))
+            ai_broad = int(bool(strict) or bool(broad) or bool(unpaired))
             status = "positive" if ai_skill else "negative"
+        groups = {t.group for t in found["strict"].values() if t.group}
+        rels = [t.relevance for t in strict.values() if t.relevance is not None]
         return {
             "ai_skill": ai_skill,
             "ai_status": status,
@@ -146,7 +173,13 @@ class AISkillMatcher:
             "ai_traditional": None if ai_skill is None else int(any(t.category == "traditional" for t in strict.values())),
             "ai_hit_terms": "|".join(sorted(strict)),
             "ai_broad_terms": "|".join(sorted(broad)),
-            "ai_intro_only": int(intro_hit and not strict and not broad),
+            "ai_conditional_terms": "|".join(sorted(unpaired)),
+            # 至少两类：命中的严格层级词来自两个不同的种子组（条件词不计）
+            "ai_skill_2cat": None if ai_skill is None else int(len(groups) >= 2),
+            # AI强度：计入 ai_skill 的词的相关度平均值；未命中为0；命中词都没有相关度时为空
+            "ai_intensity": None if ai_skill is None else (0.0 if not strict else
+                                                          (round(sum(rels) / len(rels), 4) if rels else None)),
+            "ai_intro_only": int(intro_hit and not strict and not broad and not unpaired),
             "ai_review_flag": int(review),
             # 证据优先展示决定 ai_skill 的严格词所在句
             "ai_evidence": evidence["strict"] or evidence["broad"],

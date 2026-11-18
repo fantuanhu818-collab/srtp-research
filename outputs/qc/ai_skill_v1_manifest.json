@@ -3,10 +3,10 @@
   "feature_version": "ai_skill_v1",
   "join_key_source": "来源记录ID",
   "join_key_output": "source_record_id",
-  "ai_rule_version": "ai_skill_dict_v0.1.1_2026-11-16_aahr",
+  "ai_rule_version": "ai_skill_dict_v0.2_draft_2026-11-17",
   "ai_method": "keyword_rule",
-  "dictionary": "config/ai_skill_dictionary_v0.1.json",
-  "built_at": "2026-11-16T20:28:30",
+  "dictionary": "config/ai_skill_dictionary_v0.2_draft.json",
+  "built_at": "2026-11-18T18:41:14",
   "checks": {
     "years_present": [
       2018,

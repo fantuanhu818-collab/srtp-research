@@ -1,10 +1,11 @@
 """生成AI技能人工标注表（盲标、按ChatGPT发布前后分层、两人重叠50条）。
 
 输入：<features_root>/ai_skill_v1（程序结果）与 <curated_root>/cleaned_v1（原文、发布日期），只读。
-输出（含广告原文，均不进Git）：<analysis_root>/ai_annotation_v1/
+v0.2（方案第7.1节）：7层 × ChatGPT前后2个时期，共360条；各层互斥，合起来覆盖全部可判断广告。
+输出（含广告原文，均不进Git）：<analysis_root>/ai_annotation_v0.2/
   标注表_A.csv、标注表_B.csv   只有岗位名称和职位描述，不显示程序结果
   annotation_key.csv            编号→来源记录ID、分层、程序结果（标注完成前不要打开）
-输出（无原文，进Git）：outputs/qc/ai_annotation_v1_strata.csv  各层总体数量和抽样数（计算加权指标用）
+输出（无原文，进Git）：outputs/qc/ai_annotation_v0.2_strata.csv  各层总体数量和抽样数（计算加权指标用）
 
 用法：.venv/bin/python code/python/14_make_annotation_sheets.py
 """
@@ -22,17 +23,21 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 SEED = 20261116
 CHATGPT_RELEASE = "2022-11-30"
 OVERLAP = 50
+ANNOT = "ai_annotation_v0.2"
 TECH_TITLE = "工程师|开发|算法|数据|研发|技术|程序|软件"
-# (层名, 条件, 每个时期抽样数)。阳性层用于查准率；未命中层（含技术岗）用于查全率。
+# 命中词全部是第4步新增词（id以w_开头）
+NEW_ONLY = "list_bool_and(list_transform(string_split(ai_hit_terms, '|'), x -> starts_with(x, 'w_')))"
+NO_AI = "ai_skill = 0 AND ai_skill_broad = 0"
+NO_HIT = f"{NO_AI} AND ai_intro_only = 0"
+# (层名, 条件, 每个时期抽样数)。各层互斥。阳性层用于查准率；其余层用于查全率。
 STRATA = [
-    ("strict_hit", "ai_skill = 1", 50),
-    ("broad_only", "ai_skill = 0 AND ai_skill_broad = 1", 30),
-    ("intro_only", "ai_skill = 0 AND ai_skill_broad = 0 AND ai_intro_only = 1", 15),
-    ("review_only", "ai_skill = 0 AND ai_skill_broad = 0 AND ai_intro_only = 0 AND ai_review_flag = 1", 15),
-    ("no_hit_tech", f"ai_skill = 0 AND ai_skill_broad = 0 AND ai_intro_only = 0 AND ai_review_flag = 0 "
-                    f"AND regexp_matches(job_title, '{TECH_TITLE}')", 15),
-    ("no_hit_other", f"ai_skill = 0 AND ai_skill_broad = 0 AND ai_intro_only = 0 AND ai_review_flag = 0 "
-                     f"AND NOT regexp_matches(coalesce(job_title, ''), '{TECH_TITLE}')", 25),
+    ("strict_hit", f"ai_skill = 1 AND NOT {NEW_ONLY}", 50),
+    ("new_terms_only", f"ai_skill = 1 AND {NEW_ONLY}", 20),
+    ("conditional_only", "ai_skill = 0 AND ai_conditional_terms <> ''", 30),
+    ("broad_only", "ai_skill = 0 AND ai_skill_broad = 1 AND ai_conditional_terms = ''", 30),
+    ("intro_only", f"{NO_AI} AND ai_intro_only = 1", 10),
+    ("no_hit_tech", f"{NO_HIT} AND regexp_matches(coalesce(job_title, ''), '{TECH_TITLE}')", 15),
+    ("no_hit_other", f"{NO_HIT} AND NOT regexp_matches(coalesce(job_title, ''), '{TECH_TITLE}')", 25),
 ]
 PERIODS = {"pre": f"pub_date < DATE '{CHATGPT_RELEASE}'", "post": f"pub_date >= DATE '{CHATGPT_RELEASE}'"}
 
@@ -49,7 +54,7 @@ def main() -> int:
     storage = json.loads((PROJECT_ROOT / "config" / "storage_paths.json").read_text(encoding="utf-8"))
     ai = sql_path(Path(storage["features_root"]) / "ai_skill_v1" / "jobs_*_ai_skill.parquet")
     text = sql_path(Path(storage["curated_root"]) / "cleaned_v1" / "jobs_*_cleaned.parquet")
-    out_dir = Path(storage["analysis_root"]) / "ai_annotation_v1"
+    out_dir = Path(storage["analysis_root"]) / ANNOT
     out_dir.mkdir(parents=True, exist_ok=True)
 
     con = duckdb.connect()
@@ -91,12 +96,13 @@ def main() -> int:
         print(f"SHEET_{who} rows={len(sheet)}")
 
     key = sample[["annotation_no", "source_record_id", "year", "period", "stratum", "ai_skill", "ai_skill_broad",
-                  "ai_hit_terms", "ai_broad_terms", "ai_evidence", "ai_rule_version"]].copy()
+                  "ai_hit_terms", "ai_broad_terms", "ai_conditional_terms", "ai_evidence",
+                  "ai_rule_version"]].copy()
     key["overlap"] = key.annotation_no <= OVERLAP
     key["annotator"] = key.annotation_no.map(lambda n: "A+B" if n <= OVERLAP else ("A" if n in a_ids else "B"))
     write_csv(key, out_dir / "annotation_key.csv")
     pop = pd.DataFrame(pop_rows)
-    pop.to_csv(PROJECT_ROOT / "outputs" / "qc" / "ai_annotation_v1_strata.csv", index=False, encoding="utf-8-sig")
+    pop.to_csv(PROJECT_ROOT / "outputs" / "qc" / f"{ANNOT}_strata.csv", index=False, encoding="utf-8-sig")
     print(pop.to_string(index=False))
     print(f"TOTAL_SAMPLE={len(sample)} OUT={out_dir}")
     print("PYTHON_TASK=PASS")

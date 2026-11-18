@@ -1,0 +1,15 @@
+﻿period,stratum,population,sampled
+pre,strict_hit,47070,50
+pre,new_terms_only,2038,20
+pre,conditional_only,6284,30
+pre,broad_only,41204,30
+pre,intro_only,4049,10
+pre,no_hit_tech,1145869,15
+pre,no_hit_other,2593358,25
+post,strict_hit,20862,50
+post,new_terms_only,664,20
+post,conditional_only,3041,30
+post,broad_only,16873,30
+post,intro_only,1236,10
+post,no_hit_tech,447589,15
+post,no_hit_other,901445,25

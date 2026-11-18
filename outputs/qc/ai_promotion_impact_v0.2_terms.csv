@@ -1,0 +1,15 @@
+﻿term_id,group,relevance,n_ads_with_term,flips_any,flips_only_this_term,flips_pre,flips_post,flips_pct_of_v011_positives
+b_ai_zh,generic,0.3495,30578,16486,14409,12214,4272,23.2
+b_data_science,generic,0.4248,30520,15784,14826,12984,2800,22.2
+b_image_processing_generic,generic,0.3627,20696,5288,4996,3958,1330,7.4
+b_ai_tools,generic,0.3338,8501,3942,2942,1896,2046,5.5
+b_model_training,generic,0.5912,12769,2739,1748,1639,1100,3.8
+b_llm_bare,technical,0.6439,5233,789,459,17,772,1.1
+b_cv_abbr,technical,0.5874,1888,540,460,358,182,0.8
+b_ml_abbr,technical,0.6671,709,143,110,78,65,0.2
+b_prompt,technical,0.7402,869,115,108,53,62,0.2
+b_tts,technical,0.5551,526,108,105,98,10,0.2
+b_transformer,technical,0.5145,1275,85,80,59,26,0.1
+b_llm_names_ambiguous,generic,0.4469,193,50,29,14,36,0.1
+b_lora,technical,0.9128,189,20,20,17,3,0.0
+b_cnn,technical,0.8031,2803,17,12,13,4,0.0
