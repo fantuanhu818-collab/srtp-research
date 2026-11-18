@@ -1,0 +1,8 @@
+{
+  "source_workbook": "D:\\SRTP科研\\outputs\\occupation_v04_validation_20261118\\occupation_v04_独立验证样本_300条_已补标Z99_20261118.xlsx",
+  "source_sha256": "f92b328e47ece10e8063aa37ed05dcb0d22b985867607749394d766756a84959",
+  "records": 300,
+  "stage1_correct": 267,
+  "occupation_id_correct": 271,
+  "z99_resolved": 29
+}

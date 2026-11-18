@@ -1,6 +1,6 @@
 # occupation V4人工样本回测报告
 
-版本：`occupation_v0.4_manual_feedback_20261118`
+版本：`occupation_v0.4.1_independent_validation_feedback_20261118`
 
 > 本报告是已知错误的回归测试，不是独立样本准确率估计。
 
@@ -17,8 +17,8 @@
 
 |方法|条数|
 |---|---:|
-|context_rule|98|
-|manual_alias|940|
+|context_rule|99|
+|manual_alias|939|
 
 ## 按原错误原因检查
 

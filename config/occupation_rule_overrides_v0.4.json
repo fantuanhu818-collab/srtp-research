@@ -1,5 +1,5 @@
 {
-  "version": "occupation_rule_overrides_v0.4",
+  "version": "occupation_rule_overrides_v0.4.1_validation_feedback",
   "base_rules": "occupation_rules_v0.1.json",
   "manual_gold": "occupation_manual_gold_v0.4.csv",
   "disable_primary_category_autofill": true,
@@ -29,6 +29,273 @@
     "开发工程师"
   ],
   "context_rules": [
+    {
+      "rule_id": "V041_D04_RF_MICROWAVE_TEST",
+      "priority": 1,
+      "occupation_id": "D04",
+      "standard_name": "射频与微波系统测试工程师",
+      "confidence": "high",
+      "title_pattern": "(?:测试工程师.*(?:微波|射频)|(?:微波|射频).*测试工程师)"
+    },
+    {
+      "rule_id": "V041_D04_HIL_VEHICLE_TEST",
+      "priority": 2,
+      "occupation_id": "D04",
+      "standard_name": "汽车系统与HIL测试工程师",
+      "confidence": "medium",
+      "title_pattern": "软件测试工程师|测试工程师",
+      "description_pattern": "hil|整车电器|整车标定|驾驶性标定|制动系统|车辆工程"
+    },
+    {
+      "rule_id": "V041_D05_EQUIPMENT_OPERATION",
+      "priority": 3,
+      "occupation_id": "D05",
+      "standard_name": "设备运维工程师",
+      "confidence": "medium",
+      "title_pattern": "设备运维工程师|设备运营工程师",
+      "description_pattern": "在线监测设备|设备巡检|设备维护|故障处理|机电一体化|环境监测"
+    },
+    {
+      "rule_id": "V041_D05_MACHINE_ROOM_HARDWARE_OPS",
+      "priority": 3,
+      "occupation_id": "D05",
+      "standard_name": "机房硬件运维工程师",
+      "confidence": "medium",
+      "title_pattern": "机房运维工程师",
+      "description_pattern": "服务器|存储|网络设备|硬件故障|综合布线|机房"
+    },
+    {
+      "rule_id": "V041_B01_CHANNEL_DISTRIBUTION",
+      "priority": 4,
+      "occupation_id": "B01",
+      "standard_name": "院线与商务发行经理",
+      "confidence": "high",
+      "title_pattern": "院线发行|商务发行"
+    },
+    {
+      "rule_id": "V041_M03_REGIONAL_ASSISTANT",
+      "priority": 4,
+      "occupation_id": "M03",
+      "standard_name": "区域行政助理",
+      "confidence": "medium",
+      "title_pattern": "区域助理",
+      "description_pattern": "行政事务|报表收集|费用预算|报销|会议召集|会议纪要|流程申请"
+    },
+    {
+      "rule_id": "V041_M03_PARTY_ADMIN",
+      "priority": 4,
+      "occupation_id": "M03",
+      "standard_name": "党群与党务管理",
+      "confidence": "high",
+      "title_pattern": "党群|党务|党建"
+    },
+    {
+      "rule_id": "V041_C02_PROPERTY_SALES_OFFICE",
+      "priority": 4,
+      "occupation_id": "C02",
+      "standard_name": "物业案场服务负责人",
+      "confidence": "high",
+      "title_pattern": "案场负责人|案场服务"
+    },
+    {
+      "rule_id": "V041_E01_CONTROL_SIMULATION",
+      "priority": 4,
+      "occupation_id": "E01",
+      "standard_name": "控制策略仿真工程师",
+      "confidence": "high",
+      "title_pattern": "控制策略仿真|控制仿真工程师"
+    },
+    {
+      "rule_id": "V041_D01_IDE_CRAWLER_DEVELOPMENT",
+      "priority": 4,
+      "occupation_id": "D01",
+      "standard_name": "开发工具与数据采集工程师",
+      "confidence": "high",
+      "title_pattern": "(?:前端.*ide|ide.*研发|爬虫工程师|数据采集开发工程师)"
+    },
+    {
+      "rule_id": "V041_B05_CONTENT_OPERATION_EDITOR",
+      "priority": 4,
+      "occupation_id": "B05",
+      "standard_name": "内容运营编辑",
+      "confidence": "high",
+      "title_pattern": "运营编辑|内容运营编辑"
+    },
+    {
+      "rule_id": "V041_D06_SOFTWARE_DELIVERY",
+      "priority": 4,
+      "occupation_id": "D06",
+      "standard_name": "软件实施与交付工程师",
+      "confidence": "high",
+      "title_pattern": "软件交付工程师|实施交付|软件实施工程师"
+    },
+    {
+      "rule_id": "V041_D06_IMPLEMENTATION_OPERATION_CONTEXT",
+      "priority": 5,
+      "occupation_id": "D06",
+      "standard_name": "软件实施与交付工程师",
+      "confidence": "medium",
+      "title_pattern": "实施运维",
+      "description_pattern": "实施方案|现场部署|客户培训|java-web|中间件|医疗信息化"
+    },
+    {
+      "rule_id": "V041_M01_BRANCH_MANAGER",
+      "priority": 5,
+      "occupation_id": "M01",
+      "standard_name": "分公司经营负责人",
+      "confidence": "medium",
+      "title_pattern": "分公司副经理|分公司经理",
+      "description_pattern": "年度经营计划|年度经济目标|分公司经营|经营管理|团队管理"
+    },
+    {
+      "rule_id": "V041_D06_GENERIC_TECH_SUPPORT",
+      "priority": 5,
+      "occupation_id": "D06",
+      "standard_name": "软件实施与技术支持工程师",
+      "confidence": "medium",
+      "title_pattern": "技术工程师",
+      "description_pattern": "软件部署|系统部署|签约客户|故障诊断|安全巡检|设备维护报告|现场实施"
+    },
+    {
+      "rule_id": "V041_F01_COST_CONTROL",
+      "priority": 4,
+      "occupation_id": "F01",
+      "standard_name": "成本管理负责人",
+      "confidence": "high",
+      "title_pattern": "成本负责人|成本管理负责人"
+    },
+    {
+      "rule_id": "V041_P04_IMPORT_EXPORT",
+      "priority": 4,
+      "occupation_id": "P04",
+      "standard_name": "进出口与关务经理",
+      "confidence": "high",
+      "title_pattern": "进出口经理|进出口主管|关务经理"
+    },
+    {
+      "rule_id": "V041_E01_RF_ANALOG_IC",
+      "priority": 4,
+      "occupation_id": "E01",
+      "standard_name": "射频与模拟IC设计工程师",
+      "confidence": "high",
+      "title_pattern": "(?:射频|模拟|混合信号).*(?:ic|芯片).*设计"
+    },
+    {
+      "rule_id": "V041_B02_ONLINE_PROMOTION",
+      "priority": 4,
+      "occupation_id": "B02",
+      "standard_name": "网络推广经理",
+      "confidence": "high",
+      "title_pattern": "网络推广经理|网络推广主管"
+    },
+    {
+      "rule_id": "V041_B01_SALES_SUPERVISOR",
+      "priority": 4,
+      "occupation_id": "B01",
+      "standard_name": "销售主管",
+      "confidence": "high",
+      "title_pattern": "销售主管"
+    },
+    {
+      "rule_id": "V041_B01_CAR_INSURANCE_RENEWAL",
+      "priority": 4,
+      "occupation_id": "B01",
+      "standard_name": "车险续保销售",
+      "confidence": "high",
+      "title_pattern": "车险续费|车险续保"
+    },
+    {
+      "rule_id": "V041_L04_FARM_TECHNICIAN",
+      "priority": 4,
+      "occupation_id": "L04",
+      "standard_name": "农场与农艺技术员",
+      "confidence": "high",
+      "title_pattern": "农场技术员|农艺技术员"
+    },
+    {
+      "rule_id": "V041_E03_CLINICAL_TRIAL_MANAGEMENT",
+      "priority": 4,
+      "occupation_id": "E03",
+      "standard_name": "临床试验机构管理",
+      "confidence": "high",
+      "title_pattern": "临床试验.*负责人|gcp.*负责人"
+    },
+    {
+      "rule_id": "V041_P04_HOSPITAL_SPD",
+      "priority": 5,
+      "occupation_id": "P04",
+      "standard_name": "医院SPD仓储配送专员",
+      "confidence": "medium",
+      "title_pattern": "医院驻点|驻院人员|驻点人员",
+      "description_pattern": "仓库|配送|入票|spd|院内物流"
+    },
+    {
+      "rule_id": "V041_M02_HRIS",
+      "priority": 4,
+      "occupation_id": "M02",
+      "standard_name": "人力资源信息系统主管",
+      "confidence": "high",
+      "title_pattern": "(?:^|[^a-z])hris(?:[^a-z]|$)"
+    },
+    {
+      "rule_id": "V041_P01_LIQUID_PREPARATION",
+      "priority": 4,
+      "occupation_id": "P01",
+      "standard_name": "配液生产操作员",
+      "confidence": "high",
+      "title_pattern": "配液员"
+    },
+    {
+      "rule_id": "V041_P04_COLLECTION_TRANSPORT",
+      "priority": 5,
+      "occupation_id": "P04",
+      "standard_name": "收运调度主管",
+      "confidence": "medium",
+      "title_pattern": "收运主管|收运调度",
+      "description_pattern": "收运计划|收运线路|车辆|调度|运输"
+    },
+    {
+      "rule_id": "V041_P03_PRODUCTION_PLANNER",
+      "priority": 5,
+      "occupation_id": "P03",
+      "standard_name": "生产计划员",
+      "confidence": "medium",
+      "title_pattern": "^计划员$|生产计划员|pmc计划员",
+      "description_pattern": "机台计划|投料|工序|生产进度|瓶颈工序|产出"
+    },
+    {
+      "rule_id": "V041_S03_STRATEGY_MANAGEMENT",
+      "priority": 4,
+      "occupation_id": "S03",
+      "standard_name": "战略规划与管理经理",
+      "confidence": "high",
+      "title_pattern": "战略管理.*(?:经理|主管)|战略规划经理"
+    },
+    {
+      "rule_id": "V041_P02_VALIDATION_ENGINEER",
+      "priority": 5,
+      "occupation_id": "P02",
+      "standard_name": "设备与工艺验证工程师",
+      "confidence": "medium",
+      "title_pattern": "验证工程师",
+      "description_pattern": "验证计划|fat|sat|工艺验证|设备验证|验证报告"
+    },
+    {
+      "rule_id": "V041_P04_WAREHOUSE_ACCOUNTING",
+      "priority": 4,
+      "occupation_id": "P04",
+      "standard_name": "仓库库存账务员",
+      "confidence": "high",
+      "title_pattern": "计划部账务员|仓库账务员|库存账务员"
+    },
+    {
+      "rule_id": "V041_D05_BROADBAND_INSTALLATION",
+      "priority": 4,
+      "occupation_id": "D05",
+      "standard_name": "宽带装维工程师",
+      "confidence": "high",
+      "title_pattern": "宽带安装|宽带装维"
+    },
     {
       "rule_id": "V04_E01_HARDWARE_TEST_TITLE",
       "priority": 1,

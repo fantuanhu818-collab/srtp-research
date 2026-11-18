@@ -2,7 +2,7 @@
 confirmed_records,1038,1080,0.9611111111111111
 v03_code_accuracy_confirmed,697,1038,0.6714836223506744
 v04_code_accuracy_confirmed,1038,1038,1.0
-v04_name_accuracy_confirmed,985,1038,0.9489402697495183
+v04_name_accuracy_confirmed,984,1038,0.9479768786127167
 v04_z99_confirmed,0,1038,0.0
 pending_conflict_records,41,1080,0.03796296296296296
 unresolved_z99_records,1,1080,0.000925925925925926

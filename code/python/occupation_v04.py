@@ -25,7 +25,7 @@ OVERRIDE_PATH = PROJECT_ROOT / "config" / "occupation_rule_overrides_v0.4.json"
 ANCHOR_PATH = PROJECT_ROOT / "config" / "occupation_name_dictionary_v0.3.csv"
 MANUAL_GOLD_PATH = PROJECT_ROOT / "config" / "occupation_manual_gold_v0.4.csv"
 MANUAL_ADJUDICATION_PATH = PROJECT_ROOT / "config" / "occupation_manual_adjudication_v0.4.csv"
-VERSION = "occupation_v0.4_manual_feedback_20261118"
+VERSION = "occupation_v0.4.1_independent_validation_feedback_20261118"
 
 
 def load_json(path: Path) -> dict:
