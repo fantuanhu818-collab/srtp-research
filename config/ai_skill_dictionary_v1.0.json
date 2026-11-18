@@ -1,0 +1,2671 @@
+{
+ "rule_version": "ai_skill_dict_v1.0_2026-11-18",
+ "status": "v1.0：按方案§8微调一轮后的版本（基于v0.2_draft），微调后冻结",
+ "text_fields": {
+  "title": "招聘岗位",
+  "description": "职位描述"
+ },
+ "matching": {
+  "case_insensitive_default": true,
+  "word_boundary_note": "word=true 的英文词前后不能紧邻英文字母或数字，例如 ML 不匹配 HTML、500ml；AI 不匹配 MAIL、OpenAI 以外的拼写",
+  "clause_split_regex": "[。；;！!？?\\n\\r]+|(?:^|\\s)(?:\\d{1,2}|[一二三四五六七八九十]{1,2})[、.．)）]|[（(]\\d{1,2}[)）]",
+  "exclusion_case_insensitive": true,
+  "negation_prefix": "(?:无需|无须|不需要|不需|不要求|不必|不用|非必须)[^，,、]{0,6}$",
+  "negation_suffix": "^\\s*[（(]?\\s*(?:相关)?(?:经验|基础|背景|能力)?\\s*(?:不作要求|不做要求|非必须|非必需)",
+  "title_counts_strict": true,
+  "negation_note": "11-19与A的非AI技能口径对齐：同一句中，AI词前面6个字以内（不跨逗号）有“无需/不要求”等，或后面紧跟“（经验）不作要求/非必须”等，该处不计；“者优先”照常计1。“不限”不算否定：全样本核对中“OPENCV等不限）者优先”“AI能力(不限)”“也不限制”都是“不限于”的意思",
+  "title_note": "岗位名称里的严格词、条件词照常计入ai_skill（原方案口径，标题不做公司介绍判断）。11-19曾讨论改为只计入宽泛版（影响415条），项目组决定不纳入；开关保留，设为false即可切换"
+ },
+ "tiers": {
+  "strict": "含义基本唯一的AI技术词。出现在非公司介绍句中即计入 ai_skill。",
+  "broad": "AI相关但容易误判的词。只在同一句含有岗位要求/职责线索时计入 ai_skill_broad，不进入 ai_skill。",
+  "review": "AI相邻但是否算AI技能有争议的词。只记录为 ai_review_flag，用于人工标注分层抽样，不进入任何AI变量。",
+  "conditional": "v0.2新增。出现在非公司介绍句中，且同一广告还有另一个不同的严格词或条件词时才计入 ai_skill；否则只记入 ai_conditional_terms 和 ai_skill_broad。"
+ },
+ "terms": [
+  {
+   "id": "aahr_machine_learning",
+   "pattern": "机器学习|Machine Learning",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "machine learning",
+   "relevance_v02": 0.3203,
+   "group": "机器学习方法"
+  },
+  {
+   "id": "aahr_computer_vision",
+   "pattern": "计算机视觉|Computer Vision",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "computer vision",
+   "relevance_v02": 0.5257,
+   "group": "计算机视觉"
+  },
+  {
+   "id": "aahr_machine_vision",
+   "pattern": "机器视觉|Machine Vision",
+   "category": "traditional",
+   "tier": "conditional",
+   "source": "AAHR2022_narrow",
+   "source_skill": "machine vision",
+   "note": "中文工业检测岗常用，人工标注重点核查",
+   "relevance_v02": 0.2127,
+   "group": "计算机视觉",
+   "note_v0.2": "严格词→条件词：相关度21.3%<30%"
+  },
+  {
+   "id": "aahr_deep_learning",
+   "pattern": "深度学习|Deep Learning",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "deep learning",
+   "relevance_v02": 0.7478,
+   "group": "深度学习"
+  },
+  {
+   "id": "aahr_virtual_agents",
+   "pattern": "虚拟助手|智能助理|虚拟代理|Virtual Agents?",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "virtual agents",
+   "relevance_v02": 0.5263,
+   "group": "语言与语音"
+  },
+  {
+   "id": "aahr_image_recognition",
+   "pattern": "图像识别|图片识别|Image Recognition",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "image recognition",
+   "relevance_v02": 0.6046,
+   "group": "计算机视觉"
+  },
+  {
+   "id": "aahr_nlp",
+   "pattern": "自然语言处理|自然语言理解|NLP|NLU",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "natural language processing",
+   "relevance_v02": 0.6676,
+   "group": "语言与语音"
+  },
+  {
+   "id": "aahr_speech_recognition",
+   "pattern": "语音识别|ASR",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "speech recognition",
+   "relevance_v02": 0.5579,
+   "group": "语言与语音"
+  },
+  {
+   "id": "aahr_pattern_recognition",
+   "pattern": "(?<!业务|商业|经营)模式识别(?!与智能系统)",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "pattern recognition",
+   "note": "2022年真实数据核查后修订：排除“业务模式识别”；“模式识别与智能系统”是专业名称，归入b_ai_major",
+   "relevance_v02": 0.6904,
+   "group": "计算机视觉"
+  },
+  {
+   "id": "aahr_object_recognition",
+   "pattern": "物体识别|目标识别|Object Recognition",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "object recognition",
+   "relevance_v02": 0.5819,
+   "group": "计算机视觉"
+  },
+  {
+   "id": "aahr_neural_networks",
+   "pattern": "神经网络|Neural Networks?",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "neural networks",
+   "relevance_v02": 0.7106,
+   "group": "深度学习"
+  },
+  {
+   "id": "aahr_ai_chatbot",
+   "pattern": "聊天机器人|对话机器人|问答机器人|Chat ?bot",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "AI chatbot",
+   "relevance_v02": 0.7402,
+   "group": "语言与语音"
+  },
+  {
+   "id": "aahr_supervised_learning",
+   "pattern": "监督学习|Supervised Learning",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "supervised learning",
+   "note": "也匹配半监督学习",
+   "relevance_v02": 0.8216,
+   "group": "机器学习方法"
+  },
+  {
+   "id": "aahr_text_mining",
+   "pattern": "文本挖掘|Text Mining",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "text mining",
+   "relevance_v02": 0.87,
+   "group": "语言与语音"
+  },
+  {
+   "id": "aahr_unsupervised_learning",
+   "pattern": "无监督学习|Unsupervised Learning",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "unsupervised learning",
+   "relevance_v02": 0.9314,
+   "group": "机器学习方法"
+  },
+  {
+   "id": "aahr_image_processing",
+   "pattern": "数字图像处理|图像处理算法|Image Processing",
+   "category": "traditional",
+   "tier": "conditional",
+   "source": "AAHR2022_narrow",
+   "source_skill": "image processing",
+   "note": "中文“图像处理”常指PS修图，只取“数字图像处理/图像处理算法”；单独“图像处理”放入broad",
+   "relevance_v02": 0.365,
+   "group": "计算机视觉"
+  },
+  {
+   "id": "aahr_mahout",
+   "pattern": "Mahout",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "Mahout",
+   "relevance_v02": 0.5053,
+   "group": "工具框架"
+  },
+  {
+   "id": "aahr_recommender_systems",
+   "pattern": "推荐系统|推荐算法|个性化推荐|Recommender Systems?",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "recommender systems",
+   "relevance_v02": 0.6339,
+   "group": "推荐与搜索"
+  },
+  {
+   "id": "aahr_svm",
+   "pattern": "支持向量机|SVM",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "support vector machines",
+   "relevance_v02": 0.8825,
+   "group": "机器学习方法"
+  },
+  {
+   "id": "aahr_random_forests",
+   "pattern": "随机森林|Random Forests?",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "random forests",
+   "relevance_v02": 0.8295,
+   "group": "机器学习方法"
+  },
+  {
+   "id": "aahr_lsa",
+   "pattern": "潜在语义分析|Latent Semantic Analysis",
+   "category": "traditional",
+   "tier": "conditional",
+   "source": "AAHR2022_narrow",
+   "source_skill": "latent semantic analysis",
+   "relevance_v02": null,
+   "group": "机器学习方法",
+   "note_v0.2": "严格词→条件词：出现不足30条，默认条件词"
+  },
+  {
+   "id": "aahr_sentiment_analysis",
+   "pattern": "情感分析|观点挖掘|意见挖掘|Sentiment Analysis|Opinion Mining",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "sentiment analysis/opinion mining",
+   "relevance_v02": 0.9394,
+   "group": "语言与语音"
+  },
+  {
+   "id": "aahr_lda",
+   "pattern": "潜在狄利克雷分配|LDA主题模型|Latent Dirichlet Allocation",
+   "category": "traditional",
+   "tier": "conditional",
+   "source": "AAHR2022_narrow",
+   "source_skill": "latent Dirichlet allocation",
+   "relevance_v02": 0.8,
+   "group": "机器学习方法",
+   "note_v0.2": "严格词→条件词：出现不足30条，默认条件词"
+  },
+  {
+   "id": "aahr_kernel_methods",
+   "pattern": "核函数|Kernel Methods?",
+   "category": "traditional",
+   "tier": "conditional",
+   "source": "AAHR2022_narrow",
+   "source_skill": "kernel methods",
+   "note": "2022年真实数据核查后修订：中文“核方法”几乎全部是“审核方法/考核方法”，改用“核函数”",
+   "relevance_v02": 0.0,
+   "group": "机器学习方法",
+   "note_v0.2": "严格词→条件词：出现不足30条，默认条件词"
+  },
+  {
+   "id": "aahr_keras",
+   "pattern": "Keras",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "Keras",
+   "relevance_v02": 0.8434,
+   "group": "工具框架"
+  },
+  {
+   "id": "aahr_gradient_boosting",
+   "pattern": "梯度提升|GBDT|Gradient Boosting",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "gradient boosting",
+   "relevance_v02": 0.8248,
+   "group": "机器学习方法"
+  },
+  {
+   "id": "aahr_opencv",
+   "pattern": "OpenCV",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "OpenCV",
+   "relevance_v02": 0.407,
+   "group": "工具框架"
+  },
+  {
+   "id": "aahr_xgboost",
+   "pattern": "XGBoost",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "XGBoost",
+   "relevance_v02": 0.815,
+   "group": "工具框架"
+  },
+  {
+   "id": "aahr_libsvm",
+   "pattern": "LibSVM",
+   "word": true,
+   "category": "traditional",
+   "tier": "conditional",
+   "source": "AAHR2022_narrow",
+   "source_skill": "Libsvm",
+   "relevance_v02": 1.0,
+   "group": "工具框架",
+   "note_v0.2": "严格词→条件词：出现不足30条，默认条件词"
+  },
+  {
+   "id": "aahr_word2vec",
+   "pattern": "Word2vec|词向量",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "Word2vec",
+   "relevance_v02": 0.9692,
+   "group": "语言与语音"
+  },
+  {
+   "id": "aahr_machine_translation",
+   "pattern": "机器翻译|Machine Translation",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "AAHR2022_narrow",
+   "source_skill": "machine translation",
+   "relevance_v02": 0.8125,
+   "group": "语言与语音"
+  },
+  {
+   "id": "aahr_sentiment_classification",
+   "pattern": "情感分类|Sentiment Classification",
+   "category": "traditional",
+   "tier": "conditional",
+   "source": "AAHR2022_narrow",
+   "source_skill": "sentiment classification",
+   "relevance_v02": 1.0,
+   "group": "语言与语音",
+   "note_v0.2": "严格词→条件词：出现不足30条，默认条件词"
+  },
+  {
+   "id": "aahr_predictive_models",
+   "pattern": "预测模型|Predictive Models?",
+   "category": "traditional",
+   "tier": "broad",
+   "source": "AAHR2022_narrow",
+   "source_skill": "predictive models",
+   "note": "清单内词，但中文“预测模型”常指一般统计/财务预测，降为broad",
+   "relevance_v02": 0.2987,
+   "note_v0.2": "相关度29.9%达到conditional门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "x_reinforcement_learning",
+   "pattern": "强化学习|Reinforcement Learning",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "project_extension",
+   "relevance_v02": 0.7781,
+   "group": "深度学习"
+  },
+  {
+   "id": "x_nn_architectures",
+   "pattern": "卷积神经|循环神经|RNN|LSTM|生成对抗网络",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "project_extension",
+   "relevance_v02": 0.8224,
+   "group": "深度学习"
+  },
+  {
+   "id": "x_cv_tasks",
+   "pattern": "人脸识别|目标检测|图像分割|语义分割|OCR识别",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "project_extension",
+   "note": "2022年真实数据核查后修订：删除“目标跟踪”（误中“质量目标跟踪”）",
+   "relevance_v02": 0.5451,
+   "group": "计算机视觉"
+  },
+  {
+   "id": "x_speech_synthesis",
+   "pattern": "语音合成|声纹识别",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "project_extension",
+   "relevance_v02": 0.5045,
+   "group": "语言与语音"
+  },
+  {
+   "id": "x_knowledge_graph",
+   "pattern": "知识图谱",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "project_extension",
+   "relevance_v02": 0.7386,
+   "group": "推荐与搜索"
+  },
+  {
+   "id": "x_ctr",
+   "pattern": "CTR预估|搜索排序算法",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "project_extension",
+   "relevance_v02": 0.6107,
+   "group": "推荐与搜索"
+  },
+  {
+   "id": "x_ml_frameworks",
+   "pattern": "TensorFlow|PyTorch|Caffe|scikit-?learn|sklearn|LightGBM|PaddlePaddle|飞桨|MindSpore|MXNet|ONNX|TensorRT|YOLO|BERT",
+   "word": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "project_extension",
+   "relevance_v02": 0.7499,
+   "group": "工具框架"
+  },
+  {
+   "id": "x_ml_algorithms",
+   "pattern": "朴素贝叶斯",
+   "category": "traditional",
+   "tier": "strict",
+   "source": "project_extension",
+   "relevance_v02": 0.8125,
+   "group": "机器学习方法"
+  },
+  {
+   "id": "g_llm_zh",
+   "pattern": "大语言模型|(?:AI|人工智能|预训练|多模态|通用|行业|垂直|开源)大模型|大模型(?:技术|算法|应用|训练|微调|推理|开发|产品|能力)",
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "note": "2022年真实数据核查后修订：单独“大模型”会误中“放大模型”等，单独出现时放入broad",
+   "relevance_v02": 0.2058,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_llm_en",
+   "pattern": "LLMs?",
+   "word": true,
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.6319,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_genai",
+   "pattern": "生成式(?:人工智能|AI|模型)|Generative AI|GenAI",
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.4919,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_aigc",
+   "pattern": "AIGC",
+   "word": true,
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.3074,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_chatgpt",
+   "pattern": "ChatGPT",
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.3515,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_gpt",
+   "pattern": "GPT(?:-?[0-9](?:\\.[0-9])?o?)?",
+   "word": true,
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.7024,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_cn_llm_products",
+   "pattern": "文心一言|通义千问|DeepSeek|ChatGLM|讯飞星火|豆包大模型|Qwen|LLaMA|Llama ?[23]",
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.6901,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_image_gen_tools",
+   "pattern": "Midjourney|Stable ?Diffusion|ComfyUI|文生图|图生图|文生视频|AI绘画|AI绘图|AI作画|AI生图|扩散模型",
+   "category": "generative",
+   "tier": "conditional",
+   "source": "project_genai",
+   "relevance_v02": 0.211,
+   "group": "生成式AI",
+   "note_v0.2": "严格词→条件词：相关度21.1%<30%"
+  },
+  {
+   "id": "g_copilot",
+   "pattern": "Copilot",
+   "word": true,
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.4426,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_prompt_eng",
+   "pattern": "提示词|Prompt ?(?:工程|设计|Engineering|Engineer)",
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.7607,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_rag",
+   "pattern": "RAG|检索增强生成",
+   "word": true,
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.8275,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_llm_frameworks",
+   "pattern": "LangChain|LlamaIndex|Hugging ?Face|vLLM|Dify",
+   "word": true,
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.7278,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_agent",
+   "pattern": "AI ?Agent|智能体(?!验)|LLM ?Agent",
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "note": "2022年真实数据核查后修订：排除“智能体验”",
+   "relevance_v02": 0.6013,
+   "group": "生成式AI"
+  },
+  {
+   "id": "g_finetune",
+   "pattern": "(?:大模型|模型|LLM)\\s*(?:微调|精调)|fine-?tun(?:e|ing)|SFT|RLHF|指令微调",
+   "word": true,
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "relevance_v02": 0.8555,
+   "group": "生成式AI"
+  },
+  {
+   "id": "b_ai_zh",
+   "pattern": "人工智能",
+   "category": "unspecified",
+   "tier": "broad",
+   "source": "AAHR2022_broad_cluster",
+   "relevance_v02": 0.3495,
+   "note_v0.2": "相关度34.9%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_ai_en",
+   "pattern": "AI",
+   "word": true,
+   "case_sensitive": true,
+   "category": "unspecified",
+   "tier": "broad",
+   "source": "AAHR2022_broad_cluster",
+   "relevance_v02": 0.2709,
+   "note_v0.2": "相关度27.1%达到conditional门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_ml_abbr",
+   "pattern": "ML",
+   "word": true,
+   "case_sensitive": true,
+   "category": "traditional",
+   "tier": "broad",
+   "source": "AAHR2022_broad_cluster",
+   "relevance_v02": 0.6671,
+   "note_v0.2": "相关度66.7%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_data_science",
+   "pattern": "数据科学|Data Science|数据挖掘|Data Mining",
+   "category": "traditional",
+   "tier": "broad",
+   "source": "AAHR2022_broad_cluster",
+   "relevance_v02": 0.4248,
+   "note_v0.2": "相关度42.5%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_model_training",
+   "pattern": "模型训练|训练模型|算法模型|智能算法|AI算法|算法训练",
+   "category": "unspecified",
+   "tier": "broad",
+   "source": "AAHR2022_broad_cluster",
+   "relevance_v02": 0.5912,
+   "note_v0.2": "相关度59.1%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_cv_abbr",
+   "pattern": "CV",
+   "word": true,
+   "case_sensitive": true,
+   "category": "traditional",
+   "tier": "broad",
+   "source": "project_extension",
+   "relevance_v02": 0.5874,
+   "note_v0.2": "相关度58.7%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_cnn",
+   "pattern": "CNN",
+   "word": true,
+   "case_sensitive": true,
+   "category": "traditional",
+   "tier": "broad",
+   "source": "project_extension",
+   "relevance_v02": 0.8031,
+   "note_v0.2": "相关度80.3%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_image_processing_generic",
+   "pattern": "图像处理|视觉算法|图像算法|Halcon",
+   "word": true,
+   "category": "traditional",
+   "tier": "broad",
+   "source": "project_extension",
+   "relevance_v02": 0.3627,
+   "note_v0.2": "相关度36.3%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_autonomous",
+   "pattern": "自动驾驶|无人驾驶|智能驾驶",
+   "category": "traditional",
+   "tier": "broad",
+   "source": "project_extension",
+   "relevance_v02": 0.1148,
+   "note_v0.2": "相关度11.5%达到conditional门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_transformer",
+   "pattern": "Transformer",
+   "word": true,
+   "category": "generative",
+   "tier": "broad",
+   "source": "project_genai",
+   "relevance_v02": 0.5145,
+   "note_v0.2": "相关度51.4%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_lora",
+   "pattern": "LoRA",
+   "word": true,
+   "case_sensitive": true,
+   "category": "generative",
+   "tier": "broad",
+   "source": "project_genai",
+   "relevance_v02": 0.9128,
+   "note_v0.2": "相关度91.3%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_prompt",
+   "pattern": "Prompt",
+   "word": true,
+   "category": "generative",
+   "tier": "broad",
+   "source": "project_genai",
+   "relevance_v02": 0.7402,
+   "note_v0.2": "相关度74.0%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_llm_names_ambiguous",
+   "pattern": "Kimi|Claude|Gemini|Cursor",
+   "word": true,
+   "category": "generative",
+   "tier": "broad",
+   "source": "project_genai",
+   "relevance_v02": 0.4469,
+   "note_v0.2": "相关度44.7%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_digital_human",
+   "pattern": "数字人|虚拟人",
+   "category": "generative",
+   "tier": "broad",
+   "source": "project_genai",
+   "relevance_v02": 0.1484,
+   "note_v0.2": "相关度14.8%达到conditional门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_ai_tools",
+   "pattern": "AI工具|AI软件|AI技术|AI应用|AI产品|AI编程|AI辅助|AI写作|AI生成|AI视频|AI剪辑",
+   "category": "unspecified",
+   "tier": "broad",
+   "source": "project_genai",
+   "relevance_v02": 0.3338,
+   "note_v0.2": "相关度33.4%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "r_data_labeling",
+   "pattern": "数据标注|AI训练师|人工智能训练师|标注员",
+   "category": "unspecified",
+   "tier": "review",
+   "source": "project_extension",
+   "relevance_v02": 0.1686
+  },
+  {
+   "id": "r_algo_engineer",
+   "pattern": "算法工程师|算法研究员|算法专家",
+   "category": "unspecified",
+   "tier": "review",
+   "source": "project_extension",
+   "relevance_v02": 0.5232
+  },
+  {
+   "id": "r_smart_generic",
+   "pattern": "智能化|智能制造|智慧城市|智能家居|智能硬件",
+   "category": "unspecified",
+   "tier": "review",
+   "source": "project_extension",
+   "relevance_v02": 0.0294
+  },
+  {
+   "id": "x_gan",
+   "pattern": "GAN",
+   "word": true,
+   "case_sensitive": true,
+   "category": "traditional",
+   "tier": "strict",
+   "source": "project_extension",
+   "note": "2022年真实数据核查后修订：区分大小写，并排除氮化镓（GaN）语境",
+   "relevance_v02": 0.8149,
+   "group": "深度学习"
+  },
+  {
+   "id": "b_llm_bare",
+   "pattern": "(?<![放扩最巨庞])大模型",
+   "category": "generative",
+   "tier": "strict",
+   "source": "project_genai",
+   "note": "2022年真实数据核查后修订",
+   "relevance_v02": 0.6439,
+   "group": "生成式AI",
+   "note_v0.2": "宽泛词→严格词（唯一的升级例外）：ChatGPT后单独出现基本指大语言模型；三维模型用法由排除规则去掉；不按年份划分词义"
+  },
+  {
+   "id": "b_tts",
+   "pattern": "TTS",
+   "word": true,
+   "category": "traditional",
+   "tier": "broad",
+   "source": "project_extension",
+   "note": "2022年真实数据核查后修订：TTS多见于数据质检和导航功能描述",
+   "relevance_v02": 0.5551,
+   "note_v0.2": "相关度55.5%达到strict门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "b_ai_major",
+   "pattern": "模式识别与智能系统|智能科学与技术",
+   "category": "unspecified",
+   "tier": "broad",
+   "source": "project_extension",
+   "note": "2022年真实数据核查后修订：专业名称，与“人工智能相关专业”同样处理",
+   "relevance_v02": 0.2005,
+   "note_v0.2": "相关度20.1%达到conditional门槛，但按“只降级不升级”保持宽泛词：相关度在全部含该词的广告上计算，不描述该词单独出现的广告"
+  },
+  {
+   "id": "w_madlib",
+   "pattern": "madlib",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.0286
+  },
+  {
+   "id": "w_tensflow",
+   "pattern": "tensflow",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.8
+  },
+  {
+   "id": "w_theano",
+   "pattern": "theano",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.8863
+  },
+  {
+   "id": "w_torch",
+   "pattern": "torch",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.8612
+  },
+  {
+   "id": "w_h2o",
+   "pattern": "h2o",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.6744
+  },
+  {
+   "id": "w_dlib",
+   "pattern": "dlib",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.6364
+  },
+  {
+   "id": "w_cntk",
+   "pattern": "cntk",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.738
+  },
+  {
+   "id": "w_mask_r",
+   "pattern": "mask[ _-]?r",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.8222
+  },
+  {
+   "id": "w_paddle",
+   "pattern": "paddle",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.6242
+  },
+  {
+   "id": "w_darknet",
+   "pattern": "darknet",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.6066
+  },
+  {
+   "id": "w_openc",
+   "pattern": "openc",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.4762
+  },
+  {
+   "id": "w_scikit",
+   "pattern": "scikit",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.9053
+  },
+  {
+   "id": "w_tvm",
+   "pattern": "tvm",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.2398
+  },
+  {
+   "id": "w_weka",
+   "pattern": "weka",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.7627
+  },
+  {
+   "id": "w_open3d",
+   "pattern": "open3d",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.3649
+  },
+  {
+   "id": "w_nivision",
+   "pattern": "nivision",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.1731
+  },
+  {
+   "id": "w_ni_vision",
+   "pattern": "ni[ _-]?vision",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.0867
+  },
+  {
+   "id": "w_openni",
+   "pattern": "openni",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.9118
+  },
+  {
+   "id": "w_cognex_visionpro",
+   "pattern": "cognex[ _-]?visionpro",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 0.0
+  },
+  {
+   "id": "w_gensim",
+   "pattern": "gensim",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架",
+   "relevance_v02": 1.0
+  },
+  {
+   "id": "w_widedeep",
+   "pattern": "widedeep",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;推荐与搜索;深度学习;语言与语音",
+   "relevance_v02": 0.6981
+  },
+  {
+   "id": "w_深林",
+   "pattern": "深林",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法",
+   "relevance_v02": 0.8485
+  },
+  {
+   "id": "w_knn",
+   "pattern": "knn",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法",
+   "relevance_v02": 0.8697
+  },
+  {
+   "id": "w_deepfm",
+   "pattern": "deepfm",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法",
+   "relevance_v02": 0.8718
+  },
+  {
+   "id": "w_xgb",
+   "pattern": "xgb",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法;深度学习",
+   "relevance_v02": 0.8807
+  },
+  {
+   "id": "w_adaboost",
+   "pattern": "adaboost",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法;深度学习",
+   "relevance_v02": 0.9143
+  },
+  {
+   "id": "w_gbm",
+   "pattern": "gbm",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法;深度学习",
+   "relevance_v02": 0.6182
+  },
+  {
+   "id": "w_集成学习",
+   "pattern": "集成学习",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法;深度学习",
+   "relevance_v02": 0.957
+  },
+  {
+   "id": "w_doc2vec",
+   "pattern": "doc2vec",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法;深度学习;生成式AI;语言与语音",
+   "relevance_v02": 0.9355
+  },
+  {
+   "id": "w_ftrl",
+   "pattern": "ftrl",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法;深度学习;语言与语音",
+   "relevance_v02": 1.0
+  },
+  {
+   "id": "w_dbscan",
+   "pattern": "dbscan",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法;深度学习;语言与语音",
+   "relevance_v02": 0.5161
+  },
+  {
+   "id": "w_w2v",
+   "pattern": "w2v",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法;语言与语音",
+   "relevance_v02": 1.0
+  },
+  {
+   "id": "w_randomforest",
+   "pattern": "randomforest",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;机器学习方法;语言与语音",
+   "relevance_v02": 0.7931
+  },
+  {
+   "id": "w_resnet",
+   "pattern": "resnet",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;深度学习",
+   "relevance_v02": 0.7056
+  },
+  {
+   "id": "w_faster_r",
+   "pattern": "faster[ _-]?r",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;深度学习",
+   "relevance_v02": 0.7882
+  },
+  {
+   "id": "w_vgg",
+   "pattern": "vgg",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;深度学习",
+   "relevance_v02": 0.604
+  },
+  {
+   "id": "w_fcn",
+   "pattern": "fcn",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;深度学习",
+   "relevance_v02": 0.8661
+  },
+  {
+   "id": "w_mobilenet",
+   "pattern": "mobilenet",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;深度学习",
+   "relevance_v02": 0.6364
+  },
+  {
+   "id": "w_googlenet",
+   "pattern": "googlenet",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;深度学习",
+   "relevance_v02": 0.7059
+  },
+  {
+   "id": "w_seq2seq",
+   "pattern": "seq2seq",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;深度学习",
+   "relevance_v02": 0.9716
+  },
+  {
+   "id": "w_vgg16",
+   "pattern": "vgg16",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;深度学习;生成式AI",
+   "relevance_v02": 0.9091
+  },
+  {
+   "id": "w_gru",
+   "pattern": "gru",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;深度学习;生成式AI",
+   "relevance_v02": 0.875
+  },
+  {
+   "id": "w_sglang",
+   "pattern": "sglang",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.2857
+  },
+  {
+   "id": "w_deeplearning4j",
+   "pattern": "deeplearning4j",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.9138
+  },
+  {
+   "id": "w_tenorflow",
+   "pattern": "tenorflow",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.9375
+  },
+  {
+   "id": "w_tensor_flow",
+   "pattern": "tensor[ _-]?flow",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.7097
+  },
+  {
+   "id": "w_openvino",
+   "pattern": "openvino",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.5625
+  },
+  {
+   "id": "w_convnet",
+   "pattern": "convnet",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.878
+  },
+  {
+   "id": "w_rknn",
+   "pattern": "rknn",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.4688
+  },
+  {
+   "id": "w_tflite",
+   "pattern": "tflite",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.3409
+  },
+  {
+   "id": "w_deepspeed",
+   "pattern": "deepspeed",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.6729
+  },
+  {
+   "id": "w_triton",
+   "pattern": "triton",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.4237
+  },
+  {
+   "id": "w_xlnet",
+   "pattern": "xlnet",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 1.0
+  },
+  {
+   "id": "w_megatron",
+   "pattern": "megatron",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.6908
+  },
+  {
+   "id": "w_unet",
+   "pattern": "unet",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.5604
+  },
+  {
+   "id": "w_mnn",
+   "pattern": "mnn",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.4667
+  },
+  {
+   "id": "w_deeplab",
+   "pattern": "deeplab",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.5333
+  },
+  {
+   "id": "w_vit",
+   "pattern": "vit",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.5625
+  },
+  {
+   "id": "w_模型剪枝",
+   "pattern": "模型剪枝",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.7714
+  },
+  {
+   "id": "w_知识蒸馏",
+   "pattern": "知识蒸馏",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "工具框架;生成式AI",
+   "relevance_v02": 0.8
+  },
+  {
+   "id": "w_visonpro",
+   "pattern": "visonpro",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "工具框架;计算机视觉",
+   "relevance_v02": 0.1607
+  },
+  {
+   "id": "w_精排",
+   "pattern": "精排",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索",
+   "relevance_v02": 0.5938
+  },
+  {
+   "id": "w_超参",
+   "pattern": "超参",
+   "category": "traditional",
+   "tier": "broad",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索",
+   "relevance_v02": 0.973
+  },
+  {
+   "id": "w_模拟退火",
+   "pattern": "模拟退火",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索",
+   "relevance_v02": 0.5455
+  },
+  {
+   "id": "w_learningtorank",
+   "pattern": "learningtorank",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;机器学习方法;语言与语音",
+   "relevance_v02": 0.9474
+  },
+  {
+   "id": "w_deeplearning",
+   "pattern": "deeplearning",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;深度学习",
+   "relevance_v02": 0.8402
+  },
+  {
+   "id": "w_意图识别",
+   "pattern": "意图识别",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;计算机视觉;语言与语音",
+   "relevance_v02": 0.8623
+  },
+  {
+   "id": "w_问答系统",
+   "pattern": "问答系统",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;计算机视觉;语言与语音",
+   "relevance_v02": 0.9128
+  },
+  {
+   "id": "w_对话系统",
+   "pattern": "对话系统",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;计算机视觉;语言与语音",
+   "relevance_v02": 0.8671
+  },
+  {
+   "id": "w_文本分类",
+   "pattern": "文本分类",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;语言与语音",
+   "relevance_v02": 0.9352
+  },
+  {
+   "id": "w_命名实体识别",
+   "pattern": "命名实体识别",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;语言与语音",
+   "relevance_v02": 0.9786
+  },
+  {
+   "id": "w_实体识别",
+   "pattern": "实体识别",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;语言与语音",
+   "relevance_v02": 0.9479
+  },
+  {
+   "id": "w_关系抽取",
+   "pattern": "关系抽取",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;语言与语音",
+   "relevance_v02": 0.9269
+  },
+  {
+   "id": "w_信息抽取",
+   "pattern": "信息抽取",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;语言与语音",
+   "relevance_v02": 0.68
+  },
+  {
+   "id": "w_语义理解",
+   "pattern": "语义理解",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;语言与语音",
+   "relevance_v02": 0.8476
+  },
+  {
+   "id": "w_ranking",
+   "pattern": "ranking",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "推荐与搜索;语言与语音",
+   "relevance_v02": 0.5833
+  },
+  {
+   "id": "w_如聚类",
+   "pattern": "如聚类",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "机器学习方法",
+   "relevance_v02": 0.6543
+  },
+  {
+   "id": "w_贝叶斯",
+   "pattern": "贝叶斯",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "机器学习方法",
+   "relevance_v02": 0.7824
+  },
+  {
+   "id": "w_lr",
+   "pattern": "lr",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法",
+   "relevance_v02": 0.4236
+  },
+  {
+   "id": "w_马尔科夫",
+   "pattern": "马尔科夫",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "机器学习方法",
+   "relevance_v02": 0.5714
+  },
+  {
+   "id": "w_sgd",
+   "pattern": "sgd",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法",
+   "relevance_v02": 0.9667
+  },
+  {
+   "id": "w_bagging",
+   "pattern": "bagging",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习",
+   "relevance_v02": 0.7879
+  },
+  {
+   "id": "w_arima",
+   "pattern": "arima",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习",
+   "relevance_v02": 0.6222
+  },
+  {
+   "id": "w_boosting",
+   "pattern": "boosting",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习",
+   "relevance_v02": 0.9541
+  },
+  {
+   "id": "w_a3c",
+   "pattern": "a3c",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习",
+   "relevance_v02": 0.3333
+  },
+  {
+   "id": "w_ddpg",
+   "pattern": "ddpg",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习",
+   "relevance_v02": 0.2258
+  },
+  {
+   "id": "w_dqn",
+   "pattern": "dqn",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习",
+   "relevance_v02": 0.5315
+  },
+  {
+   "id": "w_神经元网络",
+   "pattern": "神经元网络",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习",
+   "relevance_v02": 0.62
+  },
+  {
+   "id": "w_gnn",
+   "pattern": "gnn",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习",
+   "relevance_v02": 0.8462
+  },
+  {
+   "id": "w_lda",
+   "pattern": "lda",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习;语言与语音",
+   "relevance_v02": 0.8884
+  },
+  {
+   "id": "w_gmm",
+   "pattern": "gmm",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;深度学习;语言与语音",
+   "relevance_v02": 0.6888
+  },
+  {
+   "id": "w_artificial_intelligence",
+   "pattern": "artificial[ _-]?intelligence",
+   "category": "traditional",
+   "tier": "broad",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;生成式AI;计算机视觉",
+   "relevance_v02": 0.4348
+  },
+  {
+   "id": "w_maxent",
+   "pattern": "maxent",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;语言与语音",
+   "relevance_v02": 1.0
+  },
+  {
+   "id": "w_plsa",
+   "pattern": "plsa",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;语言与语音",
+   "relevance_v02": 0.9714
+  },
+  {
+   "id": "w_ltr",
+   "pattern": "ltr",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;语言与语音",
+   "relevance_v02": 0.7273
+  },
+  {
+   "id": "w_autoencoder",
+   "pattern": "autoencoder",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "机器学习方法;语言与语音",
+   "relevance_v02": 0.9722
+  },
+  {
+   "id": "w_pomdp",
+   "pattern": "pomdp",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习",
+   "relevance_v02": 0.2941
+  },
+  {
+   "id": "w_reinforcementlearning",
+   "pattern": "reinforcementlearning",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习",
+   "relevance_v02": 0.9231
+  },
+  {
+   "id": "w_inference",
+   "pattern": "inference",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习",
+   "relevance_v02": 0.7674
+  },
+  {
+   "id": "w_inception",
+   "pattern": "inception",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习",
+   "relevance_v02": 0.0725
+  },
+  {
+   "id": "w_rbm",
+   "pattern": "rbm",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习",
+   "relevance_v02": 0.8033
+  },
+  {
+   "id": "w_hog",
+   "pattern": "hog",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习",
+   "relevance_v02": 0.8958
+  },
+  {
+   "id": "w_dnn",
+   "pattern": "dnn",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习",
+   "relevance_v02": 0.7676
+  },
+  {
+   "id": "w_object_detection",
+   "pattern": "object[ _-]?detection",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习",
+   "relevance_v02": 0.8966
+  },
+  {
+   "id": "w_rl",
+   "pattern": "rl",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习",
+   "relevance_v02": 0.7547
+  },
+  {
+   "id": "w_diffusion",
+   "pattern": "diffusion",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习;生成式AI",
+   "relevance_v02": 0.4729
+  },
+  {
+   "id": "w_vae",
+   "pattern": "vae",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习;生成式AI",
+   "relevance_v02": 0.7059
+  },
+  {
+   "id": "w_vlm",
+   "pattern": "vlm",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习;生成式AI",
+   "relevance_v02": 0.6154
+  },
+  {
+   "id": "w_注意力机制",
+   "pattern": "注意力机制",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "深度学习;生成式AI",
+   "relevance_v02": 0.7949
+  },
+  {
+   "id": "w_vla",
+   "pattern": "vla",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "深度学习;生成式AI",
+   "relevance_v02": 0.5714
+  },
+  {
+   "id": "w_autogen",
+   "pattern": "autogen",
+   "category": "generative",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.8393
+  },
+  {
+   "id": "w_langgraph",
+   "pattern": "langgraph",
+   "category": "generative",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.8442
+  },
+  {
+   "id": "w_coze",
+   "pattern": "coze",
+   "category": "generative",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.6809
+  },
+  {
+   "id": "w_autogpt",
+   "pattern": "autogpt",
+   "category": "generative",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.8254
+  },
+  {
+   "id": "w_bloom",
+   "pattern": "bloom",
+   "category": "generative",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.9091
+  },
+  {
+   "id": "w_palm",
+   "pattern": "palm",
+   "category": "generative",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.8889
+  },
+  {
+   "id": "w_runway",
+   "pattern": "runway",
+   "category": "generative",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.0857
+  },
+  {
+   "id": "w_spacy",
+   "pattern": "spacy",
+   "category": "generative",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.5833
+  },
+  {
+   "id": "w_可灵",
+   "pattern": "可灵(?!活)",
+   "category": "generative",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.0222
+  },
+  {
+   "id": "w_t5",
+   "pattern": "t5",
+   "category": "generative",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.7071
+  },
+  {
+   "id": "w_豆包",
+   "pattern": "豆包",
+   "category": "generative",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.3295
+  },
+  {
+   "id": "w_通义",
+   "pattern": "通义",
+   "category": "generative",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.1875
+  },
+  {
+   "id": "w_预训练",
+   "pattern": "预训练",
+   "category": "generative",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.8125
+  },
+  {
+   "id": "w_模型推理",
+   "pattern": "模型推理",
+   "category": "generative",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.5846
+  },
+  {
+   "id": "w_微调",
+   "pattern": "微调",
+   "category": "generative",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.6901
+  },
+  {
+   "id": "w_sora",
+   "pattern": "sora",
+   "category": "generative",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.6389
+  },
+  {
+   "id": "w_milvus",
+   "pattern": "milvus",
+   "category": "generative",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.6444
+  },
+  {
+   "id": "w_nerf",
+   "pattern": "nerf",
+   "category": "generative",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.0455
+  },
+  {
+   "id": "w_精调",
+   "pattern": "(?<!香)精调",
+   "category": "generative",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.6
+  },
+  {
+   "id": "w_agi",
+   "pattern": "agi",
+   "category": "generative",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.3158
+  },
+  {
+   "id": "w_ann",
+   "pattern": "ann",
+   "category": "generative",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI",
+   "relevance_v02": 0.1579
+  },
+  {
+   "id": "w_图像生成",
+   "pattern": "图像生成",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "生成式AI;计算机视觉",
+   "relevance_v02": 0.6697
+  },
+  {
+   "id": "w_fastgpt",
+   "pattern": "fastgpt",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI;语言与语音",
+   "relevance_v02": 0.3056
+  },
+  {
+   "id": "w_gcn",
+   "pattern": "gcn",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI;语言与语音",
+   "relevance_v02": 0.8298
+  },
+  {
+   "id": "w_al_agent",
+   "pattern": "al[ _-]?agent",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "生成式AI;语言与语音",
+   "relevance_v02": 0.5484
+  },
+  {
+   "id": "w_智谱",
+   "pattern": "智谱",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "生成式AI;语言与语音",
+   "relevance_v02": 0.1875
+  },
+  {
+   "id": "w_图像增强",
+   "pattern": "图像增强",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.485
+  },
+  {
+   "id": "w_视频分类",
+   "pattern": "视频分类",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.6737
+  },
+  {
+   "id": "w_姿态估计",
+   "pattern": "姿态估计",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.6604
+  },
+  {
+   "id": "w_三维重建",
+   "pattern": "三维重建",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.5716
+  },
+  {
+   "id": "w_图像去噪",
+   "pattern": "图像去噪",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.4846
+  },
+  {
+   "id": "w_视频分析",
+   "pattern": "视频分析",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.576
+  },
+  {
+   "id": "w_光流",
+   "pattern": "(?<![抛布验荧心])光流(?![程式美])",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.4386
+  },
+  {
+   "id": "w_字符识别",
+   "pattern": "字符识别",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.4685
+  },
+  {
+   "id": "w_reid",
+   "pattern": "reid",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.5312
+  },
+  {
+   "id": "w_去模糊",
+   "pattern": "去模糊",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.6375
+  },
+  {
+   "id": "w_图像匹配",
+   "pattern": "图像匹配",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.4611
+  },
+  {
+   "id": "w_sherlock",
+   "pattern": "sherlock",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "计算机视觉",
+   "relevance_v02": 0.0682
+  },
+  {
+   "id": "w_实例分割",
+   "pattern": "实例分割",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉;语言与语音",
+   "relevance_v02": 0.68
+  },
+  {
+   "id": "w_声纹",
+   "pattern": "声纹",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉;语言与语音",
+   "relevance_v02": 0.4455
+  },
+  {
+   "id": "w_文本检索",
+   "pattern": "文本检索",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "计算机视觉;语言与语音",
+   "relevance_v02": 0.9926
+  },
+  {
+   "id": "w_lsa",
+   "pattern": "lsa",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.8511
+  },
+  {
+   "id": "w_句法分析",
+   "pattern": "句法分析",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.9838
+  },
+  {
+   "id": "w_词性",
+   "pattern": "词性",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.963
+  },
+  {
+   "id": "w_消歧",
+   "pattern": "消歧",
+   "category": "traditional",
+   "tier": "strict",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.9421
+  },
+  {
+   "id": "w_hmm",
+   "pattern": "hmm",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.7758
+  },
+  {
+   "id": "w_智能客服",
+   "pattern": "智能客服",
+   "category": "traditional",
+   "tier": "broad",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.3113
+  },
+  {
+   "id": "w_nlg",
+   "pattern": "nlg",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 1.0
+  },
+  {
+   "id": "w_问财",
+   "pattern": "(?<!顾)问财",
+   "category": "traditional",
+   "tier": "broad",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.4609
+  },
+  {
+   "id": "w_语音交互",
+   "pattern": "语音交互",
+   "category": "traditional",
+   "tier": "broad",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.2477
+  },
+  {
+   "id": "w_达摩院",
+   "pattern": "达摩院",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.2258
+  },
+  {
+   "id": "w_wfst",
+   "pattern": "wfst",
+   "category": "traditional",
+   "tier": "strict",
+   "word": true,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.3636
+  },
+  {
+   "id": "w_超分",
+   "pattern": "超分(?![支公析院])",
+   "category": "traditional",
+   "tier": "conditional",
+   "word": false,
+   "source": "w2v_expansion",
+   "group": "语言与语音",
+   "relevance_v02": 0.5393
+  }
+ ],
+ "term_exclusions": [
+  {
+   "terms": [
+    "b_ai_en",
+    "b_ai_tools",
+    "b_image_processing_generic"
+   ],
+   "clause_pattern": "Photoshop|Illustrator|CorelDRAW|CDR|InDesign|C4D|3D ?Max|CAD|(?<![A-Za-z])PS(?![A-Za-z])|PR[、/,，]|平面设计|排版|美工|设计软件|作图软件|修图",
+   "note": "AI常指Adobe Illustrator设计软件；与PS、CDR等并列出现时不算AI技能"
+  },
+  {
+   "terms": [
+    "b_cv_abbr"
+   ],
+   "clause_pattern": "简历|投递|发送|邮箱|resume|Resume|附件",
+   "note": "CV常指简历"
+  },
+  {
+   "terms": [
+    "g_gpt"
+   ],
+   "clause_pattern": "分区|MBR|磁盘|硬盘|UEFI|单片机|MCU|SPI|I2C|PWM|UART|定时器|GPT团队",
+   "note": "GPT在运维语境中可指GUID分区表；MCU语境中GPT指通用定时器"
+  },
+  {
+   "terms": [
+    "b_cnn"
+   ],
+   "clause_pattern": "新闻|媒体|电视|BBC|记者",
+   "note": "CNN可指新闻机构"
+  },
+  {
+   "terms": [
+    "b_llm_names_ambiguous"
+   ],
+   "clause_pattern": "联系人|HR|微信|电话|先生|女士|小姐|游标|数据库|SQL",
+   "note": "Kimi/Claude等可能是人名，Cursor可能指数据库游标"
+  },
+  {
+   "terms": [
+    "aahr_sentiment_analysis",
+    "aahr_sentiment_classification"
+   ],
+   "clause_pattern": "情感咨询|情感导师|情感分析师|婚恋|恋爱|挽回|心理咨询|情感顾问|两性",
+   "note": "中文“情感分析师”多为婚恋情感咨询岗位，不是文本情感分析"
+  },
+  {
+   "terms": [
+    "x_gan"
+   ],
+   "clause_pattern": "射频|半导体|功放|功率|GaAs|SiC|SIC|工艺|器件|芯片|氮化镓|外延|晶圆",
+   "note": "GaN/GAN在射频和功率半导体中指氮化镓"
+  },
+  {
+   "terms": [
+    "x_cv_tasks",
+    "aahr_object_recognition"
+   ],
+   "clause_pattern": "雷达|毫米波|信号处理|门禁|安防|监控|闸机|考勤|设备的操作|弱电",
+   "note": "雷达信号处理中的目标检测/识别，以及安防设备的人脸识别运维，不算AI技能"
+  },
+  {
+   "terms": [
+    "b_ai_en"
+   ],
+   "clause_pattern": "SMT|DIP|插件|焊接|贴片|波峰焊|AOI",
+   "note": "电子装配中AI指自动插件（Auto Insertion）"
+  },
+  {
+   "terms": [
+    "b_llm_bare"
+   ],
+   "clause_pattern": "大模型\\d?(?:展示|渲染|加载|数据轻量化)|(?:城市|BIM|三维|3D|倾斜摄影|实景)\\S{0,3}大模型",
+   "note": "v0.2：单独“大模型”升为严格词；三维模型用法（Web端大模型展示、大模型数据轻量化、城市大模型、BIM大模型等）不算。11-18全样本核对后收窄：不再因同句出现“3D”“三维”“特效”或“大模型建模/轻量化”就排除（误伤“自然语言大模型建模工程师”“大模型轻量化部署”“视觉大模型、3D视觉”）。“场景”“平台”太宽泛，不进排除规则"
+  },
+  {
+   "terms": [
+    "g_llm_en"
+   ],
+   "clause_pattern": "法学|法律|律师|Master of Laws",
+   "note": "v0.2误判1：LLM指法学硕士（Master of Laws）"
+  },
+  {
+   "terms": [
+    "g_prompt_eng"
+   ],
+   "clause_pattern": "(?:搜索|输入)提示词",
+   "note": "v0.2误判2：“搜索提示词”“输入提示词”是搜索框文字"
+  },
+  {
+   "terms": [
+    "g_image_gen_tools"
+   ],
+   "clause_pattern": "(?<![A-Za-z])(?:PS|Photoshop|CDR|CorelDRAW)\\s*[/、，,]\\s*AI(?:绘图|绘画|作图)",
+   "note": "v0.2误判3：“PS/AI绘图”中的AI指Adobe Illustrator（原设计软件排除规则未覆盖g_image_gen_tools）"
+  },
+  {
+   "terms": [
+    "g_finetune",
+    "w_微调",
+    "w_精调"
+   ],
+   "clause_pattern": "^(?!.*(?:大模型|LLM|语言模型|GPT|AIGC|深度学习|神经网络)).*(?:3D|三维|建模|动画|角色|贴图)",
+   "note": "v0.2误判4：3D建模、动画岗位里的“模型微调”；同句有大模型/LLM等词时不排除"
+  },
+  {
+   "terms": [
+    "g_finetune"
+   ],
+   "clause_pattern": "^(?!.*(?:model|模型|LLM|GPT|BERT|(?<![a-z])AI(?![a-z])|神经网络|深度学习|transformer|LoRA|SFT|RLHF|微调|精调|训练|量化|剪枝|蒸馏|推理|算法|PyTorch|TensorFlow|芯片|NPU)).*fine-?tun",
+   "note": "v0.2误判5：非AI语境的英文fine-tune（如生产线setup、fine-tuning）；同句有model、LLM、训练、量化、剪枝、蒸馏、算法等词时不排除（11-18全样本核对后补充，避免误伤“针对海思芯片finetune”“fine-tune、剪枝、蒸馏”）"
+  },
+  {
+   "terms": [
+    "g_agent"
+   ],
+   "clause_pattern": "(?:城市|园区)智能体",
+   "note": "v0.2误判6：“城市智能体”“园区智能体”是智慧城市产品名"
+  },
+  {
+   "terms": [
+    "g_gpt"
+   ],
+   "clause_pattern": "GPT\\s*会议",
+   "note": "v0.2误判7：“GPT会议”不是技能写法"
+  }
+ ],
+ "context": {
+  "intro_section_headers": "公司介绍|公司简介|关于我们|企业介绍|企业简介|公司概况|集团介绍|集团简介|公司福利|福利待遇|薪资福利|我们提供|团队介绍|关于公司",
+  "requirement_section_headers": "岗位职责|工作职责|职位职责|职责描述|工作内容|岗位内容|任职要求|任职资格|岗位要求|职位要求|招聘要求|应聘要求|加分项|优先条件|技能要求|你需要|我们希望你|职位描述|岗位描述",
+  "strong_intro_cues": "致力于|专注于|成立于|是一家|是国内|是全球|旗下|总部位于|总部设在|领先的|领军|荣获|独角兽|估值|融资|上市公司|国家级高新|高新技术企业|业务涵盖|业务覆盖|赋能",
+  "weak_intro_cues": "公司|集团|本企业|我们|我司|产品|平台|解决方案|客户|行业",
+  "requirement_cues": "熟悉|掌握|精通|了解|熟练|具备|具有|拥有|有.{0,10}经验|经验者?优先|者优先|优先考虑|能够|能熟练|会使用|善于|擅长|运用|使用|应用|负责|参与|开发|研发|搭建|构建|训练|部署|调优|优化|落地|编写|实现|设计|研究|专业|方向|背景|技能|能力|要求"
+ },
+ "decisions_pending": [
+  "“计算机、人工智能等相关专业”算不算AI技能要求？当前：只进入 ai_skill_broad，不进入 ai_skill。",
+  "招聘岗位标题含严格词（如“机器学习工程师”）是否直接计为1？当前：是，标题不做公司介绍判断。",
+  "数据标注、AI训练师等低技能AI相关岗位是否算AI技能？当前：只做 ai_review_flag，不计入。",
+  "算法工程师但描述中没有AI词时是否算？当前：不算，只做 ai_review_flag。",
+  "使用ChatGPT等AI工具辅助办公是否算AI技能？当前：算，归为生成式AI。"
+ ],
+ "sources": {
+  "AAHR2022_narrow": "Acemoglu, Autor, Hazell & Restrepo (2022), Artificial Intelligence and Jobs: Evidence from Online Vacancies, Journal of Labor Economics 40(S1): S293–S340, 脚注13（p. S305）列出的33项narrow AI技能（Burning Glass技能名）。逐项翻译，source_skill为原文。",
+  "AAHR2022_broad_cluster": "同上文broad AI measure：机器学习、人工智能、自然语言处理和数据科学技能簇。原文作者认为该口径可能包含一般IT职能，只作稳健性检验。",
+  "project_extension": "项目补充：与清单同类的方法、框架或中文常见写法（如PyTorch与清单中的Keras同类），以及中文语境的易误判词。",
+  "project_genai": "项目补充：2022年11月ChatGPT发布后出现的生成式AI词。原清单基于2010—2018年美国数据，不含此类词。"
+ },
+ "changelog_v0.2": [
+  "aahr_machine_vision: strict→conditional（相关度21.3%<30%）",
+  "aahr_lsa: strict→conditional（出现不足30条，默认条件词）",
+  "aahr_lda: strict→conditional（出现不足30条，默认条件词）",
+  "aahr_kernel_methods: strict→conditional（出现不足30条，默认条件词）",
+  "aahr_libsvm: strict→conditional（出现不足30条，默认条件词）",
+  "aahr_sentiment_classification: strict→conditional（出现不足30条，默认条件词）",
+  "aahr_predictive_models: 保持broad（门槛建议broad→conditional，不执行）",
+  "g_image_gen_tools: strict→conditional（相关度21.1%<30%）",
+  "b_ai_zh: 保持broad（门槛建议broad→strict，不执行）",
+  "b_ai_en: 保持broad（门槛建议broad→conditional，不执行）",
+  "b_ml_abbr: 保持broad（门槛建议broad→strict，不执行）",
+  "b_data_science: 保持broad（门槛建议broad→strict，不执行）",
+  "b_model_training: 保持broad（门槛建议broad→strict，不执行）",
+  "b_cv_abbr: 保持broad（门槛建议broad→strict，不执行）",
+  "b_cnn: 保持broad（门槛建议broad→strict，不执行）",
+  "b_image_processing_generic: 保持broad（门槛建议broad→strict，不执行）",
+  "b_autonomous: 保持broad（门槛建议broad→conditional，不执行）",
+  "b_transformer: 保持broad（门槛建议broad→strict，不执行）",
+  "b_lora: 保持broad（门槛建议broad→strict，不执行）",
+  "b_prompt: 保持broad（门槛建议broad→strict，不执行）",
+  "b_llm_names_ambiguous: 保持broad（门槛建议broad→strict，不执行）",
+  "b_digital_human: 保持broad（门槛建议broad→conditional，不执行）",
+  "b_ai_tools: 保持broad（门槛建议broad→strict，不执行）",
+  "b_tts: 保持broad（门槛建议broad→strict，不执行）",
+  "b_ai_major: 保持broad（门槛建议broad→conditional，不执行）",
+  "b_llm_bare: broad→strict（例外），加三维模型排除规则",
+  "排除规则：v0.2：单独“大模型”升为严格词；三维模型用法（Web端大模型展示、大模型数据轻量化、城市大模型、BIM大模型等）不算。11-18全样本核对后收窄：不再因同句出现“3D”“三维”“特效”或“大模型建模/轻量化”就排除（误伤“自然语言大模型建模工程师”“大模型轻量化部署”“视觉大模型、3D视觉”）。“场景”“平台”太宽泛，不进排除规则",
+  "排除规则：v0.2误判1：LLM指法学硕士（Master of Laws）",
+  "排除规则：v0.2误判2：“搜索提示词”“输入提示词”是搜索框文字",
+  "排除规则：v0.2误判3：“PS/AI绘图”中的AI指Adobe Illustrator（原设计软件排除规则未覆盖g_image_gen_tools）",
+  "排除规则：v0.2误判4：3D建模、动画岗位里的“模型微调”；同句有大模型/LLM等词时不排除",
+  "排除规则：v0.2误判5：非AI语境的英文fine-tune（如生产线setup、fine-tuning）；同句有model、LLM、训练、量化、剪枝、蒸馏、算法等词时不排除（11-18全样本核对后补充，避免误伤“针对海思芯片finetune”“fine-tune、剪枝、蒸馏”）",
+  "排除规则：v0.2误判6：“城市智能体”“园区智能体”是智慧城市产品名",
+  "排除规则：v0.2误判7：“GPT会议”不是技能写法",
+  "加入第4步筛选通过的新词187个（source = w2v_expansion）",
+  "误判4排除规则同时用于新词w_微调、w_精调"
+ ],
+ "changelog_v1.0": {
+  "date": "2026-11-18",
+  "basis": "人工分层标注（A、B各205条，重叠50条，有效358条；独立标注kappa 0.527，统一口径后重标kappa 0.855；15条分歧逐条裁定），按标注前写定的§8规则只调一轮",
+  "rule3_delete_new_terms": {
+   "trigger": "只命中新词层人工判AI比例 pre 0%、post 15%（<50%）",
+   "action": "删除在误判中出现过的Word2Vec新词",
+   "terms": [
+    "w_agent",
+    "w_apriori",
+    "w_kmeans",
+    "w_ocr",
+    "w_pcl",
+    "w_regression",
+    "w_sfm",
+    "w_slam",
+    "w_vision_pro",
+    "w_visionmaster",
+    "w_visionpro",
+    "w_决策树",
+    "w_分词",
+    "w_变化检测",
+    "w_图像分类",
+    "w_多模态",
+    "w_搜索算法",
+    "w_目标跟踪",
+    "w_聚类",
+    "w_自然语言",
+    "w_训推",
+    "w_迁移学习",
+    "w_配准",
+    "w_降维"
+   ]
+  },
+  "rule1_demote": {
+   "trigger": "严格版查准率 pre 0.709（<85%；post 0.895）",
+   "action": "误判最多的严格词降一级（严格→条件）",
+   "terms": [
+    "aahr_image_processing"
+   ],
+   "tie_note": "38、9、11裁为0后，图像处理与机器学习误判数并列（各4条）；取图像处理：裁定前它是唯一误判最多的词，且降级不损失查全率；机器学习降级会使pre查全率由1.00降至0.81"
+  },
+  "not_triggered": "条件层人工判AI比例0%/7%（<70%），不调门槛",
+  "report": "中期报告以微调前指标为准；同一批样本微调，微调后指标偏乐观，仅供参考",
+  "after_tuning_reference": "微调后同一样本上（仅供参考，偏乐观）：严格版查准率 pre 0.787、post 0.919；查全率 pre 1.00、post 0.911",
+  "known_limitations": "未处理的误判来源（v1.0不再改，写入局限，必要时做稳健性变量）：同形词（大模型体量、计算机视觉设计）、AI数据标注、只出现在专业列表、可选项列举、公司介绍未识别；漏判：AI工具（AlphaFold、AI工具设计）、具身智能等新词"
+ }
+}

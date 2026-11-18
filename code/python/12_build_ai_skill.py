@@ -212,7 +212,9 @@ def main() -> int:
         "dictionary": str(args.dictionary.relative_to(PROJECT_ROOT)) if args.dictionary.is_relative_to(PROJECT_ROOT) else str(args.dictionary),
         "built_at": datetime.now().isoformat(timespec="seconds"),
         "checks": checks,
-        "manual_validation": "未完成：标注样本已生成，待A、B人工标注",
+        "manual_validation": ("已完成A、B分层标注（各205条，重叠50条），按§8微调一轮；"
+                              "指标见outputs/qc/ai_annotation_v0.2_metrics.csv（以微调前为准）")
+                             if "v1.0" in matcher.rule_version else "未完成：标注样本已生成，待A、B人工标注",
     }
     text = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
     (out_dir / "manifest.json").write_text(text, encoding="utf-8")
