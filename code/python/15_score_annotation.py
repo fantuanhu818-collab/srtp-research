@@ -34,7 +34,6 @@ ERROR_CODES = {
     "homonym": "同形异义：AI指Illustrator、CV指简历、Transformer指变压器等",
     "generic_mention": "泛泛提到AI，不构成技能要求（如“熟悉人工智能行业”）",
     "negation": "否定表达：无需、不要求、非必须",
-    "title_only": "只有岗位名称有AI词，描述里没有",
     "conditional_unpaired": "条件词没有搭配另一个AI词，程序未计入",
     "missing_term": "词典漏词或缺少常见写法",
     "exclusion_overreach": "排除规则误伤了真正的AI要求",
