@@ -50,8 +50,9 @@ def check_sheet(df: pd.DataFrame, name: str, expected: set) -> None:
         problems.append(f"列名或顺序被改动：{list(df.columns)}")
     if set(df["编号"]) != expected or df["编号"].duplicated().any():
         problems.append("编号与发出的标注表不一致（有增删或重复）")
-    labels = pd.to_numeric(df[LABEL].astype("string").str.strip(), errors="coerce")
-    bad = df.loc[labels.isna() | ~labels.isin([0, 1, 9]), "编号"].tolist()
+    # 转成普通浮点数：空白为NaN，避免可空类型在逻辑运算里报错
+    labels = pd.to_numeric(df[LABEL].astype("string").str.strip(), errors="coerce").astype(float)
+    bad = df.loc[(labels.isna() | ~labels.isin([0, 1, 9])).to_numpy(), "编号"].tolist()
     if bad:
         problems.append(f"未填写或取值不是1/0/9：{bad[:20]}")
     types = df[AI_TYPE].fillna("").astype(str).str.strip().str.lower()
@@ -65,10 +66,20 @@ def check_sheet(df: pd.DataFrame, name: str, expected: set) -> None:
         raise SystemExit(f"{name} 未通过交回前检查：\n  - " + "\n  - ".join(problems))
 
 
-def read_sheet(path: Path, expected: set) -> pd.Series:
-    df = pd.read_csv(path, encoding="utf-8-sig", dtype={LABEL: "string", AI_TYPE: "string", "备注": "string"})
+def read_sheet(stem: Path, expected: set) -> pd.Series:
+    """优先读Excel版（32_make_annotation_xlsx.py生成的“标注”页），没有再读CSV。"""
+    xlsx, csv = stem.with_suffix(".xlsx"), stem.with_suffix(".csv")
+    if xlsx.exists():
+        path = xlsx
+        df = pd.read_excel(xlsx, sheet_name="标注", dtype=str)
+        df["编号"] = pd.to_numeric(df["编号"]).astype(int)
+        df[LABEL] = df[LABEL].str.replace(r"\.0$", "", regex=True)
+    else:
+        path = csv
+        df = pd.read_csv(csv, encoding="utf-8-sig", dtype={LABEL: "string", AI_TYPE: "string", "备注": "string"})
     check_sheet(df, path.name, expected)
-    labels = pd.to_numeric(df[LABEL].str.strip(), errors="coerce")
+    labels = pd.to_numeric(df[LABEL].astype("string").str.strip(), errors="coerce")
+    print(f"READ {path.name}")
     return pd.Series(labels.astype(int).values, index=df["编号"])
 
 
@@ -93,8 +104,8 @@ def main() -> int:
     d = Path(storage["analysis_root"]) / "ai_annotation_v0.2"
     key = pd.read_csv(d / "annotation_key.csv", encoding="utf-8-sig").set_index("annotation_no")
     who = key["annotator"]
-    a = read_sheet(d / "标注表_A.csv", set(key.index[who.isin(["A", "A+B"])]))
-    b = read_sheet(d / "标注表_B.csv", set(key.index[who.isin(["B", "A+B"])]))
+    a = read_sheet(d / "标注表_A", set(key.index[who.isin(["A", "A+B"])]))
+    b = read_sheet(d / "标注表_B", set(key.index[who.isin(["B", "A+B"])]))
 
     # 1. 重叠样本一致性
     both = a.index.intersection(b.index)
