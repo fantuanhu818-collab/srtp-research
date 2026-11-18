@@ -61,7 +61,13 @@ class OccupationEvidenceClassifier:
 
     @staticmethod
     def _matched_patterns(patterns: tuple[re.Pattern, ...], text: str) -> list[str]:
-        return [pattern.pattern for pattern in patterns if pattern.search(text)]
+        # 复核表应展示实际命中的词，而不是内部正则表达式。
+        matches: list[str] = []
+        for pattern in patterns:
+            match = pattern.search(text)
+            if match is not None and match.group(0) not in matches:
+                matches.append(match.group(0))
+        return matches
 
     def classify(
         self,
