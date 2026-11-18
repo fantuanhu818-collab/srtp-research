@@ -60,6 +60,13 @@ class AISkillMatcher:
         # 快速预筛：绝大多数广告不含任何AI词，直接返回0。
         self.prefilter = re.compile("|".join(f"(?:{t['pattern']})" for t in spec["terms"]), re.IGNORECASE)
         self.split = re.compile(spec["matching"]["clause_split_regex"])
+        # 否定表达（11-19与A的非AI技能口径对齐）：同一句中，匹配前紧挨着“无需/不要求”等，
+        # 或匹配后紧跟“不限/不作要求”等，该处不计。“者优先”不受影响。旧词典没有这两项，结果不变。
+        neg = spec["matching"]
+        self.neg_prefix = re.compile(neg["negation_prefix"]) if neg.get("negation_prefix") else None
+        self.neg_suffix = re.compile(neg["negation_suffix"]) if neg.get("negation_suffix") else None
+        # 岗位名称是否能单独决定 ai_skill（A的口径：岗位名称不决定技能变量）。默认沿用旧行为。
+        self.title_counts_strict: bool = neg.get("title_counts_strict", True)
         ctx = spec["context"]
         bracket = r"^\s*[【\[<《]?\s*"
         self.intro_header = re.compile(bracket + f"(?:{ctx['intro_section_headers']})")
@@ -90,11 +97,19 @@ class AISkillMatcher:
             return section != "requirement" or not has_req
         return bool(self.weak_intro.search(clause)) and not has_req
 
+    def _negated(self, clause: str, m: re.Match) -> bool:
+        if self.neg_prefix and self.neg_prefix.search(clause[:m.start()]):
+            return True
+        return bool(self.neg_suffix and self.neg_suffix.search(clause[m.end():]))
+
     def _hits(self, clause: str) -> list[tuple[Term, str]]:
         found = []
         for term in self.terms:
-            m = term.regex.search(clause)
-            if m and not any(p.search(clause) for p in self.exclusions.get(term.id, [])):
+            if any(p.search(clause) for p in self.exclusions.get(term.id, [])):
+                continue
+            # 取第一处没有被否定的匹配
+            m = next((m for m in term.regex.finditer(clause) if not self._negated(clause, m)), None)
+            if m:
                 found.append((term, m.group(0)))
         return found
 
@@ -117,12 +132,16 @@ class AISkillMatcher:
                 evidence[term.tier] = clause[:EVIDENCE_CHARS]
 
         # 标题：本身就是岗位，不做公司介绍判断。
+        # title_counts_strict=False 时，标题里的严格词、条件词只记为宽泛（标题不能单独决定 ai_skill）。
+        title_terms: list[tuple[Term, str]] = []
         if title and self.prefilter.search(title):
             for term, text in self._hits(title):
                 if term.tier == "review":
                     review = True
-                else:
+                elif self.title_counts_strict:
                     record(term, f"[标题]{title}", text)
+                else:
+                    title_terms.append((term, text))
 
         if desc and self.prefilter.search(desc):
             for clause, section in self.clauses(desc):
@@ -138,6 +157,11 @@ class AISkillMatcher:
                         intro_hit = True
                     elif term.tier in ("strict", "conditional") or requirement:
                         record(term, clause, text)
+
+        for term, _ in title_terms:
+            found["broad"].setdefault(term.id, term)
+            if not evidence["broad"]:
+                evidence["broad"] = f"[标题]{title}"[:EVIDENCE_CHARS]
 
         strict, cond, broad = found["strict"], found["conditional"], found["broad"]
         # 条件词：有严格词，或至少两个不同的条件词时才计入；否则只算宽泛。

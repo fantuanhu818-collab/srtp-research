@@ -21,16 +21,55 @@ import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 LABEL = "是否要求AI技能(1/0/9)"
+AI_TYPE = "AI类型(traditional/generative/both)"
+COLUMNS = ["编号", "招聘岗位", "职位描述", LABEL, AI_TYPE, "备注"]
+AI_TYPES = {"traditional", "generative", "both"}
+NOTE_TAGS = ["仅专业", "标注类", "AI工具使用", "仅标题", "仅算法岗"]
 POSITIVE_STRATA = {"strict": ["strict_hit", "new_terms_only"],
                    "broad": ["strict_hit", "new_terms_only", "conditional_only", "broad_only"]}
 
+# 误判漏判的错误原因代码（对齐说明第3.10节）。由Agent对照原文填写，人工标注本身不改。
+ERROR_CODES = {
+    "company_intro": "AI词只在公司或产品介绍里，程序没识别出是介绍",
+    "homonym": "同形异义：AI指Illustrator、CV指简历、Transformer指变压器等",
+    "generic_mention": "泛泛提到AI，不构成技能要求（如“熟悉人工智能行业”）",
+    "negation": "否定表达：无需、不要求、非必须",
+    "title_only": "只有岗位名称有AI词，描述里没有",
+    "conditional_unpaired": "条件词没有搭配另一个AI词，程序未计入",
+    "missing_term": "词典漏词或缺少常见写法",
+    "exclusion_overreach": "排除规则误伤了真正的AI要求",
+    "exclusion_missing": "缺少应有的排除规则",
+    "tool_use": "只是使用AI工具，口径待定",
+    "label_dispute": "人工标注可能有误，建议两人复核（不改标注）",
+}
 
-def read_sheet(path: Path) -> pd.Series:
-    df = pd.read_csv(path, encoding="utf-8-sig", dtype={LABEL: "string"})
-    labels = pd.to_numeric(df[LABEL].str.strip(), errors="coerce")
+
+def check_sheet(df: pd.DataFrame, name: str, expected: set) -> None:
+    """交回前质量检查（对齐说明第3.11节）。有问题就停下并列出编号，不自动修改。"""
+    problems = []
+    if list(df.columns) != COLUMNS:
+        problems.append(f"列名或顺序被改动：{list(df.columns)}")
+    if set(df["编号"]) != expected or df["编号"].duplicated().any():
+        problems.append("编号与发出的标注表不一致（有增删或重复）")
+    labels = pd.to_numeric(df[LABEL].astype("string").str.strip(), errors="coerce")
     bad = df.loc[labels.isna() | ~labels.isin([0, 1, 9]), "编号"].tolist()
     if bad:
-        raise SystemExit(f"{path.name} 有未填写或取值不是1/0/9的行，编号：{bad[:20]}{'…' if len(bad) > 20 else ''}")
+        problems.append(f"未填写或取值不是1/0/9：{bad[:20]}")
+    types = df[AI_TYPE].fillna("").astype(str).str.strip().str.lower()
+    no_type = df.loc[(labels == 1).to_numpy() & ~types.isin(AI_TYPES).to_numpy(), "编号"].tolist()
+    if no_type:
+        problems.append(f"标1但AI类型没填或不是traditional/generative/both：{no_type[:20]}")
+    extra_type = df.loc[labels.isin([0, 9]).to_numpy() & (types != "").to_numpy(), "编号"].tolist()
+    if extra_type:
+        problems.append(f"标0或9但填了AI类型（应留空）：{extra_type[:20]}")
+    if problems:
+        raise SystemExit(f"{name} 未通过交回前检查：\n  - " + "\n  - ".join(problems))
+
+
+def read_sheet(path: Path, expected: set) -> pd.Series:
+    df = pd.read_csv(path, encoding="utf-8-sig", dtype={LABEL: "string", AI_TYPE: "string", "备注": "string"})
+    check_sheet(df, path.name, expected)
+    labels = pd.to_numeric(df[LABEL].str.strip(), errors="coerce")
     return pd.Series(labels.astype(int).values, index=df["编号"])
 
 
@@ -54,7 +93,9 @@ def main() -> int:
     storage = json.loads((PROJECT_ROOT / "config" / "storage_paths.json").read_text(encoding="utf-8"))
     d = Path(storage["analysis_root"]) / "ai_annotation_v0.2"
     key = pd.read_csv(d / "annotation_key.csv", encoding="utf-8-sig").set_index("annotation_no")
-    a, b = read_sheet(d / "标注表_A.csv"), read_sheet(d / "标注表_B.csv")
+    who = key["annotator"]
+    a = read_sheet(d / "标注表_A.csv", set(key.index[who.isin(["A", "A+B"])]))
+    b = read_sheet(d / "标注表_B.csv", set(key.index[who.isin(["B", "A+B"])]))
 
     # 1. 重叠样本一致性
     both = a.index.intersection(b.index)
@@ -111,7 +152,20 @@ def main() -> int:
     fn = labeled[~labeled.stratum.isin(POSITIVE_STRATA["strict"]) & (labeled.label == 1)]
     print("FALSE_POSITIVE_TERMS", fp.ai_hit_terms.str.split("|").explode().value_counts().to_dict())
     print("FALSE_NEGATIVE_BY_STRATUM", fn.stratum.value_counts().to_dict())
-    pd.concat([fp.assign(error="误判FP"), fn.assign(error="漏判FN")]).to_csv(d / "误判漏判清单.csv", encoding="utf-8-sig")
+    # 留空两列给Agent：错误原因代码（只能用ERROR_CODES里的代码）、建议复核（只写建议，不改人工标注）
+    errors = pd.concat([fp.assign(error="误判FP"), fn.assign(error="漏判FN")]).assign(错误原因代码="", 建议复核="")
+    errors.to_csv(d / "误判漏判清单.csv", encoding="utf-8-sig")
+    pd.DataFrame(ERROR_CODES.items(), columns=["错误原因代码", "含义"]).to_csv(
+        d / "错误原因代码表.csv", index=False, encoding="utf-8-sig")
+    coded = d / "误判漏判清单_已归因.csv"
+    if coded.exists():  # Agent填好后另存为此文件，再运行本程序即汇总，不含原文，进Git
+        c = pd.read_csv(coded, encoding="utf-8-sig", dtype={"错误原因代码": "string"})
+        unknown = set(c["错误原因代码"].dropna()) - set(ERROR_CODES)
+        if unknown:
+            raise SystemExit(f"误判漏判清单_已归因.csv 用了代码表以外的代码：{unknown}")
+        summary = c.groupby(["error", "错误原因代码"]).size().rename("n").reset_index()
+        summary.to_csv(PROJECT_ROOT / "outputs" / "qc" / "ai_annotation_v0.2_error_codes.csv", index=False, encoding="utf-8-sig")
+        print("ERROR_CODES", summary.to_dict("records"))
     print(f"METRICS -> {out}")
     print("PYTHON_TASK=PASS")
     return 0
