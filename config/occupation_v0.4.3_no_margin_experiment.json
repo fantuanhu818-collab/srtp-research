@@ -1,0 +1,13 @@
+{
+  "version": "occupation_v0.4.3_no_margin_candidate_20261118",
+  "status": "2022_experiment_not_for_regression",
+  "base_rules": "occupation_evidence_rules_v0.4.2.json",
+  "change": {
+    "minimum_margin": 0
+  },
+  "unchanged_conditions": [
+    "minimum_score remains 5",
+    "independent evidence requirement remains enabled",
+    "V4.1 and V4.2 outputs are not overwritten"
+  ]
+}
