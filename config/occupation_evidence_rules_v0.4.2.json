@@ -1,0 +1,319 @@
+{
+  "version": "occupation_evidence_rules_v0.4.2_candidate",
+  "status": "candidate_not_for_regression",
+  "scoring": {
+    "title_strong": 4,
+    "title_decisive": 8,
+    "description_strong": 2,
+    "description_support": 1,
+    "primary_agreement": 1,
+    "fuzzy_name_agreement": 2,
+    "fuzzy_name_minimum_score": 80,
+    "minimum_score": 5,
+    "minimum_margin": 2,
+    "maximum_strong_description_matches": 3,
+    "maximum_support_description_matches": 4
+  },
+  "rules": [
+    {
+      "occupation_id": "M01",
+      "standard_name": "高级经营管理",
+      "title_strong": ["(?:总经理|副总经理|总裁|副总裁|分公司经理|事业部总经理|厂长)$"],
+      "description_strong": ["全面负责.{0,10}(?:公司|分公司|事业部).{0,10}经营", "年度经营目标|年度经营计划", "经营决策|经营战略"],
+      "description_support": ["利润目标|经营业绩", "组织架构|管理团队", "董事会|总裁办"],
+      "primary_patterns": ["高级管理|经营管理|总经理"]
+    },
+    {
+      "occupation_id": "M02",
+      "standard_name": "人力资源",
+      "title_strong": ["人力资源|人事|人资|hrbp|hrcoe|hrssc|招聘(?:专员|经理|主管|顾问|专家|助理|hr)|薪酬(?:绩效)?|组织发展|员工关系|人才发展"],
+      "description_strong": ["招聘渠道|招聘计划|人才招聘", "薪酬体系|绩效考核", "劳动关系|员工关系", "人才盘点|组织发展"],
+      "description_support": ["入离职|劳动合同", "培训计划|人才培养", "人事制度|人力资源制度", "社保|公积金"],
+      "primary_patterns": ["人力资源|招聘|人事"]
+    },
+    {
+      "occupation_id": "M03",
+      "standard_name": "行政文秘与综合支持",
+      "title_strong": ["行政|文秘|秘书|总裁助理|董事长助理|部门助理|综合管理"],
+      "description_strong": ["行政事务|行政管理", "会议组织|会议纪要", "公文写作|文件归档", "办公用品|固定资产管理"],
+      "description_support": ["接待工作|来访接待", "印章管理", "差旅|报销", "后勤保障"],
+      "primary_patterns": ["行政|文秘|秘书|综合管理"]
+    },
+    {
+      "occupation_id": "M04",
+      "standard_name": "项目管理",
+      "title_strong": ["项目经理|项目管理|pmo|项目主管"],
+      "description_strong": ["项目计划|项目进度", "项目风险|项目质量", "项目交付|项目验收", "项目预算|项目成本"],
+      "description_support": ["跨部门协调", "里程碑", "项目文档", "项目团队"],
+      "primary_patterns": ["项目管理|项目经理"]
+    },
+    {
+      "occupation_id": "B01",
+      "standard_name": "销售",
+      "title_decisive": ["(?:销售|业务拓展|商务拓展|客户开发|渠道开发)(?:经理|主管|专员|顾问|代表|工程师|员)?|otc.{0,4}(?:代表|推广|销售)|医药代表|课程顾问"],
+      "title_strong": ["销售|客户经理|客户代表|渠道经理|业务拓展|商务拓展|bd经理|课程顾问|医药代表|otc代表|otc推广"],
+      "title_exclude": ["无销售|非销售|销售(?:行政|秘书|会计|税务|审计|数据分析|培训|讲师|系统支持)|招聘.{0,4}销售|hrbp.{0,4}销售|销售团队.{0,4}hr"],
+      "description_strong": ["销售目标|销售任务|完成.{0,6}销售|销售管理", "客户开发|开拓客户|拓展客户|开发新客户|开拓新客户|拓展新客户", "签订合同|商务谈判|成交", "销售回款|销售业绩"],
+      "description_support": ["客户拜访|客户维护", "渠道开发|渠道拓展|维护.{0,4}销售渠道", "产品推介|产品销售|产品上架|铺货", "销售提成"],
+      "primary_patterns": ["销售|业务拓展|客户经理"]
+    },
+    {
+      "occupation_id": "B02",
+      "standard_name": "市场品牌与公关",
+      "title_strong": ["市场策划|营销策划|品牌|公关|推广|广告优化|信息流优化|媒介投放"],
+      "description_strong": ["品牌推广|品牌传播", "市场推广|营销推广", "广告投放|媒体投放", "市场活动|营销活动"],
+      "description_support": ["市场调研|竞品分析", "传播方案|宣传方案", "新媒体推广", "活动策划"],
+      "primary_patterns": ["市场|品牌|公关|推广"]
+    },
+    {
+      "occupation_id": "B03",
+      "standard_name": "客户服务与售后",
+      "title_strong": ["客服|客户服务|售后|呼叫中心|服务顾问"],
+      "description_strong": ["客户投诉|投诉处理", "售后服务|客户服务", "热线接听|在线客服", "客户满意度"],
+      "description_support": ["客户咨询", "工单处理", "回访客户", "服务质量"],
+      "primary_patterns": ["客服|售后|客户服务"]
+    },
+    {
+      "occupation_id": "B04",
+      "standard_name": "产品管理",
+      "title_strong": ["产品经理|产品策划|游戏策划|数值策划|系统策划"],
+      "description_strong": ["产品需求|需求分析", "产品规划|产品路线图", "产品原型|原型设计", "产品迭代|版本迭代"],
+      "description_support": ["用户需求", "竞品分析", "产品生命周期", "功能设计"],
+      "primary_patterns": ["产品|产品经理|游戏策划"]
+    },
+    {
+      "occupation_id": "B05",
+      "standard_name": "业务运营与商务",
+      "title_strong": ["运营|商务运营|业务运营|内容运营|用户运营|平台运营"],
+      "description_strong": ["运营指标|运营数据", "用户运营|用户增长", "平台运营|业务运营", "运营活动|活动运营"],
+      "description_support": ["流量|转化率", "用户活跃", "运营策略", "商务合作"],
+      "primary_patterns": ["运营|商务|业务运营"]
+    },
+    {
+      "occupation_id": "F01",
+      "standard_name": "财务会计与审计",
+      "title_strong": ["会计|财务|审计|税务|出纳|结算|成本核算"],
+      "description_strong": ["会计核算|账务处理", "财务报表|会计报表", "纳税申报|税务申报", "审计工作|内部审计"],
+      "description_support": ["财务凭证|会计凭证", "费用报销", "成本核算", "总账|明细账"],
+      "primary_patterns": ["财务|会计|审计|税务"]
+    },
+    {
+      "occupation_id": "F02",
+      "standard_name": "银行证券与投资",
+      "title_strong": ["信贷|授信|投资经理|证券|财富经理|融资经理|基金经理|金融风控"],
+      "description_strong": ["信贷业务|授信审批", "证券投资|基金投资", "资产配置|财富管理", "融资方案|融资业务"],
+      "description_support": ["金融产品", "投资分析", "风险评估", "银行业务"],
+      "primary_patterns": ["金融|银行|证券|投资|信贷"]
+    },
+    {
+      "occupation_id": "F03",
+      "standard_name": "保险",
+      "title_strong": ["保险|核保|核赔|理赔|精算|续保"],
+      "description_strong": ["保险理赔|理赔案件", "核保|承保", "保险产品", "精算模型|精算分析"],
+      "description_support": ["保单", "保险客户", "保险业务", "续保"],
+      "primary_patterns": ["保险|理赔|核保"]
+    },
+    {
+      "occupation_id": "F04",
+      "standard_name": "法务合规与知识产权",
+      "title_strong": ["法务|律师|合规|知识产权|专利|商标"],
+      "description_strong": ["法律事务|法律风险", "合同审核|合同审查", "合规管理|合规审查", "专利申请|知识产权"],
+      "description_support": ["诉讼|仲裁", "法律法规", "商标", "保密管理"],
+      "primary_patterns": ["法务|法律|合规|知识产权"]
+    },
+    {
+      "occupation_id": "D01",
+      "standard_name": "软件开发",
+      "title_strong": ["前端|后端|java|python|php|android|ios|c\\+\\+|c#|\\.net|全栈|软件开发|系统开发|程序员"],
+      "description_strong": ["代码开发|代码编写|软件开发", "java|spring|mybatis", "javascript|typescript|vue|react", "c\\+\\+|c#|\\.net|python|php"],
+      "description_support": ["git|svn", "数据库开发|mysql|oracle", "接口开发|api开发", "软件架构|系统架构"],
+      "primary_patterns": ["开发|软件|互联网"]
+    },
+    {
+      "occupation_id": "D02",
+      "standard_name": "数据分析与商业智能",
+      "title_strong": ["数据分析|商业分析|数据仓库|数据开发|bi工程师|etl|数据架构"],
+      "description_strong": ["数据分析|数据建模", "数据仓库|数据集市", "商业智能|bi报表", "etl|数据抽取"],
+      "description_support": ["sql", "数据可视化", "报表开发", "指标体系"],
+      "primary_patterns": ["数据分析|数据开发|数据仓库|商业智能"]
+    },
+    {
+      "occupation_id": "D03",
+      "standard_name": "算法与数据科学",
+      "title_strong": ["算法|机器学习|深度学习|数据科学|nlp|自然语言处理"],
+      "description_strong": ["机器学习|深度学习", "算法模型|模型训练", "自然语言处理|计算机视觉", "tensorflow|pytorch"],
+      "description_support": ["特征工程", "模型优化", "神经网络", "推荐系统"],
+      "primary_patterns": ["算法|人工智能|数据科学"]
+    },
+    {
+      "occupation_id": "D04",
+      "standard_name": "软件测试与质量保障",
+      "title_strong": ["软件测试|测试开发|自动化测试|接口测试|游戏测试"],
+      "description_strong": ["软件测试|测试用例", "缺陷跟踪|bug", "接口测试|自动化测试", "selenium|jmeter"],
+      "description_support": ["测试报告", "测试计划", "回归测试", "性能测试"],
+      "primary_patterns": ["软件测试|测试开发|测试"]
+    },
+    {
+      "occupation_id": "D05",
+      "standard_name": "运维网络与信息安全",
+      "title_strong": ["it运维|系统运维|网络运维|数据库运维|网络安全|信息安全"],
+      "description_strong": ["linux运维|服务器运维", "网络设备|网络配置", "数据库运维|数据库管理", "信息安全|网络安全"],
+      "description_support": ["监控系统|故障监控", "交换机|路由器", "防火墙", "机房巡检"],
+      "primary_patterns": ["运维|网络|信息安全"]
+    },
+    {
+      "occupation_id": "D06",
+      "standard_name": "IT实施与技术支持",
+      "title_strong": ["软件实施|系统实施|实施顾问|技术支持|软件交付|实施交付"],
+      "description_strong": ["系统部署|软件部署", "客户培训|用户培训", "项目实施|实施方案", "上线验收|系统验收"],
+      "description_support": ["现场支持", "需求调研", "技术支持", "系统配置"],
+      "primary_patterns": ["实施|技术支持|软件交付"]
+    },
+    {
+      "occupation_id": "E01",
+      "standard_name": "机械电气、硬件电子与自动化",
+      "title_strong": ["机械|电气|电子|硬件|自动化|pcb|ic设计|结构工程师|液压|天线|光学|自控|plc"],
+      "description_strong": ["机械设计|结构设计", "电路设计|硬件设计", "电气设计|电控设计", "pcb|原理图|嵌入式硬件"],
+      "description_support": ["cad|solidworks|proe", "plc", "bom", "零部件"],
+      "primary_patterns": ["机械|电气|电子|硬件|自动化"]
+    },
+    {
+      "occupation_id": "E02",
+      "standard_name": "化工材料能源与环境",
+      "title_strong": ["化工|化学|材料|电池|能源|环保|环境工程|冶金"],
+      "description_strong": ["化学分析|化工工艺", "材料研发|材料性能", "电池材料|锂电池", "环境监测|环保工程"],
+      "description_support": ["配方", "实验室研发", "能源管理", "污染治理"],
+      "primary_patterns": ["化工|材料|能源|环境|环保"]
+    },
+    {
+      "occupation_id": "E03",
+      "standard_name": "生物医药研发与其他技术研发",
+      "title_strong": ["药物研发|制剂研发|生物研发|临床试验|cra|医学研究"],
+      "description_strong": ["药物研发|新药研发", "制剂研究|药物制剂", "生物实验|细胞实验", "临床试验|gcp"],
+      "description_support": ["实验方案", "研发项目", "药理|毒理", "生物技术"],
+      "primary_patterns": ["生物|医药研发|临床试验"]
+    },
+    {
+      "occupation_id": "P01",
+      "standard_name": "生产制造与工艺",
+      "title_strong": ["生产|工艺|制程|npi|注塑|smt|模具|设备维护"],
+      "title_exclude": ["质量|品质|品管|品控|检验|检测|iqc|ipqc|oqc|pqe|sqe"],
+      "description_strong": ["生产工艺|工艺流程", "生产线|产线", "制程改善|工艺改善", "设备维护|设备维修"],
+      "description_support": ["作业指导书|sop", "生产计划", "现场改善", "良率"],
+      "primary_patterns": ["生产|制造|工艺|设备"]
+    },
+    {
+      "occupation_id": "P02",
+      "standard_name": "质量检验与安全",
+      "title_decisive": ["(?:^|[^a-z])(?:iqc|ipqc|oqc|pqe|sqe)(?:[^a-z]|$)|质量检验员|质量检测员|品质工程师|品管员|品控员"],
+      "title_strong": ["质量|品质|品管|品控|检验|检测|安全工程师|ehs|hse|iqc|ipqc|oqc|pqe|sqe|体系工程师"],
+      "description_strong": ["质量检验|质量检测", "质量体系|iso9001", "安全生产|安全检查", "来料检验|过程检验|出货检验"],
+      "description_support": ["不合格品", "质量标准", "隐患排查", "纠正预防"],
+      "primary_patterns": ["质量|检验|安全|体系"]
+    },
+    {
+      "occupation_id": "P03",
+      "standard_name": "采购与供应链",
+      "title_strong": ["采购|供应链|物料计划|pmc|供应商|跟单"],
+      "description_strong": ["供应商开发|供应商管理", "采购计划|采购订单", "物料计划|物料需求", "供应链管理"],
+      "description_support": ["交期", "采购成本", "询价|比价", "库存计划"],
+      "primary_patterns": ["采购|供应链|物料"]
+    },
+    {
+      "occupation_id": "P04",
+      "standard_name": "物流仓储与运输调度",
+      "title_strong": ["物流|仓储|仓库|运输调度|物流调度|关务|报关"],
+      "description_strong": ["仓库管理|仓储管理", "物流配送|运输配送", "出入库|库存盘点", "运输调度|车辆调度"],
+      "description_support": ["发货", "库存", "报关|清关", "运输计划"],
+      "primary_patterns": ["物流|仓储|运输|关务"]
+    },
+    {
+      "occupation_id": "C01",
+      "standard_name": "建筑土木与工程建设",
+      "title_strong": ["土建|土木|建筑|施工|工程造价|暖通|弱电|bim|精装修|基建"],
+      "description_strong": ["施工现场|工程施工", "建筑工程|土建工程", "工程图纸|施工图", "工程造价|工程预算"],
+      "description_support": ["监理", "竣工验收", "施工进度", "工程质量"],
+      "primary_patterns": ["建筑|土木|施工|工程建设"]
+    },
+    {
+      "occupation_id": "C02",
+      "standard_name": "房地产与物业管理",
+      "title_strong": ["房地产|物业|案场|置业|招商主管"],
+      "description_strong": ["物业管理|物业服务", "房地产开发|地产项目", "案场服务|售楼处", "招商运营|商业招商"],
+      "description_support": ["业主", "物业费", "楼盘", "商业地产"],
+      "primary_patterns": ["房地产|物业|案场|招商"]
+    },
+    {
+      "occupation_id": "C03",
+      "standard_name": "视觉交互与工业设计",
+      "title_strong": ["ui设计|视觉设计|交互设计|工业设计|美工|美术指导"],
+      "description_strong": ["视觉设计|界面设计", "交互设计|用户体验", "工业设计|产品外观设计", "平面设计|图形设计"],
+      "description_support": ["photoshop|illustrator", "设计稿", "色彩|版式", "三维建模"],
+      "primary_patterns": ["设计|美术|视觉"]
+    },
+    {
+      "occupation_id": "S01",
+      "standard_name": "教育培训",
+      "title_strong": ["教师|老师|讲师|培训师|教研|课程研发"],
+      "description_strong": ["教学工作|课堂教学", "课程设计|课程研发", "学生管理|学员管理", "教案|备课"],
+      "description_support": ["授课", "教学计划", "培训课程", "教育教学"],
+      "primary_patterns": ["教育|培训|教师"]
+    },
+    {
+      "occupation_id": "S02",
+      "standard_name": "医疗健康",
+      "title_strong": ["医生|医师|护士|护理|药师|康复治疗|医学影像"],
+      "description_strong": ["临床诊疗|患者诊疗", "护理工作|患者护理", "处方审核|药品调剂", "康复治疗"],
+      "description_support": ["患者", "病历", "医疗操作", "医院科室"],
+      "primary_patterns": ["医疗|医生|护理|药师"]
+    },
+    {
+      "occupation_id": "S03",
+      "standard_name": "咨询研究与专业服务",
+      "title_strong": ["咨询顾问|行业研究|战略研究|政策研究|管理咨询"],
+      "description_strong": ["咨询项目|咨询报告", "行业研究|行业分析", "战略规划|战略研究", "政策研究"],
+      "description_support": ["研究报告", "专家访谈", "商业分析", "客户咨询"],
+      "primary_patterns": ["咨询|研究|专业服务"]
+    },
+    {
+      "occupation_id": "S04",
+      "standard_name": "媒体内容与出版",
+      "title_strong": ["编辑|记者|主播|视频剪辑|内容创作|出版"],
+      "description_strong": ["内容编辑|稿件编辑", "新闻采访|新闻报道", "视频拍摄|视频剪辑", "出版发行|图书出版"],
+      "description_support": ["文案撰写", "选题策划", "内容生产", "直播"],
+      "primary_patterns": ["媒体|编辑|出版|内容"]
+    },
+    {
+      "occupation_id": "L01",
+      "standard_name": "零售餐饮酒店与生活服务",
+      "title_strong": ["店员|营业员|收银员|服务员|厨师|餐饮|酒店前台|美容师"],
+      "description_strong": ["门店销售|门店服务", "餐饮服务|餐厅服务", "酒店前台|酒店服务", "美容服务|美发服务"],
+      "description_support": ["顾客接待", "门店运营", "收银", "餐厅"],
+      "primary_patterns": ["零售|餐饮|酒店|生活服务"]
+    },
+    {
+      "occupation_id": "L02",
+      "standard_name": "驾驶配送与现场运输",
+      "title_strong": ["司机|驾驶员|配送员|快递员|送货员|骑手"],
+      "description_strong": ["车辆驾驶|驾驶车辆", "货物配送|订单配送", "快递派送|快件派送", "送货"],
+      "description_support": ["驾驶证", "车辆保养", "配送路线", "装卸货"],
+      "primary_patterns": ["司机|配送|快递|驾驶"]
+    },
+    {
+      "occupation_id": "L03",
+      "standard_name": "安保保洁与后勤",
+      "title_strong": ["保安|安保|保洁|清洁工|宿舍管理员|后勤"],
+      "description_strong": ["安全巡逻|门岗值守", "保洁工作|卫生清洁", "宿舍管理|后勤管理", "秩序维护"],
+      "description_support": ["值班", "卫生区域", "门禁", "后勤保障"],
+      "primary_patterns": ["安保|保洁|后勤"]
+    },
+    {
+      "occupation_id": "L04",
+      "standard_name": "农林牧渔作业",
+      "title_strong": ["农艺|农业|农场|养殖|畜牧|水产|种植|林业"],
+      "description_strong": ["农作物|农业生产", "种植管理|田间管理", "养殖管理|畜牧养殖", "水产养殖"],
+      "description_support": ["病虫害", "农场", "饲养", "育种"],
+      "primary_patterns": ["农业|农林牧渔|养殖|种植"]
+    }
+  ]
+}
