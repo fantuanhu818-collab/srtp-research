@@ -1,0 +1,10 @@
+{
+  "version": "occupation_manual_gold_v0.4",
+  "source_workbook": "occupation_manual_review_v0.3_队友B复核.xlsx",
+  "source_sha256": "20b79534f9c2404d4939f43cbfa4d0b88a2c2790729ad3f93e1b15cbb821cf7b",
+  "records": 1080,
+  "confirmed": 1044,
+  "pending_conflict": 35,
+  "unresolved_z99": 1,
+  "note": "人工标注仅作为V4规则开发与回测依据；pending_conflict不进入自动别名。"
+}

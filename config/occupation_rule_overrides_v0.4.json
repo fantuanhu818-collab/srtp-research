@@ -1,0 +1,309 @@
+{
+  "version": "occupation_rule_overrides_v0.4",
+  "base_rules": "occupation_rules_v0.1.json",
+  "manual_gold": "occupation_manual_gold_v0.4.csv",
+  "disable_primary_category_autofill": true,
+  "fuzzy_threshold": 90,
+  "fuzzy_minimum_margin": 5,
+  "fuzzy_minimum_length": 4,
+  "ambiguous_titles": [
+    "工程师",
+    "技术员",
+    "技术工程师",
+    "管理员",
+    "专员",
+    "助理",
+    "经理",
+    "主管",
+    "总监",
+    "区域经理",
+    "管培生",
+    "储备干部",
+    "测试工程师",
+    "产品工程师",
+    "研究员",
+    "安全工程师",
+    "运维工程师",
+    "实验室工程师",
+    "性能工程师",
+    "开发工程师"
+  ],
+  "context_rules": [
+    {
+      "rule_id": "V04_E01_HARDWARE_TEST_TITLE",
+      "priority": 1,
+      "occupation_id": "E01",
+      "standard_name": "硬件测试工程师",
+      "confidence": "high",
+      "title_pattern": "硬件测试工程师|硬件测试员"
+    },
+    {
+      "rule_id": "V04_D01_EMBEDDED_TEST_DEVELOPMENT",
+      "priority": 2,
+      "occupation_id": "D01",
+      "standard_name": "嵌入式软件工程师",
+      "confidence": "high",
+      "title_pattern": "嵌入式测试工程师",
+      "description_pattern": "嵌入式|fpga|测试系统|软件开发|程序开发"
+    },
+    {
+      "rule_id": "V04_D04_SECURITY_TEST",
+      "priority": 2,
+      "occupation_id": "D04",
+      "standard_name": "软件安全测试工程师",
+      "confidence": "high",
+      "title_pattern": "安全测试工程师|软件安全测试"
+    },
+    {
+      "rule_id": "V04_D01_DEVELOPMENT_OPERATION",
+      "priority": 2,
+      "occupation_id": "D01",
+      "standard_name": "Java开发工程师",
+      "confidence": "high",
+      "title_pattern": "java.*开发.*运维|开发运维工程师",
+      "description_pattern": "java|spring|开发框架|代码|编程"
+    },
+    {
+      "rule_id": "V04_D03_PYTHON_ALGORITHM",
+      "priority": 2,
+      "occupation_id": "D03",
+      "standard_name": "机器学习算法工程师",
+      "confidence": "high",
+      "title_pattern": "python.*(?:开发|工程师|研发)",
+      "description_pattern": "算法模型|机器学习|深度学习|计算机视觉|自然语言|tensorflow|pytorch|keras"
+    },
+    {
+      "rule_id": "V04_D01_GENERIC_DEVELOPMENT_CONTEXT",
+      "priority": 10,
+      "occupation_id": "D01",
+      "standard_name": "软件开发工程师",
+      "confidence": "medium",
+      "title_pattern": "^开发工程师$|软件开发工程师",
+      "description_pattern": "java|c#|c\\+\\+|nodejs|spring|代码编写|编程语言|软件开发|系统架构"
+    },
+    {
+      "rule_id": "V04_D04_STRONG_SOFTWARE_TEST_CONTEXT",
+      "priority": 10,
+      "occupation_id": "D04",
+      "standard_name": "软件测试工程师",
+      "confidence": "high",
+      "title_pattern": "测试工程师|测试经理|测试专员",
+      "description_pattern": "软件相关测试|软件测试|web|app|api|接口测试|自动化测试"
+    },
+    {
+      "rule_id": "V04_E01_ENGINEERING_TEST_CONTEXT",
+      "priority": 15,
+      "occupation_id": "E01",
+      "standard_name": "硬件产品测试工程师",
+      "confidence": "medium",
+      "title_pattern": "测试工程师|测试经理|测试专员",
+      "description_pattern": "芯片|半导体|电路|变频器|逆变器|示波器|fpga|硬件测试|电气性能|电子仪器"
+    },
+    {
+      "rule_id": "V04_D05_SECURITY_DIGITAL",
+      "occupation_id": "D05",
+      "standard_name": "网络与信息安全工程师",
+      "confidence": "high",
+      "title_pattern": "网络安全|信息安全|安全服务|安全开发|渗透测试|安全运营|安全测试"
+    },
+    {
+      "rule_id": "V04_F04_SECURITY_COMPLIANCE",
+      "occupation_id": "F04",
+      "standard_name": "合规与保密管理",
+      "confidence": "high",
+      "title_pattern": "安全保密|保密工程|合规调查|反洗钱"
+    },
+    {
+      "rule_id": "V04_E01_FUNCTIONAL_SAFETY",
+      "occupation_id": "E01",
+      "standard_name": "功能安全工程师",
+      "confidence": "high",
+      "title_pattern": "功能安全|汽车安全开发|产品安全工程"
+    },
+    {
+      "rule_id": "V04_P02_EHS",
+      "occupation_id": "P02",
+      "standard_name": "职业健康与安全管理",
+      "confidence": "high",
+      "title_pattern": "职业健康|安全生产|安环|(?:^|[^a-z])ehs(?:[^a-z]|$)|(?:^|[^a-z])hse(?:[^a-z]|$)"
+    },
+    {
+      "rule_id": "V04_P02_SAFETY_CONTEXT",
+      "occupation_id": "P02",
+      "standard_name": "安全生产管理",
+      "confidence": "medium",
+      "title_pattern": "安全工程师|安全员|安全主管|安全专员",
+      "description_pattern": "施工|生产|作业|隐患|事故|安全检查|职业健康|安环"
+    },
+    {
+      "rule_id": "V04_C01_HVAC_OPERATION",
+      "occupation_id": "C01",
+      "standard_name": "暖通运维工程师",
+      "confidence": "high",
+      "title_pattern": "暖通.*运维|制冷.*运维|机房.*暖通"
+    },
+    {
+      "rule_id": "V04_P01_EQUIPMENT_MAINTENANCE",
+      "occupation_id": "P01",
+      "standard_name": "设备维修与维保",
+      "confidence": "high",
+      "title_pattern": "电梯.*维保|设备.*维保|机械.*运维|维保工程师"
+    },
+    {
+      "rule_id": "V04_E01_MOTION_CONTROL",
+      "occupation_id": "E01",
+      "standard_name": "运动控制工程师",
+      "confidence": "high",
+      "title_pattern": "运控|运动控制"
+    },
+    {
+      "rule_id": "V04_D05_IT_OPERATION",
+      "occupation_id": "D05",
+      "standard_name": "IT运维工程师",
+      "confidence": "high",
+      "title_pattern": "it运维|系统运维|网络运维|数据库运维|服务器运维|云运维"
+    },
+    {
+      "rule_id": "V04_D05_OPERATION_CONTEXT",
+      "occupation_id": "D05",
+      "standard_name": "IT运维工程师",
+      "confidence": "medium",
+      "title_pattern": "运维工程师|运维专员",
+      "description_pattern": "服务器|数据库|linux|网络|系统|云平台|中间件|机房网络"
+    },
+    {
+      "rule_id": "V04_E03_PHARMA_RESEARCH",
+      "occupation_id": "E03",
+      "standard_name": "医药研发人员",
+      "confidence": "high",
+      "title_pattern": "药化研究员|制剂研究员|药物.*研究员|医药.*研究员|生物.*研究员|天然药化"
+    },
+    {
+      "rule_id": "V04_S03_INDUSTRY_RESEARCH",
+      "occupation_id": "S03",
+      "standard_name": "行业研究员",
+      "confidence": "high",
+      "title_pattern": "行业研究员|咨询研究员|政策研究员"
+    },
+    {
+      "rule_id": "V04_D04_SOFTWARE_TEST_TITLE",
+      "occupation_id": "D04",
+      "standard_name": "软件测试工程师",
+      "confidence": "high",
+      "title_pattern": "软件测试|测试开发|自动化测试|接口测试|性能测试开发"
+    },
+    {
+      "rule_id": "V04_D04_SOFTWARE_TEST_CONTEXT",
+      "priority": 30,
+      "occupation_id": "D04",
+      "standard_name": "软件测试工程师",
+      "confidence": "medium",
+      "title_pattern": "测试工程师|测试经理|测试专员",
+      "description_pattern": "测试用例|测试案例|软件测试|软件系统|web测试|互联网.*测试|自动化测试|接口测试|性能测试|bug|缺陷跟踪|selenium|jmeter|代码评审"
+    },
+    {
+      "rule_id": "V04_P02_LAB_TEST_CONTEXT",
+      "priority": 10,
+      "occupation_id": "P02",
+      "standard_name": "质量检测工程师",
+      "confidence": "medium",
+      "title_pattern": "测试工程师|实验室工程师|测试员",
+      "description_pattern": "材料测试|材料表征|金属材料|陶瓷|sem&eds|xrd|孔隙率|实验室检测|质量检测|检验标准|计量|理化分析|检测方法"
+    },
+    {
+      "rule_id": "V04_E01_HARDWARE_TEST_CONTEXT",
+      "occupation_id": "E01",
+      "standard_name": "硬件产品测试工程师",
+      "confidence": "medium",
+      "title_pattern": "产品测试工程师|半导体测试|pte",
+      "description_pattern": "芯片|半导体|测试程序|良率|硬件|电路|电气性能"
+    },
+    {
+      "rule_id": "V04_P01_PRODUCT_PROCESS",
+      "occupation_id": "P01",
+      "standard_name": "产品工艺工程师",
+      "confidence": "medium",
+      "title_pattern": "产品工程师",
+      "description_pattern": "生产工艺|制程|产线|工艺流程|过程异常|作业指导|精益生产"
+    },
+    {
+      "rule_id": "V04_E02_PRODUCT_MATERIAL",
+      "occupation_id": "E02",
+      "standard_name": "材料产品工程师",
+      "confidence": "medium",
+      "title_pattern": "产品工程师",
+      "description_pattern": "材料|化工|电池|配方|化学|冶金"
+    },
+    {
+      "rule_id": "V04_E01_PRODUCT_ENGINEERING",
+      "occupation_id": "E01",
+      "standard_name": "产品开发工程师",
+      "confidence": "medium",
+      "title_pattern": "产品工程师|性能工程师",
+      "description_pattern": "机械|电气|电子|自动化|图纸|bom|fmea|结构设计|控制逻辑|零部件"
+    },
+    {
+      "rule_id": "V04_F02_FINANCIAL_RISK",
+      "occupation_id": "F02",
+      "standard_name": "金融风险管理",
+      "confidence": "high",
+      "title_pattern": "金融风控|风险控制|风险管理|风控|信审|授信|信贷|反欺诈"
+    },
+    {
+      "rule_id": "V04_D02_ETL",
+      "occupation_id": "D02",
+      "standard_name": "ETL数据工程师",
+      "confidence": "high",
+      "title_pattern": "(?:^|[^a-z])etl(?:工程师|开发|[^a-z]|$)"
+    },
+    {
+      "rule_id": "V04_E03_CRA",
+      "occupation_id": "E03",
+      "standard_name": "临床研究监察员",
+      "confidence": "high",
+      "title_pattern": "(?:^|[^a-z])cra(?:[^a-z]|$)|临床监查员"
+    },
+    {
+      "rule_id": "V04_P03_PMC",
+      "occupation_id": "P03",
+      "standard_name": "生产物料计划员",
+      "confidence": "high",
+      "title_pattern": "(?:^|[^a-z])pmc(?:[^a-z]|$)|物料计划"
+    },
+    {
+      "rule_id": "V04_P02_QE_AOI",
+      "occupation_id": "P02",
+      "standard_name": "质量工程师",
+      "confidence": "medium",
+      "title_pattern": "(?:^|[^a-z])qe(?:工程师|[^a-z]|$)|(?:^|[^a-z])aoi(?:工程师|[^a-z]|$)"
+    },
+    {
+      "rule_id": "V04_D01_NODEJS",
+      "occupation_id": "D01",
+      "standard_name": "Node.js开发工程师",
+      "confidence": "high",
+      "title_pattern": "node\\.?js"
+    },
+    {
+      "rule_id": "V04_D01_PYTHON",
+      "occupation_id": "D01",
+      "standard_name": "Python开发工程师",
+      "confidence": "high",
+      "title_pattern": "python(?:开发|工程师|研发|程序员)"
+    },
+    {
+      "rule_id": "V04_B02_PR",
+      "occupation_id": "B02",
+      "standard_name": "公关专员",
+      "confidence": "high",
+      "title_pattern": "(?:^|[^a-z])pr(?:专员|经理|主管|[^a-z]|$)|公关"
+    },
+    {
+      "rule_id": "V04_P01_LATHE_WORKER",
+      "occupation_id": "P01",
+      "standard_name": "车床工",
+      "confidence": "high",
+      "title_pattern": "^车工$|车床操作工"
+    }
+  ]
+}

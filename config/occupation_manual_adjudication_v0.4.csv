@@ -1,0 +1,7 @@
+source_record_id,adjudication_status,suggested_occupation_id,rationale
+2018-001346860,pending_conflict,P01,标题为车工且职责明确是数控车床操作；原人工标签叉车工与职位描述冲突。
+2020-000078867,pending_conflict,P01,职责为电梯保养和故障维修；原标准名称电气技术员与实际维修职能不一致。
+2018-001198379,pending_conflict,,职责为产品包装设计与文件维护；原标准名称品质工程师缺乏质量检验依据。
+2018-001520573,pending_conflict,E01,职责为芯片ESD和板级测试；原标准名称测试开发工程师可能把硬件测试误作软件测试。
+2024-000214051,pending_conflict,P02,职责为可靠性试验与医疗器械检测；原D04软件测试代码缺乏软件职责依据。
+2025-000516390,pending_conflict,E01,职责为变频器和伺服产品测试；原D04软件测试代码与电气硬件场景冲突。
