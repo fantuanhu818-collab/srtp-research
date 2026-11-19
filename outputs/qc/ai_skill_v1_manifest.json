@@ -3,10 +3,10 @@
   "feature_version": "ai_skill_v1",
   "join_key_source": "来源记录ID",
   "join_key_output": "source_record_id",
-  "ai_rule_version": "ai_skill_dict_v0.2_draft_2026-11-17",
+  "ai_rule_version": "ai_skill_dict_v1.0_2026-11-18",
   "ai_method": "keyword_rule",
-  "dictionary": "config/ai_skill_dictionary_v0.2_draft.json",
-  "built_at": "2026-11-18T18:41:14",
+  "dictionary": "config/ai_skill_dictionary_v1.0.json",
+  "built_at": "2026-11-19T10:56:15",
   "checks": {
     "years_present": [
       2018,
@@ -31,5 +31,5 @@
     "v2_deleted_ids_found": 63,
     "v2_deleted_ids_all_present": true
   },
-  "manual_validation": "未完成：标注样本已生成，待A、B人工标注"
+  "manual_validation": "已完成A、B分层标注（各205条，重叠50条），按§8微调一轮；指标见outputs/qc/ai_annotation_v0.2_metrics.csv（以微调前为准）"
 }
