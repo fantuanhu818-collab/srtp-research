@@ -171,7 +171,12 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 - 说明：`docs/工资极端值修正_wage_fix_v1_2026-11-19.md`
 - 复核报告：`outputs/qc/wage_fix_v1_validation.md`、`outputs/qc/wage_fix_v2_validation.md`
 
-v2 在 v1 基础上把2018年平台38的46条“面议”占位值（两端都是888,888）置为缺失，`wage_fix_flag=2` 标记，记录仍保留在表里、只是工资为空。**后续使用 v2**：`D:\SRTP\工作数据\features\wage_fix_v2`。
+v2 在 v1 基础上把2018年平台38的46条“面议”占位值（两端都是888,888）置为缺失，`wage_fix_flag=2` 标记，记录仍保留在表里、只是工资为空。v3 进一步处理修正后仍>10万的2,982条：2,896条按年薪÷12、86条明显无法修正的置为缺失，处理后全表月薪上限为10万元。**后续使用 v3**：`D:\SRTP\工作数据\features\wage_fix_v3`。
+
+- v3 规则：`config/wage_fix_rules_v3.json`
+- v3 构建：`code/python/45_build_wage_fix_v3.py`；独立复核：`code/python/46_validate_wage_fix_v3.py`
+- v3 复核报告：`outputs/qc/wage_fix_v3_validation.md`；逐条处置清单：`outputs/qc/wage_fix_v3_extremes_resolved.csv`
+- 复核工作簿：`outputs/qc/wage_extremes_review_20261119.xlsx`
 
 `cleaned_v1`和`confirmed_core_v2`均未改动。
 

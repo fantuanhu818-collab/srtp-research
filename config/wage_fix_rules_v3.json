@@ -1,0 +1,47 @@
+{
+  "version": "wage_fix_v3",
+  "created_at": "2026-11-19",
+  "author": "A线",
+  "input_version": "cleaned_v1",
+  "base_version": "wage_fix_v2",
+  "base_rules_file": "config/wage_fix_rules_v2.json",
+  "statement": "v3 = v2 + 处理修正后仍超过10万的记录：能按年薪还原的一律÷12，明显无法修正的置为缺失。目标是把月薪上限压到10万以内。",
+  "diagnosis_reference": "docs/工资极端值修正_wage_fix_v1_2026-11-19.md",
+  "extreme_rules": [
+    {
+      "rule_id": "annual_div12_extreme",
+      "action": "divide",
+      "factor": 12.0,
+      "condition": {
+        "scope": "wage_fix_flag=0 且 wage_mid_fixed > 100000 且 wage_mid_fixed <= 1200000",
+        "rows": 2896
+      },
+      "label": "剩余高值按年薪还原",
+      "evidence": {
+        "paired_test": "其中126条有同企业同岗位11—13倍对照（可判定年薪），97条倍数9—15（倾向年薪），53条倍数<9但÷12后同样合理，2612条无对照",
+        "plausibility": "÷12后落点：2670条≤5万，23条5—10万；岗位为总监、经理、高级工程师、BD",
+        "residual": "÷12后个别记录仍偏高（如校招生岗位），属于原数据无法进一步辨识的部分"
+      }
+    },
+    {
+      "rule_id": "missing_unfixable_extreme",
+      "action": "set_missing",
+      "condition": {
+        "scope": "wage_mid_fixed > 1200000，或 wage_fix_flag=1 且 wage_mid_fixed > 100000",
+        "rows": 86
+      },
+      "label": "无法修正的极端值，置为缺失",
+      "evidence": {
+        "fresh_over_1p2m": "13条未修正且原值>120万，÷12后仍超10万",
+        "already_divided_over_100k": "73条已被v1按年薪÷12过一次，原值280万—800万，再除一次缺乏依据",
+        "examples": "2020平台28“cto”9,690,000；2019平台13“电商运营专员”8,000,000；2021平台1“快递员”7,500,000；2021平台1“肯德基服务员”4,500,000",
+        "why_missing": "÷12后仍是66万/月这类不可能的数值，任何换算都无法得到可解释的月薪"
+      }
+    }
+  ],
+  "target_invariant": "处理完毕后全表不存在月薪>100000的记录",
+  "known_untreated": [
+    "日薪误录（月薪<1000元的10,649条，取值集中在100/120/150/167元，像日薪）：另行处理",
+    "名义工资，未做通胀折算"
+  ]
+}
