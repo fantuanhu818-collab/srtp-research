@@ -1,0 +1,79 @@
+{
+  "version": "wage_fix_v4",
+  "created_at": "2026-11-19",
+  "author": "A线",
+  "approved_by": "指导教师（2026-11-19，同意把日薪/时薪换算为月薪，全量清洗）",
+  "input_version": "cleaned_v1",
+  "base_version": "wage_fix_v3",
+  "base_rules_file": "config/wage_fix_rules_v3.json",
+  "statement": "v4 = v3 + 把低值段（月薪<1000元）中实际是日薪、时薪的广告换算成月薪。判定顺序：先看广告文本单位，再看平台级证据，最后按数值量级判断。保留 source_record_id。",
+  "conversion_basis": {
+    "monthly_days": 21.75,
+    "daily_hours": 8,
+    "daily_multiplier": 21.75,
+    "hourly_multiplier": 174.0,
+    "note": "日薪×21.75（法定月计薪天数）；时薪×8小时×21.75天=×174"
+  },
+  "low_tail_rules": [
+    {
+      "rule_id": "missing_tiny_value",
+      "priority": 1,
+      "condition": "0 < 月薪 <= 10",
+      "action": "set_missing",
+      "rows": 261,
+      "label": "极小值/占位值",
+      "evidence": "1元记录岗位为医药代表、会计、报关员；10元以下无法对应任何真实月薪"
+    },
+    {
+      "rule_id": "hourly_to_monthly",
+      "priority": 2,
+      "condition": "10 < 月薪 < 1000 且 职位描述含“元/小时”或“每小时”",
+      "action": "multiply",
+      "factor": 174.0,
+      "label": "时薪换算",
+      "evidence": "文本直接写明21元/小时、23元/小时、25元/小时，与字段值一致"
+    },
+    {
+      "rule_id": "daily_to_monthly_by_text",
+      "priority": 3,
+      "condition": "10 < 月薪 < 1000 且 职位描述含“元/天”或“元一天”",
+      "action": "multiply",
+      "factor": 21.75,
+      "label": "日薪换算（文本证据）",
+      "evidence": "文本“330元/天”“140元/天”与字段值一致"
+    },
+    {
+      "rule_id": "error_div12_to_monthly",
+      "priority": 4,
+      "condition": "2021年、平台28、10 < 月薪 < 1000",
+      "action": "multiply",
+      "factor": 12.0,
+      "label": "纠正被误÷12",
+      "evidence": "出现833.33=10000/12、666.67=8000/12；区间833—1166对应月薪1万—1.4万，属反向单位错误"
+    },
+    {
+      "rule_id": "hourly_to_monthly_by_magnitude",
+      "priority": 5,
+      "condition": "10 < 月薪 < 60（无单位文本）",
+      "action": "multiply",
+      "factor": 174.0,
+      "label": "时薪换算（量级判断）",
+      "evidence": "60元以下不可能是日薪或月薪；平台20的12元记录岗位为汉堡王、拉夏贝尔兼职店员，属小时工资"
+    },
+    {
+      "rule_id": "daily_to_monthly_by_magnitude",
+      "priority": 6,
+      "condition": "60 <= 月薪 < 1000（无单位文本，非平台28）",
+      "action": "multiply",
+      "factor": 21.75,
+      "label": "日薪换算（量级判断）",
+      "evidence": "平台20的1,235条能与文本“底薪X元”对上，倍数中位20.2≈21.75；平台77的60元以上段文本以“元/天”为主（15:1）"
+    }
+  ],
+  "guard": "换算后若超过100000元，视为不可修正，置为缺失",
+  "target_invariant": "处理完毕后全表不存在月薪>100000的记录",
+  "known_untreated": [
+    "名义工资，未做通胀折算",
+    "换算倍数21.75与174为标准口径，敏感性分析中给出±10%的影响"
+  ]
+}
