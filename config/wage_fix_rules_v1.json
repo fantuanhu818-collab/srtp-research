@@ -1,0 +1,85 @@
+{
+  "version": "wage_fix_v1",
+  "created_at": "2026-11-19",
+  "author": "A线",
+  "input_version": "cleaned_v1",
+  "source_field": "月薪代表值",
+  "statement": "只修正已证实的、按“年份×平台”成批出现的工资单位错误。未列入本文件的记录一律保持原值，不做缩尾、不做截断、不删记录。",
+  "diagnosis_reference": "docs/工资极端值修正_wage_fix_v1_2026-11-19.md",
+  "rules": [
+    {
+      "rule_id": "annual_div12_p11_2018",
+      "year": 2018,
+      "platform": "平台11",
+      "min_wage": 30000.0,
+      "max_wage": null,
+      "treatment": "divide",
+      "factor": 12.0,
+      "label": "年薪误录为月薪",
+      "evidence": {
+        "rows_over_threshold": 118329,
+        "band_30000_60000_rows": 5772,
+        "band_60000_plus_rows": 112557,
+        "same_firm_title_ratio_band_30k_60k": 12.5,
+        "same_firm_title_ratio_band_60k_plus": 14.67,
+        "reference_fact": "2019年平台11在3万—6万、6万以上两个区间的记录数均为0；2万—3万区间2018年为12198条、2019年为12739条，属正常月薪",
+        "conclusion": "3万以上整段为年薪，阈值取30000而不是60000"
+      }
+    },
+    {
+      "rule_id": "annual_div12_p72_2021",
+      "year": 2021,
+      "platform": "平台72",
+      "min_wage": 60000.0,
+      "max_wage": null,
+      "treatment": "divide",
+      "factor": 12.0,
+      "label": "年薪误录为月薪",
+      "evidence": {
+        "rows_over_threshold": 7199,
+        "band_30000_60000_rows": 7905,
+        "same_firm_title_ratio_band_30k_60k": 2.29,
+        "same_firm_title_ratio_band_60k_plus": 12.57,
+        "conclusion": "只有6万以上是年薪；3万—6万是正常高月薪（配对倍数仅2.29），阈值保持60000"
+      }
+    },
+    {
+      "rule_id": "scale_div10_p64_2018",
+      "year": 2018,
+      "platform": "平台64",
+      "min_wage": 10000.0,
+      "max_wage": null,
+      "treatment": "divide",
+      "factor": 10.0,
+      "label": "整平台量级放大约10倍",
+      "evidence": {
+        "rows_over_threshold": 547,
+        "platform_rows": 549,
+        "conclusion": "全平台仅2条低于1万（最低6500，视为已是月薪）；其余整段按10倍还原"
+      }
+    },
+    {
+      "rule_id": "scale_div10_p64_2019",
+      "year": 2019,
+      "platform": "平台64",
+      "min_wage": 10000.0,
+      "max_wage": null,
+      "treatment": "divide",
+      "factor": 10.0,
+      "label": "整平台量级放大约10倍",
+      "evidence": {
+        "rows_over_threshold": 9855,
+        "platform_rows": 9860,
+        "quantile_ratio_2019_over_2020": {"p10": 8.46, "p25": 10.77, "p50": 10.0, "p75": 8.75, "p90": 11.88},
+        "scale_fit_sse": {"10": 0.08076, "9": 0.12476, "11": 0.1366},
+        "conclusion": "按2020/2021同平台分位结构拟合，10倍误差最小；12倍明显更差，因此不是年薪而是量级错误"
+      }
+    }
+  ],
+  "known_untreated": [
+    "2018年平台38：46条月薪>10万，中位月薪仅4750，样本过小、证据不足，暂不处理",
+    "各年零散极高值（如个别>100万的记录）：不足以证明是成批单位错误，留待分析阶段统一缩尾",
+    "2022—2025年的“面议”等无法转换为月薪的写法：清洗阶段已按缺失处理，本表不涉及",
+    "平台64以外的平台若存在同类问题，需先有配对倍数或跨年分布证据再入库"
+  ]
+}
