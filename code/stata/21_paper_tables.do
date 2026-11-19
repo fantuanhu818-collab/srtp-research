@@ -11,7 +11,8 @@
 *       <输出目录>/paper_tables.xlsx、paper_tables.docx、paper_tables.log（末尾 STATA_TASK=PASS）
 *
 * 口径（经济学论文常用做法）：
-*   1. 工资按年份在第1和第99百分位缩尾（winsorize），对数工资由缩尾后工资计算；原始工资同时报告；
+*   1. 工资用A的修正版（wage_fix_v3：年薪误录÷12、量级÷10、无法修正的置缺失），未修正原值同时报告；
+*      另按年份在第1和第99百分位缩尾（winsorize）作对照，对数工资同时报告修正值和缩尾值；
 *   2. 表1：全样本主要变量的观测数、均值、标准差、最小值、中位数、最大值；
 *   3. 表2：AI岗位与非AI岗位的均值比较，报告差值、t检验（不等方差）和标准化差异
 *      （Imbens & Rubin 2015：|标准化差异|>0.25 视为两组差异较大）；
@@ -62,6 +63,9 @@ foreach y of local years {
 generate double ln_wage_w = ln(wage_w)
 generate double wage_w_k = wage_w / 1000
 generate double wage_raw_k = wage_mid / 1000
+capture confirm variable wage_mid_orig
+if !_rc generate double wage_orig_k = wage_mid_orig / 1000
+else generate double wage_orig_k = .
 
 * 学历、经验、城市虚拟变量（缺失保持缺失）
 generate byte edu_college = inlist(education, "大专") if !missing(education)
@@ -72,7 +76,9 @@ generate byte exp_none = inlist(experience, "不限/应届") if !missing(experie
 generate byte exp_3plus = inlist(experience, "3—5年", "5年以上") if !missing(experience)
 generate byte city_tier1 = inlist(city_id, "北京", "上海", "广州", "深圳") if !missing(city_id) & city_id != ""
 
-label variable wage_raw_k "月薪（千元，原始）"
+label variable wage_orig_k "月薪（千元，未修正原值）"
+label variable wage_raw_k "月薪（千元，修正后）"
+label variable ln_wage "对数月薪（修正后）"
 label variable wage_w_k "月薪（千元，缩尾）"
 label variable ln_wage_w "对数月薪（缩尾）"
 label variable ai_skill "AI技能要求（严格版）"
@@ -87,7 +93,7 @@ label variable exp_none "经验不限/应届"
 label variable exp_3plus "经验3年以上"
 label variable city_tier1 "一线城市（北上广深）"
 
-local vars wage_raw_k wage_w_k ln_wage_w ai_skill ai_skill_broad ai_genai ai_traditional ///
+local vars wage_orig_k wage_raw_k wage_w_k ln_wage ln_wage_w ai_skill ai_skill_broad ai_genai ai_traditional ///
     edu_unlimited edu_college edu_bachelor edu_master_plus exp_none exp_3plus city_tier1
 
 * -----------------------------------------------------------------------------
@@ -106,7 +112,7 @@ postclose `h1'
 * -----------------------------------------------------------------------------
 * 表2 AI岗位与非AI岗位均值比较
 * -----------------------------------------------------------------------------
-local bvars wage_raw_k wage_w_k ln_wage_w edu_unlimited edu_college edu_bachelor edu_master_plus ///
+local bvars wage_raw_k wage_w_k ln_wage ln_wage_w edu_unlimited edu_college edu_bachelor edu_master_plus ///
     exp_none exp_3plus city_tier1
 tempname h2
 tempfile f2
@@ -125,8 +131,8 @@ postclose `h2'
 * 表3 分年份
 * -----------------------------------------------------------------------------
 preserve
-generate double lw_ai = ln_wage_w if ai_skill == 1
-generate double lw_non = ln_wage_w if ai_skill == 0
+generate double lw_ai = ln_wage if ai_skill == 1
+generate double lw_non = ln_wage if ai_skill == 0
 collapse (count) 观测数=ai_skill (mean) AI岗位占比=ai_skill 宽泛版占比=ai_skill_broad ///
     生成式AI占比=ai_genai AI岗位对数工资=lw_ai 非AI岗位对数工资=lw_non, by(year)
 generate double 对数工资差 = AI岗位对数工资 - 非AI岗位对数工资
@@ -145,11 +151,11 @@ putdocx begin, font("PingFang SC", 10)
 putdocx paragraph, style(Title)
 putdocx text ("描述性统计")
 putdocx paragraph
-putdocx text ("样本：2018—2025年招聘广告，AI变量可判断的样本`n_ai_ok'条。工资按年份在1%和99%分位缩尾。所有结果为描述性比较，不能解释为因果效应。")
+putdocx text ("样本：2018—2025年招聘广告，AI变量可判断的样本`n_ai_ok'条。工资为修正后月薪（A的wage_fix_v3），缩尾值作对照。所有结果为描述性比较，不能解释为因果效应。")
 
 local titles `" "表1 主要变量描述统计" "表2 AI岗位与非AI岗位的均值比较" "表3 分年份AI岗位占比与工资差" "'
 local names paper_t1_summary paper_t2_balance paper_t3_by_year
-local notes `" "注：月薪单位为千元；虚拟变量的均值即比例。" "注：差值=AI岗位均值−非AI岗位均值；t检验为不等方差；标准化差异=(均值差)/sqrt((方差1+方差2)/2)，绝对值大于0.25视为两组差异较大。" "注：占比单位为%；对数工资为缩尾后月薪的对数。" "'
+local notes `" "注：月薪单位为千元；修正后月薪来自wage_fix_v3（年薪误录等成批单位错误已还原，无法修正的置缺失）；缩尾为按年份1%和99%分位；虚拟变量的均值即比例。" "注：差值=AI岗位均值−非AI岗位均值；t检验为不等方差；标准化差异=(均值差)/sqrt((方差1+方差2)/2)，绝对值大于0.25视为两组差异较大。" "注：占比单位为%；对数工资为修正后月薪的对数。" "'
 forvalues i = 1/3 {
     use `f`i'', clear
     local name : word `i' of `names'

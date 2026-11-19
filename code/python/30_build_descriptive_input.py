@@ -1,7 +1,9 @@
 """为描述性统计生成Stata输入DTA（B，中期临时接口）。
 
 合并：confirmed_core_v2（A的核心变量）+ ai_skill_v1（AI技能线当前版本）
-     + cleaned_v1 的 来源（平台）和 上市公司行业。
+     + wage_fix_v3（A的工资修正，11-19）+ cleaned_v1 的 来源（平台）和 上市公司行业。
+工资：wage_mid、ln_wage 改用 wage_fix_v3 的修正值（年薪误录÷12、量级÷10、面议占位和无法修正的置缺失）；
+     原值保留为 wage_mid_orig，wage_fix_flag：0未改、1已修正、2置缺失。
 职业变量 occupation_id 尚未放入（等A的v0.4定稿）。
 
 用法：.venv/bin/python code/python/30_build_descriptive_input.py 2022
@@ -23,6 +25,8 @@ CLEAN = Path(storage["curated_root"]) / "cleaned_v1"
 OUT = Path(storage["stata_data_root"])
 
 AI_COLS = ["source_record_id", "year", "ai_skill", "ai_skill_broad", "ai_genai", "ai_traditional"]
+WAGE_FIX = "wage_fix_v3"
+WAGE_COLS = ["source_record_id", "wage_mid_orig", "wage_mid_fixed", "ln_wage_fixed", "wage_fix_flag"]
 
 
 def one_year(year: int) -> pd.DataFrame:
@@ -31,7 +35,15 @@ def one_year(year: int) -> pd.DataFrame:
     raw = pd.read_parquet(CLEAN / f"jobs_{year}_cleaned.parquet", columns=["来源记录ID", "来源", "上市公司行业"])
     raw = raw.rename(columns={"来源记录ID": "source_record_id", "来源": "platform", "上市公司行业": "industry_id"})
 
+    wf = pd.read_parquet(FEAT / WAGE_FIX / f"jobs_{year}_wage_fix.parquet", columns=WAGE_COLS)
+
     df = core.merge(ai, on="source_record_id", how="left", validate="1:1")
+    df = df.merge(wf, on="source_record_id", how="left", validate="1:1")
+    assert df["wage_fix_flag"].notna().all(), f"{year}: 有记录在{WAGE_FIX}中找不到"
+    assert (df["wage_mid"] - df["wage_mid_orig"]).abs().max() < 1e-6, f"{year}: 核心变量工资与{WAGE_FIX}原值不一致"
+    df["wage_mid"] = df.pop("wage_mid_fixed")
+    df["ln_wage"] = df.pop("ln_wage_fixed")
+    df["wage_fix_flag"] = df["wage_fix_flag"].astype("int8")
     df = df.merge(raw, on="source_record_id", how="left", validate="1:1")
     assert len(df) == len(core), "合并后行数变化"
     missing_ai = df["ai_skill"].isna() & df["year"].isna()
@@ -44,7 +56,8 @@ def one_year(year: int) -> pd.DataFrame:
     for c in ["source_record_id", "education", "experience", "firm_id", "city_id"]:
         df[c] = df[c].astype("string").fillna("").astype(str)
     df["year_month"] = df["year_month"].astype(str)
-    print(f"{year}: rows={len(df):,} ai_share={df['ai_skill'].mean():.4%}")
+    print(f"{year}: rows={len(df):,} ai_share={df['ai_skill'].mean():.4%} "
+          f"wage_fixed={(df['wage_fix_flag'] == 1).sum():,} wage_missing={(df['wage_fix_flag'] == 2).sum():,}")
     return df
 
 
