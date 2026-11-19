@@ -23,3 +23,12 @@ T021,熟练使用Word,1,0,Word基础办公软件,1,0,SWO003,,PASS
 T022,使用Power BI完成数据可视化,1,0,数据分析软件,1,0,SWA006,,PASS
 T023,熟悉Spark和Kafka,1,0,一般数据工程框架,1,0,SWP018,,PASS
 T024,具备OpenCV开发经验,0,1,OpenCV只进入AI技能,0,1,,aahr_opencv,PASS
+T025,负责UGC内容运营,0,0,UG不能误命中UGC,0,0,,,PASS
+T026,具有丰富的Debug经验,0,0,UG不能误命中Debug,0,0,,,PASS
+T027,熟悉临床试验管理规范GCP,0,0,临床GCP不属于云平台,0,0,,,PASS
+T028,熟悉Google Cloud Platform和AWS,1,0,明确Google云平台计入软件技能,1,0,SWV009,,PASS
+T029,熟练使用Photoshop和Illustrator,1,0,图像设计软件计入,1,0,SWE011,,PASS
+T030,掌握PR软件和AE软件,1,0,视频设计软件计入,1,0,SWE011,,PASS
+T031,简历投递至h r @ example.com,0,0,邮箱字符不能误命中R语言,0,0,,,PASS
+T032,熟悉MSA和GR&R分析,0,0,质量管理术语GR&R不能误命中R语言,0,0,,,PASS
+T033,精通Python、R、Matlab等编程语言,1,0,技能列表中的R应当命中,1,0,SWP001,,PASS

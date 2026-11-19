@@ -1,0 +1,381 @@
+﻿source_record_id,rule_id,subgroup,term_level,match_text,evidence,source,platform,job_title,standard_term
+2022-000346291,SWD004,database,strict,Oracle,[标题]Oracle ERP运维,title,平台4,Oracle ERP运维,Oracle数据库
+2022-000308234,SWE001,engineering_design,strict,AutoCAD,"熟练使用3D、UG、AutoCAD等软件,了解金属材料特性",description,平台4,机械制图员,CAD和AutoCAD
+2022-000348606,SWD001,database,strict,sql,"熟练使用Oracle、mysql数据库,sql基础扎实,掌握数据库性能调优、数据库分析挖掘能力优先",description,平台4,Java开发工程师（长期驻场珠海、广州工行）,SQL
+2022-000189462,SWC006,enterprise,conditional,ERP系统,"根据主计划订单及车间产能编制生产计划,上传到ERP系统",description,平台4,生产计划,ERP和CRM系统技能
+2022-000257625,SWO002,office_basic,strict,Microsoft Excel,"具有很强的技术分析和解决问题的能力,并具有良好的 Microsoft Excel、Minitab、JMP、SPC、MSA、Visual Basic、Visual C++ 技能",description,平台4,光学计量检测工程师,Excel
+2022-000186165,SWD003,database,strict,PostgreSQL,掌握PostgreSQL、MySQL等数据库,description,平台4,前端开发工程师,PostgreSQL
+2022-000014835,SWC007,office_basic,conditional,熟练使用各种办公软件,"优秀的文字表达能力和良好的公文文案功底,能熟练使用各种办公软件",description,平台4,行政主管,办公软件技能
+2022-000037105,SWD004,database,strict,Oracle,"熟练使用数据库,如:Oracle,MSSQL,MySQL,Sysnc,Redis,MongoDB等其中一种或多种",description,平台4,IT高级经理,Oracle数据库
+2022-000017896,SWO002,office_basic,strict,Excel,熟练使用Excel、PPT、Word等office软件,description,平台4,电商客服主管（早九晚六，双休，五险一金）,Excel
+2022-000255127,SWC007,office_basic,conditional,熟练使用办公软件,"具备与岗位所需的相关专业知识,熟练使用办公软件和CAD制图软件",description,平台4,成本管理,办公软件技能
+2022-000211025,SWD005,database,strict,SQL SERVER,"2 、掌握Windows等主流操作系统基本使用,熟练使用SQL语句,熟悉Oracle,SQL SERVER,MY sql等主流数据库基本使用",description,平台4,信息化工程师(J10155),SQL Server和SQLite
+2022-000174377,SWO003,office_basic,strict,WORD,"任职要求:1.本科及以上学历,专业不限,熟练使用WORD,EXCEL等办公软件,具备基本的网络知识",description,平台4,项目专员,Word
+2022-000098511,SWC006,enterprise,conditional,熟悉简单ERP,熟悉简单ERP办公软件,description,平台4,仓管员,ERP和CRM系统技能
+2022-000045061,SWC006,enterprise,conditional,ERP项目实施经验,"具有良好的英文能力,听、说、写流利,有海外ERP项目实施经验或海归背景优先",description,平台4,IT实施工程师（英文岗）-福州,ERP和CRM系统技能
+2022-000292593,SWE001,engineering_design,strict,CAD,熟练使用CAD绘图软件,description,平台4,设备实现工程师,CAD和AutoCAD
+2022-000250751,SWC002,programming,conditional,软件开发经验,"3年以上软件开发经验,1年及以上Flutter开发经验",description,平台4,APP开发工程师（Flutter）,软件开发能力和经验
+2022-000056493,SWC007,office_basic,conditional,熟练使用CAD及办公软件,"技能要求,能熟练使用CAD及办公软件,PDMS,接受加班",description,平台4,管道设计-力学计算,办公软件技能
+2022-000137230,SWO002,office_basic,strict,Excel,"· Good knowledge of Excel, SAP experience will be appreciated",description,平台4,税务专员,Excel
+2022-000335063,SWP005,programming,strict,JavaScript,"良好的编程基础,精通JavaScript脚本和JQuery,精通CSS3和HTML5及响应式布局,对UI设计稿高度还原",description,平台4,雄安前端开发,JavaScript和TypeScript
+2022-000304299,SWP003,programming,strict,C++,"熟练掌握C#/C++/QT语言编程,熟悉面向对象编程思维,有良好的编程习惯",description,平台4,【2023届校招】c#软件工程师,C和C++
+2022-000010624,SWE001,engineering_design,strict,CAD,"3、掌握用电安全及触电急救知识,CAD制图软件操作",description,平台4,仪表工程师,CAD和AutoCAD
+2022-000212011,SWO003,office_basic,strict,Word,"掌握统计学基本原理,能够运用Python、Word等数据软件进行数据处理、统计分析",description,平台4,风险量化岗(J11604),Word
+2022-000240761,SWP012,programming,strict,Shell,"岗位职责:FusionDB功能测试,包括编写测试用例、功能验证、测试环境搭建以及功能性能安全等测试专项,自动化测试工程化 岗位要求:熟练掌握Java、Python或Shell等语言,具备1年以上产品开发经验,计算机、通信相关院校毕业,有自动化开发或测试经验 来自马-克-数-据",description,平台4,数据库开发测试,Shell和Bash
+2022-000038517,SWC007,office_basic,conditional,熟练使用办公软件,熟练使用办公软件及相关人事管理软件,description,平台4,人事行政主管,办公软件技能
+2022-000296039,SWE001,engineering_design,strict,CAD,"岗位职责:11、出具工艺图纸及文件2、提供自加工设备、外协设备参数要求,协助设备部完善图纸3、外购设备询价、评标,采购合同初审及图纸确认4、出具工艺发货清单,完成项目现场指导安装任职要求:1、过程装备与控制专业2、有5年以上气力输送、配管设计工作经验3、精通CAD及各种常用办公软件4、有良好的沟通能力,做好内外部协调5、能够适应出差 来自马-克-数-据",description,平台4,工艺工程师,CAD和AutoCAD
+2022-000250375,SWC006,enterprise,conditional,熟悉ERP,完成上级临时交办事项 任职要求:1、统招专科学历2、熟悉ERP软件操作系统,description,平台4,仓库管理员,ERP和CRM系统技能
+2022-000247326,SWO002,office_basic,strict,excel,"任职要求: 孰悉数据库基本原理,孰练运用SQL,熟练操作 excel、PPT",description,平台4,数据分析师(J11404),Excel
+2022-000113046,SWC007,office_basic,conditional,使用office办公软件,4.能较好的使用office办公软件,description,平台4,地产平面设计师,办公软件技能
+2022-000127992,SWE001,engineering_design,strict,autoCAD,"有较强的水处理理论基础,熟悉autoCAD绘图,能绘制工艺图及部分施工、电气图",description,平台4,工艺工程师,CAD和AutoCAD
+2022-000191068,SWP001,programming,strict,python,2、具备Java或python开发基础,description,平台10,性能测试工程师,Python
+2022-000142747,SWO001,office_basic,strict,OFFICE,"掌握计算机的基本操作技能,能熟练使用OFFICE办公软件",description,平台4,推广专员（滁州）,Microsoft Office
+2022-000163299,SWC001,programming,conditional,编程工作经验,"4. 熟悉usb、网络协议,熟悉流媒体处理&传输、视频编解码,有GUI/FFMpeg/opengles/Opencv编程工作经验者优先",description,平台4,高级软件开发工程师,编程能力和经验
+2022-000250370,SWO001,office_basic,strict,office,"熟练使用office办公软件,尤其擅长EXCEL、PPT操作",description,平台4,韩语翻译,Microsoft Office
+2022-000065331,SWP002,programming,strict,java,"掌握至少一门以上开发语言java,python,php等",description,平台4,测试工程师-微芯佛山,Java
+2022-000198575,SWP005,programming,strict,js,"2年或以上工作经验,熟练掌握Vue.js、ReactJs及开发测试流程",description,平台4,Web前端开发工程师,JavaScript和TypeScript
+2022-000338212,SWE007,engineering_design,strict,SketchUp,3、熟悉相关设计规范、熟练掌握AutoCAD、SketchUp、Photoshop等相关设计绘图软件,description,平台4,建筑方案设计师,三维设计软件
+2022-000258828,SWE009,engineering_design,strict,EDA,"熟练使用一种EDA工具软件(如Altium Designer、Cadence等),具备绘制原理图和印制板图的能力",description,平台4,射频工程师,电子设计工具
+2022-000344414,SWO004,office_basic,strict,PPT,"具备较好的语言表达和方案写作能力,熟练掌握PPT等汇报工具",description,平台4,项目管理(浙江区域),PowerPoint和PPT
+2022-000179998,SWO002,office_basic,strict,Excel,"3、掌握Origin、AcrGIS、R语言等分析软件,良好的数据处理分析能力,熟练运用PPT、Excel、Word等办公软件",description,平台4,大气污染治理工程师（政府项目）,Excel
+2022-000086976,SWD003,database,strict,PostgreSQL,"熟悉MySQL、PostgreSQL、oracle等 RDBMS中的一种以上, 了解Dynamo,mongodb等NoSQL一种以上",description,平台4,驻场运维工程师,PostgreSQL
+2022-000188694,SWP002,programming,strict,Java,[标题]Java软件工程师,title,平台4,Java软件工程师,Java
+2022-000350281,SWE004,engineering_design,strict,UG,"熟悉Mastercam、UG、Pro/E等建模软件,能够进行简单的建模、软件编程并生成数控加工程序",description,平台4,数控加工中心操作工,UG和NX
+2022-000318177,SWE002,engineering_design,strict,solidworks,3、熟练使用CAD、solidworks、CAD 3D等工程绘图软件4、具有学习能力和意愿5、具有较强的与客户沟通能力6、年龄35岁以下 搜索,description,平台4,机械工程师,SolidWorks
+2022-000022009,SWO001,office_basic,strict,office,能熟练应用office等办公软件 来自,description,平台4,临床协调员-衡阳(J12242),Microsoft Office
+2022-000087866,SWC006,enterprise,conditional,操作系统(ERP,能熟练操作常用办公软件及零售商业操作系统(ERP、收银、会员管理等),description,平台4,育儿督导-济南世茂,ERP和CRM系统技能
+2022-000238997,SWB003,enterprise,strict,U8,2.会使用U8管理软件,description,平台4,仓库主管,金蝶和用友
+2022-000210485,SWP003,programming,strict,C语言,"C语言基础能力好,熟练嵌入式软件应用工具",description,平台4,FAE软件标定（新能源汽车电驱动）区域可选,C和C++
+2022-000046551,SWV002,devops,strict,git,熟练使用idea、git、svn、jenkins等常用开发工具,description,平台4,Java开发工程师,Git生态
+2022-000134761,SWD005,database,strict,Sql Server,"掌握Sql Server、Oracle数据库,熟练使用SQL语言",description,平台4,.NET开发工程师,SQL Server和SQLite
+2022-000296816,SWO001,office_basic,strict,office,熟练使用office等办公软件,description,平台4,文控专员,Microsoft Office
+2022-000158146,SWP014,programming,strict,J2EE,"4、精通J2EE技术,了解B/S多层架构开发,深入理解MVC模式,并熟悉前后台分离部署",description,平台4,中高级Java开发工程师（火炬广场）,Java企业技术
+2022-000011275,SWO003,office_basic,strict,Word,"熟练使用Word,、excel等办公软件,电脑操作熟练",description,平台4,采购专员,Word
+2022-000139964,SWO001,office_basic,strict,office,"吃苦耐劳、认真负责,有耐心,能熟练使用office、CAD等软件",description,平台4,生产技术员,Microsoft Office
+2022-000286431,SWV001,devops,strict,Linux,熟悉Linux系统、oracle数据库异常监控、异常处理、主动识别异常风险,description,平台4,HROA工程师,Linux和Unix
+2022-000268899,SWC002,programming,conditional,软件开发项目管理经验,"岗位要求:1. 专科及以上学历, 1年以上软件开发项目管理经验",description,平台4,软件部项目经理,软件开发能力和经验
+2022-000253065,SWV006,devops,strict,maven,熟练使用git、maven、docker容器等生产工具,description,平台4,Java开发工程师-初中高级,Maven和Gradle
+2022-000295494,SWD004,database,strict,Oracle,"4、熟悉Oracle或MySQL,使用过redis、MongoDB等至少一种NOSQL数据库",description,平台4,JAVA工程师（中高级）-济南 (MJ000504),Oracle数据库
+2022-000141362,SWV008,devops,strict,tomcat,熟悉 tomcat、weblogic服务器的配置与应用,description,平台4,Java开发工程师,服务器和中间件
+2022-000327920,SWP003,programming,strict,C语言,曾有编程语言(C语言/C++/JAVA等)、数据库技术处理(SQL/ORACLE/DB2等)相关经验,description,平台4,计算机辅助设计工程师,C和C++
+2022-000309143,SWB003,enterprise,strict,用友,5、能熟练使用ORACLE、用友U8财务软件和office办公软件,description,平台4,财务主管,金蝶和用友
+2022-000037170,SWO003,office_basic,strict,Word,"2.熟练掌握Word、Excel办公软件,及会使用CAD软件",description,平台4,工程管理项目推进专员,Word
+2022-000191857,SWP015,programming,strict,Spring,熟悉Spring、Spring MVC或者SpringBoot、iBatis、数据库缓存等技术框架,description,平台4,MES工程师（浙江）,Spring生态
+2022-000222850,SWD001,database,strict,SQL,"5、熟悉Oracle等主流数据库,熟练编写存储过程,具有一定的SQL性能调优能力",description,平台4,Java开发工程师,SQL
+2022-000288919,SWB003,enterprise,strict,金蝶,"熟悉国家税法政策,熟练使用金蝶软件、办公软件",description,平台4,会计助理,金蝶和用友
+2022-000064775,SWD007,database,strict,redis,"了解java、shell、python、mysql/redis等编程技术,熟悉Python或shell脚本开发,会编写简单的脚本,输出日常自动化维护脚本",description,平台4,运维工程师,Redis
+2022-000004701,SWO003,office_basic,strict,Word,"熟悉办公软件,会使用Word、excel等",description,平台4,市场助理,Word
+2022-000274046,SWO004,office_basic,strict,PPT,"2、1年以上大型企业人力资源专员工作经验,至少熟悉一个模块的人力资源工作3、具备人力资源、心理学等方面的知识4、掌握WORD、EXCEL、PPT、ERP、OA等办公软件使用方法,具备基本的网络知识5、诚实正直、沉稳细致、具有亲和力、良好的服务意识,能保守人事机密",description,平台4,人力资源专员（培训方向）,PowerPoint和PPT
+2022-000193642,SWP002,programming,strict,java,"熟悉python/java语言,掌握SQL语言",description,平台4,测试工程师-（500强制造业，周末双休）,Java
+2022-000125337,SWC005,engineering_design,conditional,仿真软件,"熟悉GaN射频器件的结构布局和版图设计,熟练使用Silvaco、Sentaurus或Ansys等器件电学和热学仿真软件",description,平台4,GaN RF研发工程师,工程设计软件
+2022-000139514,SWD004,database,strict,Oracle,"了解Oracle数据库管理的相关知识,熟练掌握SQL语言",description,平台4,软件测试工程师,Oracle数据库
+2022-000299053,SWD004,database,strict,Oracle,"熟练掌握运用标准sql语句,熟悉Oracle,MySQL,SQLserver",description,平台4,Java开发工程师（银行）,Oracle数据库
+2022-000352336,SWD002,database,strict,mysql,"熟悉mysql、Oracle、sqlserver、Tomcat等基础组件,理解其应用场景",description,平台4,Java工程师/IT(J10031),MySQL和MariaDB
+2022-000234682,SWE010,engineering_design,strict,PLC,"职责描述: 负责ECS-700/基于西门子或AB公司PLC/美国BENTLY系统的架构分析、设计、测试、维护等相关工作,构筑维保队伍一体化技术中心:",description,平台4,运维项目工程师,PLC和Simulink
+2022-000278176,SWV001,devops,strict,Linux,"精通Java,C#、JS等编程语言,熟悉Windows|Linux平台,独立开发过系统平台项目或产品",description,平台4,IT研发部长-双休五险一金,Linux和Unix
+2022-000338235,SWP012,programming,strict,Shell,了解并熟练运用脚本语言(Python、Shell任意一种),description,平台4,it运维工程师,Shell和Bash
+2022-000093429,SWP015,programming,strict,Spring,"掌握Spring+SpringMVC+MyBatis,对于主流框架有所了解",description,平台4,Java开发工程师,Spring生态
+2022-000210615,SWP015,programming,strict,Spring,熟练掌握Spring、Spring Boot、Spring Cloud、Mybatis,description,平台4,Java高级开发工程师,Spring生态
+2022-000072674,SWO004,office_basic,strict,ppt,4、两年以上excel、word、ppt等日常办公工具使用经验,description,平台4,运营,PowerPoint和PPT
+2022-000205311,SWP015,programming,strict,Spring,"有较强的抗压能力、沟通能力和良好的服务意识加分项:熟悉JAVA开发语言,了解Spring、MyBatis、SpringMVC、Spring Boot等应用框架",description,平台4,数据分析,Spring生态
+2022-000206852,SWP002,programming,strict,Java,[标题]Java工程师,title,平台4,Java工程师,Java
+2022-000347489,SWD003,database,strict,PostgreSQL,"熟悉Oracle、Mysql、PostgreSQL等数据库原理、熟练掌握数据库调优、SQL调优,能独立分析性能问",description,平台4,oracle数据库管理员,PostgreSQL
+2022-000216084,SWD001,database,strict,SQL,"3.熟悉至少一种数据库,如MySQL、Oracle、SQL Server等",description,平台13,c++开发工程师,SQL
+2022-000180198,SWP002,programming,strict,Java,"2、熟练掌握Python/Java语言,熟练掌握JS语言",description,平台13,数据采集工程师,Java
+2022-000133257,SWO004,office_basic,strict,PPT,"根据部门需求,收集整理各项数据,以分析报告、PPT等形式输出",description,平台4,软件助理工程师（数据专员）G03550,PowerPoint和PPT
+2022-000204303,SWE007,engineering_design,strict,3dmax,熟练掌握CAD、3dmax或圆方等设计或绘图软件,description,平台4,外派设计经理（山东）,三维设计软件
+2022-000058750,SWE010,engineering_design,strict,PLC,"熟悉PLC,可编程者优先",description,平台4,设备工程师,PLC和Simulink
+2022-000305558,SWE002,engineering_design,strict,SolidWorks,"2、能力要求:熟悉结构系统仿真分析工具,能分析较复杂结构系统回路图和进行结构系统回路三维布置设计,可以熟练使用SolidWorks、Pro/E三维建模软件",description,平台4,研发工程师（机械结构方向）,SolidWorks
+2022-000031912,SWC005,engineering_design,conditional,制图软件,2、熟练掌握UG、CAD制图软件,description,平台4,机械设计工程师,工程设计软件
+2022-000299074,SWP010,programming,strict,perl,"有脚本开发经验,精通一门以上脚本语言(shell/perl/python等),熟悉java语言及主流开发框架",description,平台4,高级产品售前经理,Perl和Lua
+2022-000274388,SWC001,programming,conditional,编程经验,"嵌入式软件编程经验,具备C、C++语言和脚本语言",description,平台4,MCU软件开发（地平线）(C9498),编程能力和经验
+2022-000346533,SWC002,programming,conditional,软件开发经验,具备2年以上嵌入式软件开发经验,description,平台4,嵌入式软件开发工程师（C/C++）,软件开发能力和经验
+2022-000072302,SWD002,database,strict,mysql,web开发技术要求(供参考) 前端:H5、css3、jquery、Bootstrap、vue2 后台(语言、框架):PHP、symfony、Java 操作系统: centos7.X 其他:nginx、redis、twig、mysql,description,平台4,Web开发工程师,MySQL和MariaDB
+2022-000022140,SWC005,engineering_design,conditional,制图软件,熟练掌握CAD或其他制图软件,description,平台4,工艺员,工程设计软件
+2022-000328245,SWV001,devops,strict,Linux,"3、熟悉主流操作系统(Windows、Linux、UNIX),能够进行基本的配置",description,平台4,IT技术支持工程师,Linux和Unix
+2022-000338763,SWE010,engineering_design,strict,PLC,2、较全面、系统地掌握电气传动、电机控制、PLC控制系统、变频器、继电保护、现场总线等知识,description,平台4,电气工程师,PLC和Simulink
+2022-000321299,SWP019,programming,strict,Android,"熟悉Android开发平台和框架原理,熟练运用UI组件、多线程、自定义组件、动画等编程技术",description,平台4,车载安卓开发工程师(JMWXV),移动开发平台
+2022-000071872,SWC003,database,conditional,数据库开发,"熟悉MongoDB/InfluxDB/ElasticSearch等NoSQL数据库开发,优先考虑MongoDB",description,平台4,中高级java工程师（驻场银行）,数据库工作技能
+2022-000197612,SWB001,enterprise,strict,SAP,有SAP经验者为佳,description,平台4,集团高级资金专员,SAP
+2022-000277564,SWE010,engineering_design,strict,PLC,电气系统安装、包含PLC&HMI规划、编程与自动化设备配线、DIO及AIO规划,description,平台4,电气自动化工程师,PLC和Simulink
+2022-000078605,SWP005,programming,strict,javascript,"""Candidate in Flutter • Hands-On Programming Experience in Dart • Proficient in Flutter framework and its core principles • Experience in building and deploying a at least moderately complex app. Important and Essential • Familiar with one or two of javascript, android, ios related programming. Better • Knowledge in MVC & MVVM architectures and Data-Driven strategy • Experience with version control system, like git (5年及以上开发经验,不限制flutter年限,但要求相关项目有上线经验,且有react js经验)"" 来源:",description,平台4,flutter移动开发工程师,JavaScript和TypeScript
+2022-000095252,SWD002,database,strict,MySQL,2、负责Oracle、SQL Server、Informix、DB2、MySQL数据库的管理和性能调优工作,description,平台4,系统运维工程师,MySQL和MariaDB
+2022-000276632,SWP001,programming,strict,python,会使用shell脚本、python数据分析语言者优先,description,平台4,数据分析工程师,Python
+2022-000086282,SWO006,office_basic,strict,outlook,"熟练操作常用办公软件,如office,outlook等",description,平台4,品管专员/主管(J11984),Outlook
+2022-000287268,SWP012,programming,strict,Shell,"2年以上的VM/容器/k8s集群实战运维经验,熟悉Linux、容器、K8S原理与日常操作使用,熟练掌握Java/Python/PHP/GO/Shell 等至少一门语言",description,平台4,云平台运维工程师,Shell和Bash
+2022-000117653,SWO004,office_basic,strict,PPT,熟练应用office、PPT等办公软件,description,平台4,外派财务经理（江西）,PowerPoint和PPT
+2022-000345432,SWP004,programming,strict,C#,"精通C/C#/C++/Python等语音,熟悉常见数据结构与算法,有光学行业基础知识者优先",description,平台4,图像算法应用工程师,C#
+2022-000262868,SWA004,data_stats,strict,Matlab,"熟练使用C语言和QT,熟悉VS2013开发环境,且熟悉Matlab、IDL、Python等编程语言者优先",description,平台4,遥感算法工程师,Matlab
+2022-000000249,SWD009,database,strict,HIVE,"至少熟悉两种数据库或者数据库语法使用(Oracle.Myql.HIVE.SparkSql等),精通SQL,有一定的SQL调优能力",description,平台4,数据治理工程师（国企岗）,Hive和HBase
+2022-000093294,SWD001,database,strict,SQL,熟练掌握和运用SQL相关知识,description,平台4,实施顾问,SQL
+2022-000135444,SWC001,programming,conditional,编程经验,"7. 有存储经验,.net 编程经验或有数据库业务知识的优先",description,平台4,数据库工程师,编程能力和经验
+2022-000047175,SWD010,database,strict,ClickHouse,熟悉相关数据分析框架ClickHouse、Kylin等,description,平台4,架构师(J10052),ClickHouse
+2022-000278176,SWP005,programming,strict,JS,"精通Java,C#、JS等编程语言,熟悉Windows|Linux平台,独立开发过系统平台项目或产品",description,平台4,IT研发部长-双休五险一金,JavaScript和TypeScript
+2022-000296504,SWE007,engineering_design,strict,3Dmax,"要求: 机械或机电一体化本科学历,精通Solidworks、CAD,熟悉3Dmax或其它动画软件",description,平台4,产品结构研发工程师,三维设计软件
+2022-000071503,SWD001,database,strict,SQL,"【岗位要求】本科及以上学历,熟练使用 JAVA、C#、C/C++等编程语言,掌握MySQL、Orcale,、SQL Server其中一款数据库技术,熟悉串口及TCP/IP通信,精通windows多线程编程优先",description,平台4,java软件开发工程师（23届）,SQL
+2022-000115556,SWE010,engineering_design,strict,PLC,"3、能熟练的使用一种或多种PLC编程调试,如三菱、西门子、欧姆龙等",description,平台4,电气工程师,PLC和Simulink
+2022-000011308,SWE011,engineering_design,strict,Photoshop,"岗位要求1、熟练使用Photoshop、Illustrator、Axure 等软件,可以独立完成交互和视觉设计工作",description,平台4,UI\UE用户体验设计师,图像与视频设计软件
+2022-000287212,SWP003,programming,strict,C++,[标题]C/C++高级开发,title,平台4,C/C++高级开发,C和C++
+2022-000080465,SWE004,engineering_design,strict,UG,"岗位要求:1、熟练使用AutoCAD ,UG,PRO-E等二维、三维软件",description,平台4,机械工程师,UG和NX
+2022-000000656,SWD002,database,strict,MySQL,4)具备基于MySQL、Oracle等数据库开发经验,description,平台4,中级开发工程师 (MJ006167),MySQL和MariaDB
+2022-000114624,SWE003,engineering_design,strict,Pro/e,2、能够熟练应用Pro/e、AutoCAD等常用三维制图软件,description,平台4,农机研发工程师（工作地点：乌鲁木齐/长沙）,CATIA Creo ProE
+2022-000305449,SWP001,programming,strict,Python,"精通 Shell、Python,具备扎实的开发能力,能独立完成业务工具的设计、编码、部 署等",description,平台4,集成开发工程师（DevOps方向）,Python
+2022-000045529,SWP001,programming,strict,Python,熟练掌握至少以下语言中的一种:Java/Python/C++/GO/Shell/JavaScript等编程语言,description,平台4,售后技术支持（开发经验）,Python
+2022-000029536,SWP018,programming,strict,Kafka,"熟练掌握JAVA 编程语言以及Web开发框架springboot,熟练使用MySQL、Kafka、Redis、ElasticSearch等互联网应用中间件并掌握原理和应用场景",description,平台4,Java开发工程师,大数据开发框架
+2022-000023489,SWV001,devops,strict,linux,掌握linux、unix操作系统的常用操作,description,平台4,数据库运维工程师,Linux和Unix
+2022-000019677,SWE002,engineering_design,strict,SolidWorks,3. 熟练操作AutoCAD、SolidWorks、ProCast、Deform等软件,description,平台4,稀有金属及合金靶材工程师,SolidWorks
+2022-000136990,SWP001,programming,strict,Python,Python/Capl/Labview等,description,平台4,汽车电子嵌入式工程师,Python
+2022-000099771,SWD007,database,strict,Redis,"教育背景要求 大专及以上工作经验 2年以上开发经验,有WMS/SRM/CRM/SCM等项目经验有加分知识与技能 2年以上开发经验JAVA基础扎实,对面向对象编程有一定理解熟练掌握SpringCloud技术栈,有微服务开发经验熟练掌握Oracle数据库,具备编写复杂SQL能力,有过Oracle报表开发经验者优先,有存储过程开发经验者优先熟练使用索引,熟练使用执行计划对数据库进行调优掌握ActiveMq、Redis、Quartz、Nginx等中间价,并有实际使用经验掌握网络通信协议,如HTTP、HTTPS、Websocket等具有抗压能力,可以独立完成系统功能设计,具备系统问题排查能力,快速学习新框架能力6.熟悉Mysql、oracle等常见数据库,具备一定的SQL优化经验者优先",description,平台4,Java开发工程师,Redis
+2022-000289019,SWC003,database,conditional,数据库开发经验,"具有3年以上数据库开发经验,如使用过SQL Server,MySQL,Oracle,PostgreSQL至少一种",description,平台4,数据库开发,数据库工作技能
+2022-000171600,SWP014,programming,strict,J2ee,"精通J2ee体系结构,熟悉java语言并进行web开发,熟悉javascript、html、css标签",description,平台4,Java开发工程师（海口）,Java企业技术
+2022-000187520,SWP005,programming,strict,JavaScript,精通CSS/JavaScript/DOM/AJAX等各种Web前端技术,description,平台4,web前端开发(J10047),JavaScript和TypeScript
+2022-000007482,SWE007,engineering_design,strict,3dsMax,熟练使用3dsMax、Maya等常用工具,description,平台4,视觉设计（证券项目）,三维设计软件
+2022-000295717,SWP018,programming,strict,Hadoop,"3、了解Hadoop生态系统及核心组件,熟悉BI项目的关联技术和项目开发过程",description,平台4,产品经理（旅游、大数据）,大数据开发框架
+2022-000297168,SWP014,programming,strict,JVM,"JAVA基础扎实,理解io、多线程、集合等基础框架,对JVM原理有一定的了解",description,平台4,【急聘】Java软件开发工程师,Java企业技术
+2022-000257609,SWP003,programming,strict,C++,"精通C++、phyon,熟练使用C++实施产品开发",description,平台4,软件开发工程师（虚拟仿真方向）,C和C++
+2022-000334623,SWP016,programming,strict,VUE,"2、熟练掌握VUE组件化开发,熟练使用elementUI、vant等组件库,掌握Webpack 等前端构建工具体系 ,熟练掌握浏览器各种调试工具,熟悉小程序、微信公众号的项目开发",description,平台4,前端开发工程师,前端框架
+2022-000159287,SWE003,engineering_design,strict,CATIA,"2、熟练掌握CATIA和UG软件,熟悉三维建模、二维出图和线束(管路)设计功能为佳",description,平台4,线束三维开发工程师,CATIA Creo ProE
+2022-000317488,SWP015,programming,strict,springmvc,掌握springmvc、spring、mybatis等后台开源框架,description,平台4,Java开发工程师,Spring生态
+2022-000186041,SWP019,programming,strict,Android,[标题]Android开发工程师,title,平台4,Android开发工程师,移动开发平台
+2022-000038485,SWP004,programming,strict,C#,"4、能向中方SE完整传达基本设计内容,以及完成开发后的受入测试到发布的一系列工作5、至少有Java,C#,Cobol等常用开发语言其中一种的开发经验",description,平台4,赴日开发SE,C#
+2022-000090325,SWV001,devops,strict,Linux,"任职要求1)熟练掌握C语言,熟悉Linux用户空间编程",description,平台4,嵌入式软件开发工程师,Linux和Unix
+2022-000239638,SWB003,enterprise,strict,金蝶,"熟悉金蝶等ERP系统,熟练使用Excel等应用",description,平台4,结构件采购工程师,金蝶和用友
+2022-000009071,SWB001,enterprise,strict,SAP,有稽核、审计工作及SAP系统操作等相关工作经验者优先,description,平台4,稽核员,SAP
+2022-000137069,SWP013,programming,strict,.NET,"3、熟练使用.NET或JAVA进行开发,掌握数据库相关知识",description,平台4,软件工程师-生产,.NET
+2022-000179998,SWA008,data_stats,strict,R语言,"3、掌握Origin、AcrGIS、R语言等分析软件,良好的数据处理分析能力,熟练运用PPT、Excel、Word等办公软件",description,平台4,大气污染治理工程师（政府项目）,R语言
+2022-000190038,SWC002,programming,conditional,软件开发经验,"单片机软件开发经验,擅长ST单片机硬件设计以及软件开发,熟悉ST的软件生态系统CUBEmx",description,平台4,嵌入式软件工程师,软件开发能力和经验
+2022-000069965,SWD005,database,strict,SQL server,"具备良好的SQL server、Oracle、MySQL等数据库的操作和维护知识和维护能力,掌握企业级服务器常用软件环境的基本操作",description,平台4,计算机系统工程师,SQL Server和SQLite
+2022-000024057,SWB001,enterprise,strict,sap,"熟悉办公软件及工作工具,使用过2种及以上财务系统,熟悉sap系统优先,拥有会计相关职称者优先",description,平台4,财务管理主任工程师,SAP
+2022-000236979,SWD002,database,strict,mysql,"4.熟悉Windows及linux操作系统的维护和管理,了解主流数据库,如sqlserver、oracle、mysql等,了解Weblogic、Tomca、BES、TonglinkQ等中间件",description,平台4,信息规划与安全岗P9（网络与信息安全方向）,MySQL和MariaDB
+2022-000297710,SWP019,programming,strict,Android,负责Android平台前后端架构及业务逻辑的设计,description,平台4,安卓开发工程师,移动开发平台
+2022-000270366,SWE011,engineering_design,strict,CorelDRAW,熟练使用CAD、3DMAX、CorelDRAW等软件,description,平台4,水电工程师（贺州）,图像与视频设计软件
+2022-000311006,SWP019,programming,strict,Android,"了解操作系统原理,熟悉Android系统架构",description,平台4,高级spm（se）,移动开发平台
+2022-000247524,SWB003,enterprise,strict,U8,"1、 使用部门提交采购申请 使用部门根据使用需要填写采购请购单,录入U8系统后,经部门负责人、副总经理、总经理审批",description,平台4,国际采购,金蝶和用友
+2022-000060675,SWE003,engineering_design,strict,PRO/E,"熟练使用CAD、PRO/E等相关设计软件,较强现场动手调试能力",description,平台4,机械设备主管,CATIA Creo ProE
+2022-000157773,SWB001,enterprise,strict,SAP,"3、精通ERP系统(SAP、用友、金蝶皆可),理解ERP的系统取数逻辑,精通EXCEL表格及函数公式",description,平台4,成本会计,SAP
+2022-000231110,SWD012,database,strict,Neo4J,-熟练使用MySQL、Neo4J、Redis、MongoDB、RabbitMQ等第三方组件,description,平台4,软件架构师（上海）,Neo4j
+2022-000222801,SWE004,engineering_design,strict,UG,"3、熟练使用FLUENT、ADINA、CFX、STAR-CD\STAR-CCM+等一种或几种,熟悉Solidworks,pro/E,UG等三维建模软件",description,平台4,流体工程师,UG和NX
+2022-000041739,SWE011,engineering_design,strict,C4D,"建模:1.掌握更完善进阶建模包括通波尔,曲面,块面等多方式建模能力,可以通过不同软件特点进行更完善地建模(max,犀牛,C4D等)",description,平台4,3D设计师,图像与视频设计软件
+2022-000245165,SWC001,programming,conditional,具有良好分析及编程,具有良好分析及编程技巧,description,平台4,嵌入式软件开发工程师,编程能力和经验
+2022-000284791,SWC005,engineering_design,conditional,仿真软件,熟练应用PSCAD/EMTDC、MATLAB/Simulink、PSIM电力系统仿真软件,description,平台4,系统架构工程师（软件）(J10024),工程设计软件
+2022-000262605,SWP004,programming,strict,C#,"5、 精通MFC、Qt、C#中的一种或多种,熟练使用Visual Studio或Qt,熟悉软件开发、测试、调试",description,平台4,视觉应用工程师,C#
+2022-000242975,SWP004,programming,strict,C#,"2) 熟悉C#/JAVA/Python等开发语言,熟悉常用的.Net/Java开发框架3) 能承受一定的工作压力和挑战,积极向上,责任心强,富有团队合作精神4) CET-4考试分数425分及以上,良好的英语听说读写能力职位职责:1) 为公司的应用系统提供技术和功能支持,维持系统的稳定运行2) 收集用户需求,协助系统分析员分析需求,完成需求规范以及相关设计文档编写3) 根据设计文档以及开发规范完成代码编写和软件开发工作",description,平台4,IT部培训生: 系统分析方向（2022校招）,C#
+2022-000094024,SWV003,devops,strict,docker,6、掌握docker、k8s技术优先,description,平台4,资深java开发工程师,Docker
+2022-000189375,SWO005,office_basic,strict,WPS,负责Windows操作系统、WPS、邮箱配置等常见办公软件技术支持,description,平台4,运维工程师,WPS
+2022-000108784,SWB001,enterprise,strict,SAP,"3、具有一定软件项目管理、业务规划、系统集成能力,不限于WMS、ERP (SAP、金蝶、用友)、MES实施经验",description,平台4,解决方案经理,SAP
+2022-000133649,SWP019,programming,strict,Android,"熟悉QNX,Android优先",description,平台4,SOA软件开发,移动开发平台
+2022-000056723,SWC003,database,conditional,数据库、网络、操作,"2.熟悉c/c++开发语言,了解数据接口、数据库、网络、操作系统等相关知识",description,平台4,后端研发工程师（音视频编解码）,数据库工作技能
+2022-000000479,SWE003,engineering_design,strict,Creo,4.熟练使用CAD、Creo、Matlab等软件,description,平台4,PEMFC氢气系统开发岗(J10532),CATIA Creo ProE
+2022-000322481,SWC001,programming,conditional,编程基础,"任职资格:1.*** 本科及以上学历、计算机或硬件相关专业2.熟练使用Python、C/C++等一门或多门编程语言,有良好的编程基础3.具有硬件开发或测试经验优先,熟悉CPLD/BMC/I2C/EMMC/PCIE/MCU/CPU/电源/内存/存储/SPI等器件或链路机制原理4.思维敏捷,学习能力强,具有良好的沟通能力及团队协作能力",description,平台4,软/硬件测试工程师,编程能力和经验
+2022-000273153,SWP013,programming,strict,.NET,"熟悉SQL语言基础操作及SQL Server、Oracle等常用数据库基本操作,具有.NET平台基于C# 或Java 等至少一种语言简单开发能力",description,平台4,运维工程师,.NET
+2022-000159532,SWC003,database,conditional,数据库的维护,"重要客诉案例收集和数据库的维护,主导经验教训的展开和内部培训",description,平台4,CQE质量工程师,数据库工作技能
+2022-000307449,SWV006,devops,strict,Maven,"掌握DevOps各个组件的安装维护(如Git、Jenkins、Maven、Docker,k8S)等",description,平台4,自动化运维工程师,Maven和Gradle
+2022-000203539,SWE007,engineering_design,strict,Sketchup,"熟练掌握各类办公软件,熟练掌握Autocad、Sketchup、lumion、Photoshop等专业绘图软件",description,平台4,景观方案/施工图设计师,三维设计软件
+2022-000269465,SWP007,programming,strict,golang,"熟悉python、golang、java、C、C#等至少一门语言,具备一定的开发能力",description,平台4,渗透测试工程师(97PL),Go语言
+2022-000121980,SWP014,programming,strict,J2EE,"3、熟悉J2EE架构和开发模式,熟悉相关设计模式,熟悉O-R建模语言,具有数据库应用设计能力",description,平台4,高级java开发工程师,Java企业技术
+2022-000166513,SWV009,devops,strict,阿里云,"有2年以上阿里云/沃云等公有云运维工作经验,",description,平台4,运维工程师,云平台
+2022-000105031,SWC003,database,conditional,"维护,具备数据库","熟悉SQLServer/Oracle/Mysql数据库、winserver操作系统配置、服务器的维护,具备数据库SQL语句编写能力",description,平台4,IT软件开发工程师,数据库工作技能
+2022-000251482,SWA004,data_stats,strict,matlab,"能够对电路进行仿真,如:matlab",description,平台4,硬件工程师,Matlab
+2022-000016297,SWP012,programming,strict,shell,2. 熟悉Android adb基本调试命令和shell命令,description,平台4,Python开发工程师,Shell和Bash
+2022-000004315,SWD006,database,strict,MongoDB,具有MongoDB、MySQL等数据库程式开发与维护经验,description,平台4,mes工程师,MongoDB
+2022-000154791,SWC002,programming,conditional,软件开发经验,"2.具有10年以上电力电子相关产品技术研发经验,有储能逆变器、光伏逆变器,BMS软件开发经验,直流充电模块、微电网控制产品、UPS电源开发经验优先",description,平台4,研发总监,软件开发能力和经验
+2022-000201163,SWP014,programming,strict,jvm,有大型平台运维、jvm调优经验,description,平台4,java中高级工程师,Java企业技术
+2022-000334605,SWP016,programming,strict,React,"熟悉React、Angular等至少一种开发框架,具备React开发经验的优先考虑",description,平台4,移动研究院-前端开发工程师-西安,前端框架
+2022-000300489,SWV008,devops,strict,WebLogic,6.熟悉了解tuxedo、MQ、WebLogic等中间件技术,description,平台4,运维工程师,服务器和中间件
+2022-000070256,SWE003,engineering_design,strict,Pro/E,熟练使用 Solidworks或Pro/E,description,平台4,机械结构工程师,CATIA Creo ProE
+2022-000133148,SWE002,engineering_design,strict,solidworks,要求有CAD、solidworks绘图软件基础知识,description,平台4,化成工程师,SolidWorks
+2022-000336697,SWE011,engineering_design,strict,C4D,"熟练运用AE,C4D,U3D(粒子部分),3Dmax,Sketch和PS等软件",description,平台4,动效设计师,图像与视频设计软件
+2022-000144717,SWV008,devops,strict,weblogic,"2、负责客户was、weblogic等中间件维护,完成日常巡检,配置设置,故障处理解决,系统升级或迁移服务",description,平台4,oracle数据库运维工程师,服务器和中间件
+2022-000240864,SWE011,engineering_design,strict,PhotoShop,所需技能: PhotoShop、unityUI比编辑器、UI资源合入引擎,description,平台4,执行交互设计（外派网易双休）,图像与视频设计软件
+2022-000109517,SWP016,programming,strict,Jquery,岗位职责: 教授Python程序设计、数据可视化、网页设计与制作、Jquery应用开发、C语言程序设计、数据结构与算法、人工智能概论、人机交互技术等课程 任职要求:,description,平台4,【急聘】python开发工程师/高校教师,前端框架
+2022-000199646,SWC005,engineering_design,conditional,制图软件,3、熟悉使用AutoCAD等相关制图软件,description,平台4,弱点技术员,工程设计软件
+2022-000122529,SWO006,office_basic,strict,Outlook,"了解Outlook,Foxmail等常用邮件客户端的设定,熟悉邮件的导入/导出作业设定",description,平台4,IT支持工程师,Outlook
+2022-000246360,SWP006,programming,strict,PHP,"岗位职责:1. 对网络攻击及安全事件进行跟踪,提供应急响应支撑2. 授权对指定站点进行按需渗透测试3. 跟踪安全漏洞、补丁信息,提出解决方案任职资格:1. 精通常见 web、系统安全漏洞原理、利用方式以及对解决方案有较深入理解2. 精通 web 攻击方法,能独立进行安全漏洞的分析和研究3. 熟悉攻击流程,掌握入侵思路4. 具备一定的开发能力,掌握PHP/Python/Perl/C/Shell其中任意一种编程语言5. 有较好的沟通能力和文字表达能力",description,平台4,渗透测试工程师,PHP
+2022-000353592,SWV003,devops,strict,Docker,"掌握容器技术,熟练使用 Docker,Kubernetes",description,平台4,云计算运维工程师,Docker
+2022-000283671,SWD009,database,strict,HBase,"熟悉SQL语言,熟练使用MySQL/Oracle等关系型数据库,HBase等非关系型数据库",description,平台4,数据分析师（数据治理方向）,Hive和HBase
+2022-000011061,SWD003,database,strict,PostgresQL,"6、熟练掌握至少一种数据库(关系型/NoSQL)及其相关技术,如PostgresQL, MySQL, Redis, MongoDB, ElasticSearch等",description,平台10,高级Python后端工程师,PostgreSQL
+2022-000264070,SWD003,database,strict,POSTGRESQL,"熟悉ORACLE,或对MYSQL,POSTGRESQL有一定了解",description,平台4,Java开发工程师/（深圳广州佛山都有需求）,PostgreSQL
+2022-000335542,SWD005,database,strict,SqlServer,"熟练使用主流数据库MySql, Oracle, SqlServer等,精通SQL的编写及调优,能够独立编写函数、存储过程、触发器等数据开发经验",description,平台4,大数据治理,SQL Server和SQLite
+2022-000029317,SWE004,engineering_design,strict,UG,"会使用UG/ProE ,图纸设计,3D建模,2D图出图,产品结构设计、改装改造设计",description,平台4,产品开发工程师,UG和NX
+2022-000352904,SWD005,database,strict,SQL Server,有数据库系统(Mysql或SQL Server等)开发经验,description,平台4,Java开发工程师,SQL Server和SQLite
+2022-000231800,SWE004,engineering_design,strict,UG,学习、组织协调、沟通合作、技术管理、空间想象、UG、CATIA专业软件及OFFICE办公软,description,平台4,汽车测量工程师,UG和NX
+2022-000036183,SWE005,engineering_design,strict,ANSYS,"掌握pro/e、CAD等专业办公软件,掌握一种CAE分析软件如ANSYS、cruise等",description,平台4,动力传动工程师,仿真分析软件
+2022-000065155,SWP006,programming,strict,php,"岗位描述: -负责百度集团公司级评估分析B端&C端产品设计和研发 -参与评估分析基础能力组件基础服务产品设计和研发 -参与高稳定性、高扩展性、定制化服务架构设计、研发和重构 职责要求: -计算机或相关专业本科及以上学历 -熟悉 HTML5、CSS等网页制作技术,熟悉页面架构和布局 -熟悉JavaScript、Ajax等Web开发技术,掌握面向对象编程思想 -至少熟悉一种后台技术(nodejs/JSP/CGI/python/php),理解前后端联合开发的技术原理 -掌握一种以上主流前端框架(Vue、Angular、React等)、同时具备移动端、PC端Web实践经验更佳 -优秀的分析和解决问题的能力,对挑战性问题充满激情 -良好的团队合作精神,较强的沟通能力 关注公众号",description,平台4,前端研发工程师,PHP
+2022-000134958,SWD009,database,strict,Hive,熟悉MySQL.Hive.MongoDB等数据库,description,平台4,BI工程师,Hive和HBase
+2022-000126964,SWP018,programming,strict,Hadoop,"熟悉Hadoop、Redis、ElasticSearch、HBase、Spark、Storm、Kafka等大数据组件,对离线计算、内存计算和流式计算均有较为深刻理解",description,平台4,大数据项目经理,大数据开发框架
+2022-000299189,SWD006,database,strict,mongodb,"熟悉数据库,数据架构,数据挖掘算法及原理,机器学习算法,精通mysql、oracle、mongodb数据库其中一种",description,平台4,电池工程师,MongoDB
+2022-000112944,SWE009,engineering_design,strict,Altium,2. 熟练使用PROTEL(Altium Designer)软件,description,平台4,研发工程师,电子设计工具
+2022-000248263,SWV008,devops,strict,Nginx,"6、熟悉Linux系统,熟练掌握Nginx,Redis、Rocketmq等技术",description,平台4,金融软件项目经理,服务器和中间件
+2022-000353657,SWD007,database,strict,redis,熟悉redis中间件优先,description,平台4,Java高级开发工程师,Redis
+2022-000011322,SWD007,database,strict,Redis,"熟悉mysql或PG数据库,可编写复杂语句,熟悉数据库调优方法,精通NoSQL Redis、HBase等,精通消息中间件,如ActiveMQ、RabbitMQ、Kafka等在适合业务场景使用适合技术优先考虑",description,平台4,Java开发组长-青海,Redis
+2022-000197294,SWP010,programming,strict,Perl,5、熟悉MATLAB/C/Perl/Python/Tcl等至少一种编程语言为佳,description,平台4,数字IC设计工程师（北京）,Perl和Lua
+2022-000158171,SWV009,devops,strict,阿里云,"【运维工程师】岗位职责 负责阿里云平台网络技术相关支持服务,结合阿里云产品技术体系,及时有效地解决客户问题、应答客户咨询,为客户提供产品安装、部署和运维服务,以保障客户云平台的运行稳定和管理规范有序",description,平台4,湖州运维工程师,云平台
+2022-000326182,SWD007,database,strict,Redis,"精通PostgreSQL/MySQL、Oracle、Redis、Kafka/RabbitMQ等数据存储技术,掌握SQL语言",description,平台4,IT技术经理,Redis
+2022-000275311,SWV008,devops,strict,tomcat,"熟练掌握Linux操作系统,tomcat等中间件、MySQL等数据库及常用办公软件",description,平台4,实施顾问（金融保险方向）,服务器和中间件
+2022-000213281,SWV002,devops,strict,Git,"熟悉Git操作,熟悉Shell或Python脚本开发与远程代码调试",description,平台4,集成电路IC设计/应用工程师,Git生态
+2022-000027856,SWP016,programming,strict,VUE,"2、4年以上WEB前端开发经验,能独立完成网页前端开发,精通VUE,熟练使用iview,vue-strap,at-ui,Element等其中一种框架,并能开发自定义组件",description,平台4,Web前端工程师,前端框架
+2022-000271289,SWE002,engineering_design,strict,Solidworks,"2、熟练掌握AutoCAD, Solidworks等制图软件,机械理论知识扎实",description,平台4,机械工程师,SolidWorks
+2022-000065180,SWP016,programming,strict,Vue,"3、熟悉Vue、Reactor、Angular等前端框架的开发,并具备相应项目实践经验",description,平台4,初级前端开发工程师-外派吉利,前端框架
+2022-000270625,SWE005,engineering_design,strict,Ansys,熟悉Matlb、UG、AltiumDesigner、CAD、Ansys等设计与仿真工具,description,平台13,导弹研发专责,仿真分析软件
+2022-000341903,SWP004,programming,strict,C#,"熟悉C#语言,精通B/S应用开发,有2年以上WebForm开发经验",description,平台4,软件开发工程师,C#
+2022-000322657,SWP017,programming,strict,Django,"掌握Tornado、Django、Flask任一python开发框架,懂代码调试并能持续优化",description,平台4,Python开发工程师,Python Web框架
+2022-000273591,SWE005,engineering_design,strict,Ansys,"其他能力要求:熟练使用Solidworks,Ansys,Adams和Matlab等常规设计分析软件 其他要求:",description,平台4,制造装备机械工程师,仿真分析软件
+2022-000320851,SWA004,data_stats,strict,Matlab,"熟悉XML、Python、R、Matlab、JSON、WebServce等优先,有实施开发OA系统、ERP系统经验者优先,有FineReport等BI工具使用经验者优先",description,平台4,Java软件工程师（二次开发）,Matlab
+2022-000312553,SWP010,programming,strict,LUA,有自动化接口测试(会Python、LUA)经验优先,description,平台4,测试（有电控测试经验优先，双休）,Perl和Lua
+2022-000063098,SWE009,engineering_design,strict,Altium,"4、熟悉Altium Designer或其它辅助设计软件,能独立完成硬件原理图/接线图设计",description,平台4,电池/电源开发,电子设计工具
+2022-000201112,SWP012,programming,strict,shell,"2.熟练掌握verilog/system verilog硬件描述语言,熟悉tcl,shell,python等脚本语言",description,平台4,数字IC验证工程师,Shell和Bash
+2022-000182092,SWB004,enterprise,strict,Oracle EBS,从事Oracle EBS技术开发或技术运维5年及以上工作经验,description,平台4,ORACLE ERP技术顾问,Oracle企业套件
+2022-000028852,SWP007,programming,strict,Golang,8、 熟练掌握Shell/Perl/Python/Golang中的一种或几种语言(必须会shell),description,平台4,DBA工程师（佛山） (MJ002615),Go语言
+2022-000035364,SWD009,database,strict,Hive,最好熟悉Hadoop Hive的数据处理开发,description,平台4,数据库开发,Hive和HBase
+2022-000252937,SWP009,programming,strict,kotlin,"能够使用java,kotlin,C/C++开发,了解NDK开发模式,能够熟练使用Git管理代码",description,平台4,Android应用开发工程师,Swift Kotlin Objective-C
+2022-000055826,SWD009,database,strict,Hive,了解Hive-SQL,description,平台4,数据分析员,Hive和HBase
+2022-000237667,SWE009,engineering_design,strict,EDA,熟练使用Cadence/Altuimdesigner等EDA软件,description,平台4,电源硬件工程师,电子设计工具
+2022-000187725,SWD006,database,strict,Mongodb,精通Oracle、PostgreSQL、MySQL、Redis、Mongodb、HBase等数据库设计、性能优化、存储优化,description,平台4,架构师,MongoDB
+2022-000203425,SWO005,office_basic,strict,WPS,熟练掌握WPS,description,平台4,贵州酯雅酒业销售有限公司行政文员,WPS
+2022-000030718,SWO005,office_basic,strict,WPS,"能熟练的使用电脑和Office、WPS、PPT等办公软件4、形象良好、做事沉稳仔细,善于沟通,责任心强,执行力、协助能力强",description,平台4,薪酬/员工关系专员,WPS
+2022-000197517,SWV005,devops,strict,Jenkins,熟悉Jenkins环境使用与搭建,description,平台4,软件开发测试工程师,Jenkins
+2022-000237104,SWV002,devops,strict,git,"4、熟悉linux后台命令,java后台打包部署,svn,git代码管理工具",description,平台4,Java开发工程师,Git生态
+2022-000027472,SWV002,devops,strict,Git,"熟练掌握Git工具进行协同开发,团队配合意识良好,能进行前端代码的敏捷开发",description,平台4,前端开发工程师高级,Git生态
+2022-000212916,SWV002,devops,strict,Git,"精通Java开发工具Eclipse、构建工具Maven,Git 版本管理工具",description,平台4,高级Java开发工程师,Git生态
+2022-000140593,SWA003,data_stats,strict,spss,"岗位技能:熟练掌握数据分析软件操作(stata,Python,spss等)、研究报告撰写和展示汇报,熟练使用PPT等办公软件",description,平台4,战略规划,SPSS
+2022-000151802,SWA008,data_stats,strict,Python/R,"2 熟悉Linux操作系统,精通Perl/Python/R等编程语言之一, 熟悉html语言,精通web相关语言者优先",description,平台4,生物信息工程师（动植物）,R语言
+2022-000170526,SWO006,office_basic,strict,Outlook,"熟练使用 Word, Excel, PPT, Outlook 等办公软件",description,平台4,临床协调员CRC,Outlook
+2022-000318673,SWV007,devops,strict,ansible,"熟悉zabbix,ELK,ansible,jenkins等运维工具",description,平台4,运维工程师（合肥）,Ansible和Terraform
+2022-000294931,SWP013,programming,strict,.net,"最低技能要求:具备或愿意学习Python,.net,SQL Server等开发和运维,愿意学习电池行业业务流程,并进行相关MES, PLM, ERP等应用系统的维护开发工作",description,平台4,IT应用系统工程师,.NET
+2022-000043826,SWP018,programming,strict,Spark,"3.熟练使用SQL/Hive/Spark/Oracle/SAS等数据统计、分析工具,熟练掌握Python/R等至少一种常用语言,能够独立完成数据分析项目",description,平台4,风险经理,大数据开发框架
+2022-000038000,SWP018,programming,strict,Flink,"熟悉大数据产品生态圈包括但不限于 Hive、HBase、Kafaka、Flink、ES、Spark 等, 善于容量规划、架构设计和性能优化并有丰富实战经验",description,平台4,大数据开发工程师（蚌埠）,大数据开发框架
+2022-000239317,SWD006,database,strict,MongoDB,"除PostgreSQL数据库外,具备如Oracle、MSSQL、MySQL、Redis、MongoDB等多种数据库能力者优先",description,平台4,dba数据库工程师,MongoDB
+2022-000004233,SWV003,devops,strict,Docker,"精灵云研发中心设在成都,是西南地区唯一一家基于Docker的云计算服务商",description,平台4,C++高级开发工程师,Docker
+2022-000036636,SWO005,office_basic,strict,WPS,6、熟悉基本的办公制图软件:WPS、photoshop、CAD等,description,平台4,弱电工程师,WPS
+2022-000053222,SWA006,data_stats,strict,powerbi,熟悉掌握帆软(finereport)/powerbi、sql、数据库等技能,description,平台4,BI数据分析师,Power BI
+2022-000145420,SWP008,programming,strict,Ruby,"熟练掌握Shell/Perl/Python/php/Java/Ruby中至少一种语言,善于使用脚本来完成系统日常运维工作和提升工作效率",description,平台4,IT运维,Rust Ruby Scala
+2022-000166803,SWD011,database,strict,DB2,"熟悉oracle、mysql、DB2数据库的安装及维护,熟练掌握SQL语言",description,平台4,运维工程师（青海电信）,DB2和Sybase
+2022-000135177,SWV009,devops,strict,华为云,"负责华为云人工智能相关产品服务的算法开发,参与盘古大模型算法落地实现",description,平台4,CV算法工程师（线上面试）,云平台
+2022-000326792,SWD006,database,strict,MongoDB,"熟练掌握Redis、MongoDB等NoSQL数据库,精通SQL Server、MySql、Oracle中至少一种的数据库编程技术",description,平台4,ASP.NET开发工程师,MongoDB
+2022-000239317,SWP007,programming,strict,Golang,"掌握Java/Python/Golang等语言中的一种,可以通过编写程序解决工作中遇到的问题",description,平台4,dba数据库工程师,Go语言
+2022-000215498,SWP013,programming,strict,.net,"熟练掌握.net开发语言,有3年以上开发经验,2年以上项目管理经验",description,平台4,软件开发工程师,.NET
+2022-000113698,SWP013,programming,strict,.net,能够遵循编码规范完成基于.net framework,description,平台4,软件工程师,.NET
+2022-000299695,SWD008,database,strict,Elasticsearch,熟悉Elasticsearch搜索引擎,description,平台4,Java开发工程师,Elasticsearch
+2022-000019445,SWV003,devops,strict,docker,熟悉docker容器技术,description,平台4,JAVA开发工程师,Docker
+2022-000264118,SWP017,programming,strict,django,3、熟悉django或者flask框架,description,平台4,嵌入式开发,Python Web框架
+2022-000016637,SWP009,programming,strict,Kotlin,掌握Kotlin开发经验者优先,description,平台4,Android app开发工程师(V6269),Swift Kotlin Objective-C
+2022-000046255,SWV006,devops,strict,maven,熟练使用intellij-idea、svn、maven等常用开发工具和开发环境,description,平台4,高级Java开发工程师,Maven和Gradle
+2022-000333791,SWE008,engineering_design,strict,Labview,"3.熟悉Labview/ C#编写上位机测试程序,能调试自动化测试机台程序4.能够团队合作,较好沟通表达能力和学习能力,抗压能力,有良好的逻辑思维能力5.有丰富的产品FA能力6.具有5年以上电子厂测试工程师工作经验,大专以上学历 更多数据:搜索 来源:",description,平台4,TE测试工程师,LabVIEW
+2022-000067031,SWV006,devops,strict,maven,"熟悉maven,gradle,npm等打包构建工具",description,平台4,配置管理员,Maven和Gradle
+2022-000027912,SWV003,devops,strict,Docker,熟悉Proxmox VE云平台、Docker、K8S容器技术者优先,description,平台4,高级虚拟化工程师（武汉）10000-20000/月薪,Docker
+2022-000234290,SWP010,programming,strict,Perl,"2 熟悉Linux操作系统,精通Perl/Python/R等编程语言之一, 熟悉html语言,精通web相关语言者优先",description,平台4,生物信息工程师,Perl和Lua
+2022-000267748,SWA003,data_stats,strict,SPSS,有Excel、SPSS、Matlab等常用数据统计工具使用工作经验,description,平台4,高级数据分析师,SPSS
+2022-000177077,SWE009,engineering_design,strict,EDA,3、熟练使用VCS或Ncverilog等EDA模拟工具,description,平台4,微系统验证与测试工程师,电子设计工具
+2022-000161989,SWP011,programming,strict,VBA,"3、熟练掌握CAD、Word、Excel等各种办公软件,熟练掌握Proe软件,VBA编程优先考虑",description,平台4,干变工程设计 (MJ002642),VBA
+2022-000051833,SWP009,programming,strict,kotlin,"优秀的代码读写能力,熟悉C++\kotlin或者熟悉Camera业务优先",description,平台4,Camera APP开发工程师(F0753),Swift Kotlin Objective-C
+2022-000287285,SWA003,data_stats,strict,SPSS,"4. 熟悉数据分析类相关工具,如BI类,SPSS等工具",description,平台4,数据分析师,SPSS
+2022-000052171,SWV009,devops,strict,华为云,"熟悉华为云,熟悉oracle,mysql数据库、熟悉云平台架构部署和运维 任职要求: 熟悉linux操作系统,熟悉weblogic部署配置和应用",description,平台4,数据库管理（DBA）(J13341),云平台
+2022-000255301,SWV004,devops,strict,k8s,"掌握常见容器化技术,可以独立编写dockfile完成容器化部署,具备容器编排或者k8s经验的优先",description,平台4,JAVA高级工程师/架构师,Kubernetes
+2022-000280756,SWA004,data_stats,strict,Matlab,会Matlab或Python语言者优先4. 能运用RTOS进行开发,description,平台4,嵌入式开发工程师,Matlab
+2022-000211568,SWE006,engineering_design,strict,Revit,"丰富的空间管理经验,熟练使用Revit等三维软件",description,平台4,BIM机电工程师,Revit
+2022-000269482,SWP010,programming,strict,perl,"2、熟悉Linux操作系统及命令,掌握一门以上脚本语言(shell/perl/python等)",description,平台4,ETL工程师（海口）,Perl和Lua
+2022-000181935,SWP007,programming,strict,golang,"掌握java、c++、golang、python一种或多种,至少会golang、python中一种",description,平台4,数据库运维开发工程师,Go语言
+2022-000068369,SWA004,data_stats,strict,Matlab,"岗位需求:1. 电驱动系统需求开发--负责平台和客户项目技术方案的可行性分析、技术协调和评审整车对电驱动系统的功能/性能等需求,制定合理方案,分解并管理电机、电控和减速器层面的需求2. 电驱动系统概念开发--针对新功能需求,根据系统架构开发多种功能实施概念3. 电驱动系统仿真--包括系统模型建立和维护4. 电驱动系统和子部件的系统FMEA建立及维护5. 电驱动系统功能安全需求、概念和测试开发6. 电驱动系统测试和系统发布7. 内部项目的横向组织和协调任职要求:1.车辆、电气工程或电力电子专业硕士及以上学历2.5年及以上新能源车电驱动系统项目软件或系统开发经验3.了解电机控制原理、功能/控制策略、性能、功能安全等方面的知识4.熟悉Matlab/Simulink等软件工具5.熟悉需求管理工具,熟悉需求分解、分析、变更与管理的方法6.熟悉ASPICE流程和V开发流程,有项目批产经验7.英语口语流利,可作为工作语言 来源:",description,平台4,资深电驱系统工程师（新能源）,Matlab
+2022-000012239,SWE005,engineering_design,strict,ABAQUS,"能够熟练使用Hypermesh前处理软件,能够熟练使用ABAQUS或者ANSYS分析软件",description,平台4,汽车安全性能CAE工程师,仿真分析软件
+2022-000014900,SWV005,devops,strict,jenkins,"熟练使用git源码管理工具,熟悉jenkins 持续集成相关工具,有jenkins与gitlab持续集成环境配置经验",description,平台4,配置管理员,Jenkins
+2022-000264736,SWD011,database,strict,Sybase,熟悉SQL Server、Sybase或Oracle等主流数据库,description,平台4,运维工程师-四川遂宁,DB2和Sybase
+2022-000012636,SWD008,database,strict,elasticsearch,负责DNS日常设置Nginx+keepalived负载均衡管理中间件:activemq集群/elasticsearch集群/kafka/redis等维护数据库:mysql和mongodb的集群管理和日常维护,description,平台4,信息网络管理员（房多多）,Elasticsearch
+2022-000004920,SWE006,engineering_design,strict,REVIT,"具备电力行业、新能源行业设计经验,熟悉PKPM、REVIT、SAP2000等软件",description,平台4,土木/土建/结构工程师,Revit
+2022-000227222,SWE005,engineering_design,strict,ansys,"具有极强的学习能力,能快速学习掌握labview,SAP,ansys等应用工具",description,平台4,光刻设备工程师,仿真分析软件
+2022-000164580,SWO006,office_basic,strict,outlook,Foxmail、outlook等常用软件操作熟练、熟悉FMS系统优先,description,平台4,海运操作（国企+大平台）,Outlook
+2022-000099949,SWP009,programming,strict,Objective-C,"Key Requirements • Ability to travel frequently • Bachelor's Degree in Computer Science, Software Engineering or similar areas of study • Minimum 5 years' experience in iOS and Web development • Proficient with Objective-C/Swift and JavaScript/TypeScript • Good understanding of Runtime, RunLoop, Core Animation, KVO, KVC and Multi-threading • Proficient with HTML and CSS • Experience with Vue.js, React or other Web framework • Good understanding of prototype chain • Deep understanding of memory m",description,平台4,iOS高级开发工程师,Swift Kotlin Objective-C
+2022-000089196,SWV006,devops,strict,maven,"5. 熟悉软件研发自动化流程,掌握自动打包、部署等持续集成技术栈和工具,熟悉git、jenkins、maven等相关工具的使用",description,平台4,软件运维工程师,Maven和Gradle
+2022-000335546,SWV004,devops,strict,Kubernetes,"统招学历,3年以上工作经验,具有应用运维经验、精通Linux操作系统,精通Kubernetes/Docker容器化部署、配置、故障处理,熟悉JAVA应用程序,熟悉微服务应用的特性及运维特点",description,平台4,运维工程师,Kubernetes
+2022-000175770,SWP006,programming,strict,PHP,"精通常见 web、系统安全漏洞原理、利用方式以及对解决方案有较深入理解3. 精通 web 攻击方法,能独立进行安全漏洞的分析和研究4. 熟悉攻击流程,掌握入侵思路5. 具备一定的开发能力,掌握PHP/Python/Perl/C/Shell其中任意一种编程语言6. 有较好的沟通能力和文字表达能力",description,平台4,CISP渗透测试工程师,PHP
+2022-000180523,SWV005,devops,strict,Jenkins,"职责描述 负责将公司内部多部门的交付物进行打包集成, 把控发布物交付质量, 并且能够独立编写并维护自动构建中的测试用例, 将测试自动化, 规范化, 并通过持续集成流水线进行自动构建, 自动测试与发布 负责使用工具链尝试业界常用模型, 并针对性解决遇到的问题, 并将过程自动化, 形成模型benchmark 通过对市场现有工具链产品进行调研, 获取工具链业界信息.形成产品调研报告 任职要求: 扎实的编程基础(能够独立快速完成 Leetcode 简单题目), 并具有良好的编程习惯. 熟练掌握 Shell 以及 Python 语言 熟悉 Linux 操作系统 及 POSIX 操作,有扎实的计算机相关知识 有完整项目的CICD建设/维护经验,熟悉 Jenkins, docker, pytest 等自动化测试工具",description,平台4,集成开发工程师（工具链集成开发）,Jenkins
+2022-000207619,SWA003,data_stats,strict,SPSS,"2)2年以上行业市场研究经验,数据处理能力、建模能力,熟练掌握EXCEL等数据处理工具,有python、R语言、SAS和SPSS优先",description,平台4,情报管理/行业分析-专员/高级专员,SPSS
+2022-000355691,SWA008,data_stats,strict,"Perl, R","岗位职责 方向一:生信方向 1-精通Python, Perl, R, Matlab等至少一种编程语言,熟悉Linux系统具备较强逻辑思维能力与沟通能力,能及时准确反馈工作进度,能主动发现问题并积极解决 2-目标导向,责任心强,愿意承担,主动学习",description,平台4,博士研究员（年薪40W~60W）,R语言
+2022-000335061,SWA007,data_stats,strict,Tableau,5. 有主流BI(Power BI、Fine BI、Tableau等)工具的使用经验,description,平台4,数据分析师,Tableau和Qlik
+2022-000301505,SWA007,data_stats,strict,Tableau,"岗位职责:1、研究与数据分析相关的先进技术,特别是工业领域的技术2、与领域专家合作,了解电机数据的基本关系3、根据针对电机行业量身定制的数据分析要求构建创新的计算模型和算法4、将数据模型和算法转换为面向内部和外部客户的解决方案5、数据分析平台和竞争数据分析解决方案的动手评估任职资格1、数学、统计学、计算机科学硕士及以上学历2、有数据挖掘/机器学习算法、神经网络、深度学习经验者优先3、了解基于云的数据分析平台/工具,如MapReduce,Storm、Spark,Tableau,Grafana等",description,平台4,数据分析师,Tableau和Qlik
+2022-000096372,SWP006,programming,strict,php,了解php甚佳,description,平台4,C++游戏开发工程师,PHP
+2022-000251355,SWV004,devops,strict,K8S,"熟悉云计算相关技术,熟悉DevOps,Docker、K8S等",description,平台4,架构设计师,Kubernetes
+2022-000018928,SWO006,office_basic,strict,Outlook,任职条件:1. 普通话标准、具备较好的办公软件使用技能(能熟练使用Excel、Word、Outlook),description,平台4,市场督察 兰州 (MJ002360),Outlook
+2022-000306700,SWP006,programming,strict,PHP,"精通PHP、.Net、Java等至少一种语言,熟悉物联网业务的优先,熟悉MYSQL,PostgreSQL,MongoDB等数据库",description,平台4,Java开发工程师,PHP
+2022-000325189,SWP011,programming,strict,VBA,"熟悉Excel的VBA编程,并熟练使用",description,平台4,数据分析师,VBA
+2022-000058928,SWV009,devops,strict,华为云,4. 负责公司产品销售渠道(如华为云市场等)的管理及支持,description,平台4,产品经理,云平台
+2022-000295412,SWP011,programming,strict,VBA,"4. 熟练使用SQL,掌握ACCESS、BI、VBA、Python分析展示工具",description,平台4,数据分析工程师,VBA
+2022-000297601,SWD010,database,strict,clickhouse,"熟练掌握springboot,springcloud2.熟练掌握Mybatis底层原理3.熟练掌握kafka等消息队列4.有百亿以上数据存储,数据接入,数据分析,数据挖掘相关工作5.熟练掌握clickhouse,mysql,oracle等相关数据库6.了解或有参与过spark,tez,flink,mr等大数据计算引擎7.有hive,redis,hbase,es等nosql使用经验8.熟练掌握io,多线程,集合等基础框架9.有使用过etl工具,或修改过相关etl组件代码经验10.熟练掌握git,maven,jenkins等工具11、有公安大数据平台研发、数据治理平台开发经验优先",description,平台4,研发经理（武汉）,ClickHouse
+2022-000277073,SWO005,office_basic,strict,WPS,"熟悉常用的办公软件使用及排错,(Word、Excel、PowerPoint、WPS、网易邮箱大师、Outlook等)",description,平台4,桌面运维工程师,WPS
+2022-000334865,SWP017,programming,strict,Django,"掌握Tornado、Django、Flask任一python开发框架,懂代码调试并能持续优化",description,平台4,Python开发工程师,Python Web框架
+2022-000228674,SWC004,data_stats,conditional,统计软件,4、熟练使用SAS、WinNonlin、SPSS、R等统计软件至少一种,description,平台4,高级统计分析员,数据和统计软件工具
+2022-000132881,SWD011,database,strict,DB2,"熟悉主流数据库(如Oracle、DB2、MySQL)的使用者优先,有性能调优经验更佳",description,平台4,Java初级开发工程师,DB2和Sybase
+2022-000287291,SWP017,programming,strict,Django,"掌握Tornado、Django、Flask任一python开发框架,懂代码调试并能持续优化",description,平台4,Pthon开发,Python Web框架
+2022-000217319,SWV004,devops,strict,K8s,"熟悉容器化技术,如 Docker 、docker-compose 、K8s等,有部署维护故障排查经验,熟悉微服务架构,有注册中心和链路监控的使用及维护经验",description,平台4,技术运维（外派联想）,Kubernetes
+2022-000286327,SWV004,devops,strict,k8s,"熟练使用k8s,docker容器,云平台devops,对阿里云、华为云平台组件使用有一定了解,包括计算、存储、网络、安全等",description,平台4,DBA数据库开发工程师,Kubernetes
+2022-000181119,SWE008,engineering_design,strict,Labview,"熟练应用Canoe、Canape、INCA等工具,熟悉HIL测试台架,熟悉Labview",description,平台4,VCU测试标定工程师,LabVIEW
+2022-000106864,SWP008,programming,strict,Ruby,"掌握至少一门脚本语言如shell,python,Ruby,PHP,Power Shell等,并熟悉Linux运维管理",description,平台4,数据库运维工程师-01372,Rust Ruby Scala
+2022-000231466,SWC004,data_stats,conditional,统计分析软件,"3、熟练掌握SPSS、Eviews统计分析软件,熟练运用Python、MATLAB等编程语言",description,平台4,衍生品研究岗,数据和统计软件工具
+2022-000266346,SWV005,devops,strict,Jenkins,"对工作流、规则引擎、RocketMQ、ElasticSearch等企业级中间件有深入了解,并对Jenkins、Sonar等持续集成项目管理工具有一定经验",description,平台4,高级java开发工程师,Jenkins
+2022-000346726,SWC004,data_stats,conditional,数据可视化的工具,"具备数据分析思维,能使用数据可视化的工具,如BDP,Tableau进行可视化分析,有数据分析项目经验和数据产品开发经验优先",description,平台4,数据库开发（深圳招行+双休+高薪+加班补贴）,数据和统计软件工具
+2022-000309125,SWP008,programming,strict,Scala,"精通Java或Scala语言,熟练使用SQL,熟悉Linux操作系统",description,平台4,数据治理工程师(J11336),Rust Ruby Scala
+2022-000095521,SWD011,database,strict,DB2,"了解Orcale、DB2、SQLserver等主流数据库,有实际开发经验者优先",description,平台4,实施工程师,DB2和Sybase
+2022-000225344,SWB002,enterprise,strict,Salesforce,"2.具有国内销售易平台经验,以及Salesforce经验者优先",description,平台4,CRM产品经理,Salesforce
+2022-000058046,SWE006,engineering_design,strict,Revit,"6、 精通CAD、WORD、EXCEL,PPT,PROJECT等软件,CAD、Rhino、Revit三维操作能力佳者优先考虑",description,平台4,幕墙设计师主管/经理,Revit
+2022-000224270,SWV007,devops,strict,ansible,"1、熟悉shell、python、go至少一种语言,熟悉自动化配置工具ansible的使用",description,平台13,运维经理,Ansible和Terraform
+2022-000304006,SWE006,engineering_design,strict,Revit,"熟练掌握设计相关软件(AutoCAD、SketchUp、3DsMax、Photoshop等)及各种通用办公软件,掌握BIM设计相关软件(Revit,Fuzor,Lumion等),熟练掌握者优先",description,平台4,BIM机电工程师,Revit
+2022-000131479,SWD008,database,strict,Elasticsearch,掌握MySQL、Redis、OceanBase 、Elasticsearch、Kafka、TSDB等技术,description,平台4,后端开发工程师,Elasticsearch
+2022-000099952,SWP009,programming,strict,Kotlin,•了解嵌入式和服务器开发模型 •编程语言技能:JAVA、Kotlin、C/C++、Python,description,平台4,解决方案架构师-源讯科技,Swift Kotlin Objective-C
+2022-000342257,SWE008,engineering_design,strict,Labview,"熟悉通用的工业摄像机、镜头,熟悉视觉设备的光源选择和打光技巧,熟悉VC或Labview,能编程并运用Halocn或Labview的分析工具进行图像分析,并开发出视觉检测系统",description,平台4,CCD工程师,LabVIEW
+2022-000203414,SWC004,data_stats,conditional,数据可视化工具,大数据可视化工具应用,description,平台4,大数据专业教师,数据和统计软件工具
+2022-000259551,SWP011,programming,strict,VBA,"熟练运用办公软件,具有优秀的数据处理能力(能熟练运用VBA、C/C++、python、R、MATALAB中任意一种数据处理工具者优先)",description,平台4,期货交易员,VBA
+2022-000088091,SWD011,database,strict,DB2,"熟悉主流数据库产品,包括greenplum、Teradata、MySQL、PostgreSQL、Redis、MongoDB、SQL Server、Oracle,DB2并精通其中任意一种",description,平台4,DBA数据库管理员,DB2和Sybase
+2022-000078610,SWA006,data_stats,strict,PowerBI,"产品涉及微软的Dynamics (ERP业务流程/ERP开发),PowerBI 岗位内容 为微软全球(说英语的国家或地区)的企业级客户通过论坛方式解决技术问题",description,平台4,技术支持工程师,Power BI
+2022-000159372,SWA003,data_stats,strict,SPSS,3. 熟练掌握flowjo、WinNonlin、SPSS、Graphpad等实验数据分析、作图软件,description,平台4,生物制品药理毒理研究员,SPSS
+2022-000244254,SWD008,database,strict,ElasticSearch,"熟悉阿里云环境相关产品的使用,比如云效、MSE、SLB、ACK、ECS、NAS、OSS、DMS、ARMS、ElasticSearch等",description,平台4,k8s运维【急招】,Elasticsearch
+2022-000279800,SWP007,programming,strict,go语言,"5.熟悉python或go语言,能够熟练使用shell脚本语言",description,平台4,公有云大客户服务工程师（杭州）,Go语言
+2022-000251516,SWV005,devops,strict,Jenkins,"6 CI/CD工具使用经验,如Jenkins、Maven、docker",description,平台13,java开发工程师,Jenkins
+2022-000339658,SWA007,data_stats,strict,Tableau,对诸如ELK、PowerBI、Tableau等可视化系统熟悉,description,平台4,数据分析开发工程师（2023届校招）,Tableau和Qlik
+2022-000159208,SWP008,programming,strict,Scala,熟练掌握Java、Python、Scala、C++等语言中的一种,description,平台4,大数据分析工程师,Rust Ruby Scala
+2022-000073499,SWA008,data_stats,strict,SPSS/R,"3.熟练使用Excel/Origin/SPSS/R语言等数据分析工具,优秀的文案能力,独立完成分析报告编制",description,平台4,大气环境工程师,R语言
+2022-000192479,SWP011,programming,strict,VBA,"熟悉的办公软件,包括Excel VBA高级功能优先",description,平台4,供应商质量工程师,VBA
+2022-000306876,SWD008,database,strict,Elastic,"10. 熟悉常用大数据技术栈,包含不限于 Spark/Hdfs/Kafka/Hive/Elastic Search/Aerospike/Hbase/Redis/Airflow",description,平台4,架构师,Elasticsearch
+2022-000160379,SWE006,engineering_design,strict,Revit,"熟练使用常用设计软件,如AutoCAD,Rhino,Maya和 Adobe CS等,了解Revit更佳",description,平台4,展陈设计师,Revit
+2022-000353327,SWA008,data_stats,strict,R、SAS,掌握至少一门数据挖掘语言(R、SAS、Python、SPSS)的优先,description,平台4,需求分析师,R语言
+2022-000305785,SWA002,data_stats,strict,SAS,熟悉使用SAS、EXCEL等数据分析软件 加分项: 通过 CAS协会Exam,description,平台4,准备金评估岗,SAS
+2022-000318513,SWP017,programming,strict,flask,"技能要求:1、年龄25-40周岁,两年以上互联网、物联网项目开发经验2、熟练使用python,熟悉flask或Django至少一种web框架,flask优先3、熟练使用MySQL/SqlServer数据库,熟悉Redis4、熟悉http,TCP/IP通信协议,熟悉linux 服务器优先5、有java,go,.net,php,nodejs相关技术转Python也可",description,平台4,物联网工程师,Python Web框架
+2022-000273228,SWA006,data_stats,strict,PowerBI,精通Excel、PowerBI等统计分析软件,description,平台4,信息系统工程师,Power BI
+2022-000311432,SWA002,data_stats,strict,SAS,2、能动用SAS进行编程工作,description,平台4,初级统计分析员（北京）,SAS
+2022-000051124,SWP008,programming,strict,scala,"【任职要求】:1. 熟悉jdbc orm框架(,mybatis、hibernate)等、熟悉mysql、oracle、sql server 了解mongodb2.对SSH,SpingMVC、jfinal、等框架熟悉、熟悉javascript、html、css、jquery等前端技术3.了解R语言,python等其他语言,了解http、socket 等传输4 .对分布式架构、spark、scala、nignx等技术有大致了解【福利待遇】:1、社会保障:六险一金2、假期:",description,平台4,java工程师,Rust Ruby Scala
+2022-000191641,SWD010,database,strict,clickhouse,"熟悉spring boot、spring cloud、redis、vue、css等微服务数据中台应用技术,熟悉立方体数据查询加速引擎presto、kylin、clickhouse、druid等优先",description,平台4,BI工程师(广州银行卡中心),ClickHouse
+2022-000245648,SWE008,engineering_design,strict,Labview,有Labview/C#/Python编程经验更佳 发展空间:,description,平台4,测试助理工程师,LabVIEW
+2022-000088315,SWE008,engineering_design,strict,labview,"熟悉车辆动力学软件(如:carmaker,carsim,dyna4,adams,amesim等)熟悉编程软件(如:labview/python/matlab)",description,平台4,动力系统台架测试工程师,LabVIEW
+2022-000219830,SWB004,enterprise,strict,ORACLE EBS,熟悉ORACLE EBS、南北、智慧物流等系统操作者尤佳,description,平台4,财务/人力信息化顾问,Oracle企业套件
+2022-000101301,SWA002,data_stats,strict,SAS,至少了解R、SAS、SPSS,description,平台4,金融业务分析师,SAS
+2022-000294898,SWA006,data_stats,strict,POWER BI,"理解报表设计思路和方法,最好具备润乾、帆软、POWER BI、FINEREPORT其中之一报表开发技能",description,平台4,ETL工程师（金融软件部）,Power BI
+2022-000205290,SWA002,data_stats,strict,SAS,"关键词:信号测试,SI测试,PI测试,BUCK&LDO测试,PCIE SAS USB MIPI高诉测试,I2C\SPI\CAN通用协议",description,平台4,服务器硬件测试工程师,SAS
+2022-000114475,SWA002,data_stats,strict,SAS,"4、熟悉常用机器学习算法原理,熟练使用SQL/类SQL/Python/R/SAS等工具进行数据分析和模型开发落地",description,平台10,算法工程师,SAS
+2022-000040279,SWC004,data_stats,conditional,统计软件,"熟练使用office系列办公软件及质量统计软件,了解项目管理知识",description,平台4,PQE工程师,数据和统计软件工具
+2022-000055258,SWV007,devops,strict,ansible,"了解 DevOps 理念,熟悉 ansible 或 saltstack 等自动化运维工具",description,平台4,linux运维工程师,Ansible和Terraform
+2022-000215821,SWD010,database,strict,ClickHouse,"熟悉常用存储及 OLAP 存储引擎,包括但不限于 TiDB、HBase、StarRocks、ES、ClickHouse、Kudu、Redis 等",description,平台4,高级软件架构师,ClickHouse
+2022-000307012,SWA007,data_stats,strict,tableau,"- 精通tableau BI工具,并能够使用一些简单IT工具(Excel, Access, MySQL))进行数据准备及加工",description,平台13,数据运营（保险科技）,Tableau和Qlik
+2022-000010380,SWB004,enterprise,strict,Oracle EBS,"针对Oracle EBS近期及长期目标制定具体产品计划,并负责推动落实具体目标达成",description,平台4,EBS财务顾问,Oracle企业套件
+2022-000356068,SWB002,enterprise,strict,salesforce,"3年以上软件开发经验(Java、Javascript、PHP、.net、c♯、python、salesforce、SAP经验均可) 3,日语2级以上或相当水平 4,善于与人沟通,具备良好的团队合作、协调能力,对工作认真负责 各项福利待遇 日本厚生年金,社会保险, 雇佣保险,交通费,加班费,年有薪休假10天,五一长假,年末年始长假, 年涨薪一次 联系人 :朴 joy-paku(w-x) 职位福利:五险一金、交通补助、定期体检、带薪年假、员工旅游、周末双休、日语教学",description,平台4,赴日软件开发,Salesforce
+2022-000017596,SWD010,database,strict,Clickhouse,生产环境使用过Clickhouse和K8S部署大数据集群服务优先 福利待遇:,description,平台4,大数据开发工程师,ClickHouse
+2022-000073987,SWA006,data_stats,strict,PowerBI,"销售数据多维度、动态展示3.精通Python软件,熟悉SPSS/ DOADAP /PowerBI /MySQL等人士優先",description,平台4,数据分析师,Power BI
+2022-000076461,SWA007,data_stats,strict,Tableau,"熟练使用office软件,熟悉SQL,Tableau,Power BI,FineBI等工具进行数据清洗、分析更佳",description,平台4,数据分析,Tableau和Qlik
+2022-000355101,SWB002,enterprise,strict,salesforce,"3年以上软件开发经验(Java、Javascript、PHP、.net、c♯、python、salesforce、SAP经验均可) 3,日语2级以上或相当水平 4,善于与人沟通,具备良好的团队合作、协调能力,对工作认真负责 各项福利待遇 日本厚生年金,社会保险, 雇佣保险,交通费,加班费,年有薪休假10天,五一长假,年末年始长假, 年涨薪一次 联系人 :朴 joy-paku(w-x) 职位福利:五险一金、交通补助、定期体检、带薪年假、员工旅游、周末双休、日语教学 微信公众号",description,平台4,赴日软件开发,Salesforce
+2022-000294908,SWV007,devops,strict,Ansible,"熟练使用自动化运维工具 Ansible,并熟练使用 Ansible 模块与 Playbook 的编写",description,平台4,Linux系统工程师（base福州）,Ansible和Terraform
+2022-000124350,SWB002,enterprise,strict,Salesforce,"熟悉主流数字化厂商(SAP、Oracle、Salesforce、用友、金蝶等)的平台架构、产品矩阵的特性,至少精通其中一个厂商的产品体系,且具有在大型集团化企业的落地实施经验",description,平台4,资深应用架构师,Salesforce
+2022-000081415,SWD012,database,strict,neo4j,精通信息系统软硬件维保:华为存储、浪潮服务器、戴尔服务器、博科交换机、oracle数据库、oracle中间件、vmware-vsphere、vmware-vsan、hotdb、neo4j、kyligence、veritas、邮件及系统技术支持服务,description,平台4,主机运维主管,Neo4j
+2022-000234663,SWV007,devops,strict,Ansible,"掌握kubernetes,Redis,kafka,docker,nginx,Zabbix,Ansible等软件的部署及运维能力",description,平台4,IT技术支持,Ansible和Terraform
+2022-000076534,SWB004,enterprise,strict,Oracle EBS,"负责公司内部Oracle EBS(总账、应收、应付、资产)相关的日常需求跟进及运维支持,并能够有效推进系统客户化功能的迭代建设",description,平台4,Oracle财务顾问,Oracle企业套件
+2022-000191056,SWB004,enterprise,strict,Oracle EBS,岗位职责:1.负责Oracle EBS系统的开发及相关外围系统对接工作,description,平台4,Oracle ERP 开发工程师,Oracle企业套件
+2022-000355102,SWB002,enterprise,strict,salesforce,"3年以上软件开发经验(Java、Javascript、PHP、.net、c♯、python、salesforce、SAP经验均可) 3,日语2级以上或相当水平 4,善于与人沟通,具备良好的团队合作、协调能力,对工作认真负责 各项福利待遇 日本厚生年金,社会保险, 雇佣保险,交通费,加班费,年有薪休假10天,五一长假,年末年始长假, 年涨薪一次 联系人 :朴 joy-paku(w-x) 职位福利:五险一金、交通补助、定期体检、带薪年假、员工旅游、周末双休、日语教学",description,平台4,赴日软件开发,Salesforce
+2022-000354289,SWD012,database,strict,Neo4j,"配合后端MySQL或Oracle等关系型数据库,及Neo4j等NoSQL数据库的开发工作",description,平台4,人工智能（CV）研发工程师-福州,Neo4j
+2022-000019447,SWD012,database,strict,neo4j,"5、熟悉至少一种图数据库,如neo4j",description,平台10,知识图谱工程师,Neo4j
+2022-000285690,SWD012,database,strict,Neo4j,"3.熟悉Titan/JanusGraph、Neo4j、NebulaGraph等至少一种图数据库,有开发或使用经验",description,平台4,大数据高级开发(偏图数据库应用方向),Neo4j
+2022-000107242,SWA005,data_stats,strict,EVIEWS,具有SPSS、Matlab、R、EVIEWS经验者优先,description,平台4,管理咨询顾问,EViews
+2022-000140593,SWA001,data_stats,strict,stata,"岗位技能:熟练掌握数据分析软件操作(stata,Python,spss等)、研究报告撰写和展示汇报,熟练使用PPT等办公软件",description,平台4,战略规划,Stata
+2022-000136328,SWA001,data_stats,strict,STATA,"2、熟练掌握SAS、STATA、R软件中的至少一种,能熟练使用python的优先",description,平台10,模型策略分析师,Stata
+2022-000231466,SWA005,data_stats,strict,Eviews,"3、熟练掌握SPSS、Eviews统计分析软件,熟练运用Python、MATLAB等编程语言",description,平台4,衍生品研究岗,EViews
+2022-000078469,SWA001,data_stats,strict,STATA,能够使用SPSS\SAS\STATA、Python或R等一种或多种数据建模分析工具,description,平台4,初级数据分析师,Stata
+2022-000259053,SWA001,data_stats,strict,Stata,"熟练掌握多种统计和挖掘方法,熟练使用Python 、SPSS、SAS,Stata等相关数据分析软件",description,平台4,数据分析师,Stata
+2022-000013167,SWA005,data_stats,strict,Eviews,"4.具备一定统计学基础,熟练使用统计软件(Excel、Eviews等)或数据库(Wind、Bloomberg等)",description,平台4,宏观研究员,EViews
+2022-000062590,SWA001,data_stats,strict,stata,"4.岗位技能:熟练掌握数据分析软件操作(stata,Python,spss等)、研究报告撰写和展示汇报,熟练使用PPT等办公软件",description,平台10,战略发展经理,Stata
+2022-000349202,SWA005,data_stats,strict,Eviews,"3、熟练掌握SPSS、Eviews统计分析软件,熟练运用Python、MATLAB等编程语言",description,平台4,产业研究岗,EViews
+2022-000283094,SWA005,data_stats,strict,EVIEWS,2、具有SPSS、Matlab、R、EVIEWS经验者优先,description,平台4,管理咨询师,EViews

@@ -7,7 +7,7 @@
 ## 1. 输入
 
 - 软件词典：`D:\SRTP科研\config\software_skill_rules_v0.1.csv`；
-- 软件词典SHA256：`eae33b28a057e17560ca25aa9a5fcb455de31006a834c6bb1440f36a4f483963`；
+- 软件词典SHA256：`6448272c3b2ff367c736e08736e6e4a621c85ec1820f125bae0dd338e743ef12`；
 - AI词典：`D:\SRTP中期\AI鎶€鑳借瘝鍏竉v1.0\ai_skill_dictionary_v1.0.json`；
 - AI词典版本：`ai_skill_dict_v1.0_2026-11-18`；
 - AI词典SHA256：`a3ee71d99f762a71117329928b30ebac509d35437da2ef3fefd312cbaa9a2792`；
@@ -15,8 +15,8 @@
 
 ## 2. 词典规模
 
-- 软件规则：75条；
-- 严格词规则：68条；
+- 软件规则：76条；
+- 严格词规则：69条；
 - 条件词规则：7条；
 - AI词条：240条。
 
@@ -25,7 +25,7 @@
 - `data_stats`：9条；
 - `database`：13条；
 - `devops`：9条；
-- `engineering_design`：11条；
+- `engineering_design`：12条；
 - `enterprise`：5条；
 - `office_basic`：7条；
 - `programming`：21条；
@@ -33,8 +33,8 @@
 ## 3. 检查结果
 
 - 未解决词典冲突：0条；
-- 边界测试：24条；
-- 通过：24条；
+- 边界测试：33条；
+- 通过：33条；
 - 失败：0条。
 
 词典冲突明细见`outputs\qc\software_ai_dictionary_boundary_v0.1_conflicts.csv`，测试结果见`outputs\qc\software_ai_dictionary_boundary_v0.1_test_results.csv`。

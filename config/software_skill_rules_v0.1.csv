@@ -38,7 +38,7 @@ SWV005,software,devops,strict,Jenkins,Jenkins,"(?<![A-Za-z0-9_])Jenkins(?![A-Za-
 SWV006,software,devops,strict,Maven和Gradle,"Maven;Gradle","(?<![A-Za-z0-9_])(?:Maven|Gradle)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,构建工具
 SWV007,software,devops,strict,Ansible和Terraform,"Ansible;Terraform","(?<![A-Za-z0-9_])(?:Ansible|Terraform)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,自动化运维工具
 SWV008,software,devops,strict,服务器和中间件,"Nginx;Tomcat;Apache;WebLogic;WebSphere;IIS","(?<![A-Za-z0-9_])(?:Nginx|Tomcat|Apache|WebLogic|WebSphere|IIS)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,服务器和中间件工具
-SWV009,software,devops,strict,云平台,"AWS;Azure;GCP;阿里云;腾讯云;华为云","(?<![A-Za-z0-9_])(?:AWS|Azure|GCP)(?![A-Za-z0-9_])|阿里云|腾讯云|华为云",,1,0,project_dictionary_v0.1,draft_v0.1,通用云计算平台
+SWV009,software,devops,strict,云平台,"AWS;Azure;Google Cloud Platform;谷歌云;阿里云;腾讯云;华为云","(?<![A-Za-z0-9_])(?:AWS|Azure)(?![A-Za-z0-9_])|Google\s+Cloud\s+Platform|谷歌云|阿里云|腾讯云|华为云",,1,0,project_dictionary_v0.1,draft_v0.1,不使用歧义极大的裸GCP以排除临床试验规范
 SWA001,software,data_stats,strict,Stata,Stata,"(?<![A-Za-z0-9_])Stata(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,统计软件
 SWA002,software,data_stats,strict,SAS,SAS,"(?<![A-Za-z0-9_])SAS(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,统计软件
 SWA003,software,data_stats,strict,SPSS,SPSS,"(?<![A-Za-z0-9_])SPSS(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,统计软件
@@ -46,17 +46,18 @@ SWA004,software,data_stats,strict,Matlab,Matlab,"(?<![A-Za-z0-9_])Matlab(?![A-Za
 SWA005,software,data_stats,strict,EViews,EViews,"(?<![A-Za-z0-9_])EViews(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,计量分析软件
 SWA006,software,data_stats,strict,Power BI,"Power BI;PowerBI","(?<![A-Za-z0-9_])Power\s*BI(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,商业智能工具
 SWA007,software,data_stats,strict,Tableau和Qlik,"Tableau;Qlik;QlikView;Qlik Sense","(?<![A-Za-z0-9_])(?:Tableau|Qlik(?:View|\s*Sense)?)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,数据可视化工具
-SWA008,software,data_stats,strict,R语言,"R语言;R软件;RStudio;R","R\s*(?:语言|软件)|(?<![A-Za-z0-9_])RStudio(?![A-Za-z0-9_])|(?<![A-Za-z0-9_])R(?![A-Za-z0-9_])","R&D|R角|R值|R方",1,0,project_dictionary_v0.1,draft_v0.1,单独R必须依赖英文边界并重点人工复核
+SWA008,software,data_stats,strict,R语言,"R语言;R软件;RStudio;R","(?<![A-Za-z0-9_])R\s*(?:语言|软件)|(?<![A-Za-z0-9_])RStudio(?![A-Za-z0-9_])|(?:熟悉|掌握|精通|使用|运用|会用).{0,8}(?<![A-Za-z0-9_])R(?![A-Za-z0-9_])|(?:Python|Perl|Matlab|SAS|SPSS|SQL)\s*[/、,，]\s*R(?![A-Za-z0-9_])|(?<![A-Za-z0-9_])R\s*[/、,，]\s*(?:Python|Perl|Matlab|SAS|SPSS|SQL)","R&D|GR\s*&\s*R|Gage\s*R\s*&\s*R|R角|R值|R方",1,0,project_dictionary_v0.1,draft_v0.1,裸R只在明确技能要求或技能列表中命中
 SWE001,software,engineering_design,strict,CAD和AutoCAD,"CAD;AutoCAD","(?<![A-Za-z0-9_])(?:AutoCAD|CAD)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工程制图软件
 SWE002,software,engineering_design,strict,SolidWorks,SolidWorks,"(?<![A-Za-z0-9_])SolidWorks(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,机械设计软件
 SWE003,software,engineering_design,strict,CATIA Creo ProE,"CATIA;Creo;ProE;Pro/E","(?<![A-Za-z0-9_])(?:CATIA|Creo|Pro\/?E)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工程设计软件
-SWE004,software,engineering_design,strict,UG和NX,"UG;UG/NX;Siemens NX","UG(?:\/NX)?|Siemens\s+NX",,1,0,project_dictionary_v0.1,draft_v0.1,不匹配单独NX以降低歧义
+SWE004,software,engineering_design,strict,UG和NX,"UG;UG/NX;Siemens NX","(?<![A-Za-z0-9_])UG(?:\/NX)?(?![A-Za-z0-9_])|Siemens\s+NX",,1,0,project_dictionary_v0.1,draft_v0.1,英文边界避免误命中UGC和Debug
 SWE005,software,engineering_design,strict,仿真分析软件,"ANSYS;Abaqus;COMSOL","(?<![A-Za-z0-9_])(?:ANSYS|Abaqus|COMSOL)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工程仿真软件
 SWE006,software,engineering_design,strict,Revit,Revit,"(?<![A-Za-z0-9_])Revit(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,建筑信息模型软件
 SWE007,software,engineering_design,strict,三维设计软件,"3ds Max;3DMax;SketchUp","(?<![A-Za-z0-9_])(?:3ds\s*Max|3DMax|SketchUp)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,三维建模软件
 SWE008,software,engineering_design,strict,LabVIEW,LabVIEW,"(?<![A-Za-z0-9_])LabVIEW(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工程测试软件
 SWE009,software,engineering_design,strict,电子设计工具,"Altium;Keil;EDA","(?<![A-Za-z0-9_])(?:Altium|Keil|EDA)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,电子设计和嵌入式工具
 SWE010,software,engineering_design,strict,PLC和Simulink,"PLC;Simulink","(?<![A-Za-z0-9_])(?:PLC|Simulink)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工业编程和仿真工具
+SWE011,software,engineering_design,strict,图像与视频设计软件,"Photoshop;Illustrator;Adobe Illustrator;CorelDRAW;InDesign;Premiere;Premiere Pro;After Effects;Cinema 4D;C4D;PS软件;PR软件;AE软件","(?<![A-Za-z0-9_])(?:Photoshop|Illustrator|CorelDRAW|InDesign)(?![A-Za-z0-9_])|Premiere(?:\s+Pro)?|After\s+Effects|Cinema\s*4D|(?<![A-Za-z0-9_])C4D(?![A-Za-z0-9_])|(?<![A-Za-z0-9_])(?:PS|PR|AE)\s*(?:软件|工具)",,1,0,data_diagnosis_2022,draft_v0.1,不使用单独AI缩写以避免与人工智能词典冲突
 SWB001,software,enterprise,strict,SAP,SAP,"(?<![A-Za-z0-9_])SAP(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,企业管理软件
 SWB002,software,enterprise,strict,Salesforce,Salesforce,"(?<![A-Za-z0-9_])Salesforce(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,客户关系管理平台
 SWB003,software,enterprise,strict,金蝶和用友,"金蝶;用友;U8;NC Cloud","金蝶|用友|(?<![A-Za-z0-9_])U8(?![A-Za-z0-9_])|NC\s*Cloud",,1,0,project_dictionary_v0.1,draft_v0.1,企业管理软件
