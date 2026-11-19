@@ -1,0 +1,76 @@
+rule_id,skill_group,software_subgroup,term_level,standard_term,aliases,pattern,exclude_pattern,title_allowed,requires_skill_cue,term_source,review_status,notes
+SWP001,software,programming,strict,Python,Python,"(?<![A-Za-z0-9_])Python(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,通用编程语言
+SWP002,software,programming,strict,Java,Java,"(?<![A-Za-z0-9_])Java(?![A-Za-z0-9_])","爪哇|Java\s*(?:岛|海|咖啡)",1,0,project_dictionary_v0.1,draft_v0.1,排除地名和咖啡含义
+SWP003,software,programming,strict,C和C++,"C语言;C++;CPP","C语言|(?<![A-Za-z0-9_])C\+\+(?![A-Za-z0-9_])|(?<![A-Za-z0-9_])CPP(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,不匹配单独字母C
+SWP004,software,programming,strict,C#,C#,"(?<![A-Za-z0-9_])C#(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,通用编程语言
+SWP005,software,programming,strict,JavaScript和TypeScript,"JavaScript;JS;TypeScript;TS","JavaScript|TypeScript|(?<![A-Za-z0-9_])JS(?![A-Za-z0-9_])|(?<![A-Za-z0-9_])TS(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,JS和TS必须使用英文边界
+SWP006,software,programming,strict,PHP,PHP,"(?<![A-Za-z0-9_])PHP(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,通用编程语言
+SWP007,software,programming,strict,Go语言,"Go语言;Golang","Go\s*语言|(?<![A-Za-z0-9_])Golang(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,不匹配普通英文go
+SWP008,software,programming,strict,Rust Ruby Scala,"Rust;Ruby;Scala","(?<![A-Za-z0-9_])(?:Rust|Ruby|Scala)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,通用编程语言
+SWP009,software,programming,strict,Swift Kotlin Objective-C,"Swift;Kotlin;Objective-C;Objective C","(?<![A-Za-z0-9_])(?:Swift|Kotlin)(?![A-Za-z0-9_])|Objective[- ]?C",,1,0,project_dictionary_v0.1,draft_v0.1,移动端编程语言
+SWP010,software,programming,strict,Perl和Lua,"Perl;Lua","(?<![A-Za-z0-9_])(?:Perl|Lua)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,脚本语言
+SWP011,software,programming,strict,VBA,VBA,"(?<![A-Za-z0-9_])VBA(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,Office编程工具但归编程子类
+SWP012,software,programming,strict,Shell和Bash,"Shell;Bash","(?<![A-Za-z0-9_])(?:Shell|Bash)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,脚本和命令行技能
+SWP013,software,programming,strict,.NET,.NET,"(?<![A-Za-z0-9_])\.NET(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,开发平台
+SWP014,software,programming,strict,Java企业技术,"J2EE;J2SE;JVM","(?<![A-Za-z0-9_])(?:J2EE|J2SE|JVM)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,Java开发技术
+SWP015,software,programming,strict,Spring生态,"Spring;Spring Boot;SpringMVC;MyBatis;Hibernate","Spring\s*Boot|SpringMVC|MyBatis|Hibernate|(?<![A-Za-z0-9_])Spring(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,后端开发框架
+SWP016,software,programming,strict,前端框架,"React;Vue;Angular;jQuery","(?<![A-Za-z0-9_])(?:React|Vue|Angular|jQuery)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,前端开发框架
+SWP017,software,programming,strict,Python Web框架,"Django;Flask;FastAPI","(?<![A-Za-z0-9_])(?:Django|Flask|FastAPI)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,一般Web框架而非AI专属工具
+SWP018,software,programming,strict,大数据开发框架,"Hadoop;Spark;Flink;Kafka","(?<![A-Za-z0-9_])(?:Hadoop|Spark|Flink|Kafka)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,一般数据工程工具
+SWP019,software,programming,strict,移动开发平台,"Android;iOS;Xcode","(?<![A-Za-z0-9_])(?:Android|iOS|Xcode)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,移动应用开发平台
+SWD001,software,database,strict,SQL,SQL,"(?<![A-Za-z0-9_])SQL(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,查询语言
+SWD002,software,database,strict,MySQL和MariaDB,"MySQL;MariaDB","(?<![A-Za-z0-9_])(?:MySQL|MariaDB)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,关系型数据库
+SWD003,software,database,strict,PostgreSQL,PostgreSQL,"(?<![A-Za-z0-9_])PostgreSQL(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,关系型数据库
+SWD004,software,database,strict,Oracle数据库,"Oracle;Oracle Database","(?<![A-Za-z0-9_])Oracle(?:\s+Database)?(?![A-Za-z0-9_])","甲骨文公司|Oracle\s*(?:公司|集团)",1,0,project_dictionary_v0.1,draft_v0.1,排除公司名称
+SWD005,software,database,strict,SQL Server和SQLite,"SQL Server;SQLite","SQL\s*Server|(?<![A-Za-z0-9_])SQLite(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,关系型数据库
+SWD006,software,database,strict,MongoDB,MongoDB,"(?<![A-Za-z0-9_])MongoDB(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,非关系型数据库
+SWD007,software,database,strict,Redis,Redis,"(?<![A-Za-z0-9_])Redis(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,缓存和数据库工具
+SWD008,software,database,strict,Elasticsearch,Elasticsearch,"(?<![A-Za-z0-9_])Elastic(?:search)?(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,不使用歧义较大的单独ES
+SWD009,software,database,strict,Hive和HBase,"Hive;HBase","(?<![A-Za-z0-9_])(?:Hive|HBase)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,数据仓库和数据库工具
+SWD010,software,database,strict,ClickHouse,ClickHouse,"(?<![A-Za-z0-9_])ClickHouse(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,分析型数据库
+SWD011,software,database,strict,DB2和Sybase,"DB2;Sybase","(?<![A-Za-z0-9_])(?:DB2|Sybase)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,数据库产品
+SWD012,software,database,strict,Neo4j,Neo4j,"(?<![A-Za-z0-9_])Neo4j(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,图数据库本身属于一般软件工具
+SWV001,software,devops,strict,Linux和Unix,"Linux;Unix","(?<![A-Za-z0-9_])(?:Linux|Unix)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,操作系统和开发环境
+SWV002,software,devops,strict,Git生态,"Git;GitHub;GitLab","(?<![A-Za-z0-9_])(?:Git|GitHub|GitLab)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,版本控制工具
+SWV003,software,devops,strict,Docker,Docker,"(?<![A-Za-z0-9_])Docker(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,容器工具
+SWV004,software,devops,strict,Kubernetes,"Kubernetes;K8s","(?<![A-Za-z0-9_])(?:Kubernetes|K8s)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,容器编排工具
+SWV005,software,devops,strict,Jenkins,Jenkins,"(?<![A-Za-z0-9_])Jenkins(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,持续集成工具
+SWV006,software,devops,strict,Maven和Gradle,"Maven;Gradle","(?<![A-Za-z0-9_])(?:Maven|Gradle)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,构建工具
+SWV007,software,devops,strict,Ansible和Terraform,"Ansible;Terraform","(?<![A-Za-z0-9_])(?:Ansible|Terraform)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,自动化运维工具
+SWV008,software,devops,strict,服务器和中间件,"Nginx;Tomcat;Apache;WebLogic;WebSphere;IIS","(?<![A-Za-z0-9_])(?:Nginx|Tomcat|Apache|WebLogic|WebSphere|IIS)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,服务器和中间件工具
+SWV009,software,devops,strict,云平台,"AWS;Azure;GCP;阿里云;腾讯云;华为云","(?<![A-Za-z0-9_])(?:AWS|Azure|GCP)(?![A-Za-z0-9_])|阿里云|腾讯云|华为云",,1,0,project_dictionary_v0.1,draft_v0.1,通用云计算平台
+SWA001,software,data_stats,strict,Stata,Stata,"(?<![A-Za-z0-9_])Stata(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,统计软件
+SWA002,software,data_stats,strict,SAS,SAS,"(?<![A-Za-z0-9_])SAS(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,统计软件
+SWA003,software,data_stats,strict,SPSS,SPSS,"(?<![A-Za-z0-9_])SPSS(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,统计软件
+SWA004,software,data_stats,strict,Matlab,Matlab,"(?<![A-Za-z0-9_])Matlab(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,数值计算软件
+SWA005,software,data_stats,strict,EViews,EViews,"(?<![A-Za-z0-9_])EViews(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,计量分析软件
+SWA006,software,data_stats,strict,Power BI,"Power BI;PowerBI","(?<![A-Za-z0-9_])Power\s*BI(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,商业智能工具
+SWA007,software,data_stats,strict,Tableau和Qlik,"Tableau;Qlik;QlikView;Qlik Sense","(?<![A-Za-z0-9_])(?:Tableau|Qlik(?:View|\s*Sense)?)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,数据可视化工具
+SWA008,software,data_stats,strict,R语言,"R语言;R软件;RStudio;R","R\s*(?:语言|软件)|(?<![A-Za-z0-9_])RStudio(?![A-Za-z0-9_])|(?<![A-Za-z0-9_])R(?![A-Za-z0-9_])","R&D|R角|R值|R方",1,0,project_dictionary_v0.1,draft_v0.1,单独R必须依赖英文边界并重点人工复核
+SWE001,software,engineering_design,strict,CAD和AutoCAD,"CAD;AutoCAD","(?<![A-Za-z0-9_])(?:AutoCAD|CAD)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工程制图软件
+SWE002,software,engineering_design,strict,SolidWorks,SolidWorks,"(?<![A-Za-z0-9_])SolidWorks(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,机械设计软件
+SWE003,software,engineering_design,strict,CATIA Creo ProE,"CATIA;Creo;ProE;Pro/E","(?<![A-Za-z0-9_])(?:CATIA|Creo|Pro\/?E)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工程设计软件
+SWE004,software,engineering_design,strict,UG和NX,"UG;UG/NX;Siemens NX","UG(?:\/NX)?|Siemens\s+NX",,1,0,project_dictionary_v0.1,draft_v0.1,不匹配单独NX以降低歧义
+SWE005,software,engineering_design,strict,仿真分析软件,"ANSYS;Abaqus;COMSOL","(?<![A-Za-z0-9_])(?:ANSYS|Abaqus|COMSOL)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工程仿真软件
+SWE006,software,engineering_design,strict,Revit,Revit,"(?<![A-Za-z0-9_])Revit(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,建筑信息模型软件
+SWE007,software,engineering_design,strict,三维设计软件,"3ds Max;3DMax;SketchUp","(?<![A-Za-z0-9_])(?:3ds\s*Max|3DMax|SketchUp)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,三维建模软件
+SWE008,software,engineering_design,strict,LabVIEW,LabVIEW,"(?<![A-Za-z0-9_])LabVIEW(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工程测试软件
+SWE009,software,engineering_design,strict,电子设计工具,"Altium;Keil;EDA","(?<![A-Za-z0-9_])(?:Altium|Keil|EDA)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,电子设计和嵌入式工具
+SWE010,software,engineering_design,strict,PLC和Simulink,"PLC;Simulink","(?<![A-Za-z0-9_])(?:PLC|Simulink)(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,工业编程和仿真工具
+SWB001,software,enterprise,strict,SAP,SAP,"(?<![A-Za-z0-9_])SAP(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,企业管理软件
+SWB002,software,enterprise,strict,Salesforce,Salesforce,"(?<![A-Za-z0-9_])Salesforce(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,客户关系管理平台
+SWB003,software,enterprise,strict,金蝶和用友,"金蝶;用友;U8;NC Cloud","金蝶|用友|(?<![A-Za-z0-9_])U8(?![A-Za-z0-9_])|NC\s*Cloud",,1,0,project_dictionary_v0.1,draft_v0.1,企业管理软件
+SWB004,software,enterprise,strict,Oracle企业套件,"Oracle EBS;PeopleSoft","Oracle\s*EBS|(?<![A-Za-z0-9_])PeopleSoft(?![A-Za-z0-9_])",,1,0,project_dictionary_v0.1,draft_v0.1,企业应用套件
+SWO001,software,office_basic,strict,Microsoft Office,"Microsoft Office;MS Office;Office","Microsoft\s+Office|MS\s+Office|(?<![A-Za-z0-9_])Office(?![A-Za-z0-9_])","Office\s*(?:地址|地点|环境|装修)",1,0,project_decision_2026-11-19,draft_v0.1,项目组确认基础办公软件计入
+SWO002,software,office_basic,strict,Excel,"Microsoft Excel;Excel","(?:Microsoft\s+)?(?<![A-Za-z0-9_])Excel(?![A-Za-z0-9_])",,1,0,project_decision_2026-11-19,draft_v0.1,基础办公软件
+SWO003,software,office_basic,strict,Word,"Microsoft Word;Word","(?:Microsoft\s+)?(?<![A-Za-z0-9_])Word(?![A-Za-z0-9_])",,1,0,project_decision_2026-11-19,draft_v0.1,英文边界避免命中Word2vec
+SWO004,software,office_basic,strict,PowerPoint和PPT,"Microsoft PowerPoint;PowerPoint;PPT","(?:Microsoft\s+)?(?<![A-Za-z0-9_])PowerPoint(?![A-Za-z0-9_])|(?<![A-Za-z0-9_])PPT(?![A-Za-z0-9_])",,1,0,project_decision_2026-11-19,draft_v0.1,基础办公软件和演示文稿制作
+SWO005,software,office_basic,strict,WPS,WPS,"(?<![A-Za-z0-9_])WPS(?![A-Za-z0-9_])",,1,0,project_decision_2026-11-19,draft_v0.1,基础办公软件
+SWO006,software,office_basic,strict,Outlook,Outlook,"(?<![A-Za-z0-9_])Outlook(?![A-Za-z0-9_])",,1,0,project_decision_2026-11-19,draft_v0.1,邮件和日程软件
+SWC001,software,programming,conditional,编程能力和经验,"编程能力;编程经验;程序设计能力","(?:编程|程序设计).{0,5}(?:能力|经验|基础)|(?:具备|具有|掌握).{0,5}(?:编程|程序设计)",,0,1,project_dictionary_v0.1,draft_v0.1,单独编程不命中
+SWC002,software,programming,conditional,软件开发能力和经验,"软件开发能力;软件开发经验","软件开发.{0,5}(?:能力|经验|基础)|(?:具备|具有|掌握).{0,5}软件开发",,0,1,project_dictionary_v0.1,draft_v0.1,单独软件或开发不命中
+SWC003,software,database,conditional,数据库工作技能,"数据库开发;数据库管理;数据库设计;数据库维护","数据库.{0,5}(?:开发|管理|设计|维护|操作|经验|能力)|(?:开发|管理|设计|维护|操作).{0,5}数据库",,0,1,project_dictionary_v0.1,draft_v0.1,需形成明确数据库任务或要求
+SWC004,software,data_stats,conditional,数据和统计软件工具,"数据可视化工具;统计分析软件;统计软件","数据可视化.{0,5}(?:工具|软件)|统计(?:分析)?软件|(?:熟悉|掌握|使用).{0,5}(?:统计|计量).{0,3}软件",,0,1,project_dictionary_v0.1,draft_v0.1,单独数据分析不命中软件技能
+SWC005,software,engineering_design,conditional,工程设计软件,"工程设计软件;制图软件;建模软件","(?:工程设计|制图|建模|仿真).{0,4}软件|(?:熟悉|掌握|使用).{0,5}(?:工程设计|制图|建模|仿真)工具",,0,1,project_dictionary_v0.1,draft_v0.1,需出现软件或工具要求
+SWC006,software,enterprise,conditional,ERP和CRM系统技能,"ERP系统;CRM系统","(?:(?:熟悉|掌握|使用|操作|实施|维护|开发).{0,8}(?:ERP|CRM))|(?:(?:ERP|CRM).{0,8}(?:系统|软件|实施|维护|开发|操作|经验|能力))",,0,1,project_dictionary_v0.1,draft_v0.1,避免公司产品介绍中的裸ERP或CRM
+SWC007,software,office_basic,conditional,办公软件技能,"办公软件;Office办公套件;办公自动化软件","(?:熟悉|掌握|熟练|使用|应用|会用|操作).{0,8}(?:办公软件|Office\s*办公套件|办公自动化软件)|(?:办公软件|Office\s*办公套件|办公自动化软件).{0,8}(?:熟练|经验|能力)",,0,1,project_decision_2026-11-19,draft_v0.1,单独办公表格文档和计算机操作不命中

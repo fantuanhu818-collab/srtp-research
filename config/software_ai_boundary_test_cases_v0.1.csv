@@ -1,0 +1,25 @@
+test_id,text,expected_software,expected_ai,focus
+T001,Python开发工程师,1,0,岗位名称中的明确一般软件词
+T002,机器学习工程师，熟悉PyTorch,0,1,AI专属工具不进入软件技能
+T003,熟悉Python、SQL和PyTorch,1,1,同一广告允许AI与软件同时命中
+T004,熟练使用Excel和PowerPoint,1,0,基础办公软件计入
+T005,熟悉Word2vec与自然语言处理,0,1,Word不能误命中Word2vec
+T006,Java岛旅游顾问,0,0,Java地名排除
+T007,熟悉Java和Spring Boot,1,0,编程语言和一般开发框架
+T008,熟悉Microsoft Office办公套件,1,0,Office明确软件名称
+T009,熟练掌握办公软件,1,0,办公软件条件词
+T010,计算机操作熟练,0,0,泛化计算机操作不计入
+T011,熟悉TensorFlow和Keras,0,1,AI框架只进入AI技能
+T012,熟悉R语言和Stata,1,0,统计软件
+T013,熟悉RAG和LLM,0,1,生成式AI专属词
+T014,SAP实施顾问,1,0,岗位名称中的企业软件
+T015,具备CRM系统维护经验,1,0,企业软件条件词
+T016,软件工程师,0,0,宽泛岗位名称不能单独命中
+T017,数据分析师,0,0,职业名称不等于软件技能要求
+T018,熟悉CAD和SolidWorks,1,0,工程设计软件
+T019,熟悉Docker和Kubernetes,1,0,开发运维工具
+T020,使用ChatGPT辅助Excel分析,1,1,生成式AI与办公软件共同命中
+T021,熟练使用Word,1,0,Word基础办公软件
+T022,使用Power BI完成数据可视化,1,0,数据分析软件
+T023,熟悉Spark和Kafka,1,0,一般数据工程框架
+T024,具备OpenCV开发经验,0,1,OpenCV只进入AI技能
