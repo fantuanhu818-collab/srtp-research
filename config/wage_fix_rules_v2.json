@@ -1,0 +1,44 @@
+{
+  "version": "wage_fix_v2",
+  "created_at": "2026-11-19",
+  "author": "A线",
+  "input_version": "cleaned_v1",
+  "base_version": "wage_fix_v1",
+  "base_rules_file": "config/wage_fix_rules_v1.json",
+  "statement": "v2 = v1 的三组年薪/量级修正 + “面议”占位值置缺失。其余记录一律保持原值，不缩尾、不截断、不删记录。",
+  "diagnosis_reference": "docs/工资极端值修正_wage_fix_v1_2026-11-19.md",
+  "placeholder_rules": [
+    {
+      "rule_id": "missing_placeholder_888888",
+      "action": "set_missing",
+      "condition": {
+        "field_low": "最低月薪",
+        "field_high": "最高月薪",
+        "value": 888888,
+        "logic": "两端同时等于 888888",
+        "scope": "全部年份、全部平台"
+      },
+      "label": "“面议”占位值888888，非真实工资",
+      "evidence": {
+        "rows": 46,
+        "years_platforms": "全部集中在2018年平台38",
+        "firm_count": 23,
+        "city": "台州",
+        "titles": "门卫、叉车工、财务实习生、装配总监等，与888888的数值无关",
+        "coexistence": "同样23家企业在同年还有716条正常工资广告（中位4750元）",
+        "exclusivity": "全库5,235,461条中888888仅出现这46次，且两端完全相等，真实工资不会出现这种形态",
+        "why_not_divide": "÷12=74074仍是假数；缩尾到P99=4万也是假数；唯一正确处理是视为缺失（等同“面议”）"
+      }
+    }
+  ],
+  "wage_fix_flag_definition": {
+    "0": "未修正，原值",
+    "1": "已修正（除数为12或10），见wage_fix_rule",
+    "2": "置为缺失（占位值，非真实工资）"
+  },
+  "known_untreated": [
+    "修正后仍>10万的3,028条：经配对检验，其中约226条有年薪特征（同企业同岗位倍数9—13），2,612条无对照无法判定，另有94条倍数>15属录入错误。处置方案待项目组决定（清单见outputs/qc/wage_extremes_review_20261119.xlsx）",
+    "2018年平台38以外的零散极高值：留待分析阶段统一缩尾",
+    "名义工资，未做通胀折算"
+  ]
+}

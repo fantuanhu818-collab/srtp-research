@@ -1,0 +1,10 @@
+﻿year,rows,unchanged,divided,set_missing,output_path
+2018,1337081,1218159,118876,46,D:\SRTP\工作数据\features\wage_fix_v2\jobs_2018_wage_fix.parquet
+2019,579180,569325,9855,0,D:\SRTP\工作数据\features\wage_fix_v2\jobs_2019_wage_fix.parquet
+2020,730193,730193,0,0,D:\SRTP\工作数据\features\wage_fix_v2\jobs_2020_wage_fix.parquet
+2021,892023,884824,7199,0,D:\SRTP\工作数据\features\wage_fix_v2\jobs_2021_wage_fix.parquet
+2022,328548,328548,0,0,D:\SRTP\工作数据\features\wage_fix_v2\jobs_2022_wage_fix.parquet
+2023,228739,228739,0,0,D:\SRTP\工作数据\features\wage_fix_v2\jobs_2023_wage_fix.parquet
+2024,560440,560440,0,0,D:\SRTP\工作数据\features\wage_fix_v2\jobs_2024_wage_fix.parquet
+2025,579257,579257,0,0,D:\SRTP\工作数据\features\wage_fix_v2\jobs_2025_wage_fix.parquet
+合计,5235461,5099485,135930,46,D:\SRTP\工作数据\features\wage_fix_v2
