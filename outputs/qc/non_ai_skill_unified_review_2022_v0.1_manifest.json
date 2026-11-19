@@ -1,0 +1,54 @@
+{
+  "version": "non_ai_skill_unified_review_2022_v0.1_20261119",
+  "created_for": "2022年软件、认知、社交三类非AI技能统一人工复核",
+  "sample_size": 240,
+  "unique_source_record_ids": 240,
+  "stratum_counts": {
+    "三类均未命中": 40,
+    "专业软件技能": 40,
+    "办公软件技能": 40,
+    "条件词或多技能重叠": 40,
+    "社交技能命中": 40,
+    "认知技能命中": 40
+  },
+  "assignment_counts": {
+    "A": 90,
+    "A+B": 60,
+    "B": 90
+  },
+  "reviewer_required_rows": {
+    "A": 150,
+    "B": 150
+  },
+  "double_coded_rows": 60,
+  "sampling_notes": [
+    "每层40条：10条双人独立复核、15条仅A复核、15条仅B复核。",
+    "三类均未命中层由20条技术岗位和20条其他岗位组成。",
+    "显示顺序经稳定哈希打散，人工复核表不展示程序结果与抽样层。",
+    "两套候选特征有177条文本可用标记不同；统一复核采用岗位名称或职位描述任一可用即纳入的并集口径。"
+  ],
+  "inputs": {
+    "software_candidate": {
+      "path": "D:\\SRTP\\工作数据\\features\\software_skill_pilot_v0.1\\jobs_2022_software_skill_v0.1.parquet",
+      "sha256": "b872436b8203b515f8074a84bd5e28c6a980a78e4dee9fa5217d988e5c958abf"
+    },
+    "cognitive_social_candidate": {
+      "path": "D:\\SRTP\\工作数据\\features\\non_ai_skills_pilot_v0.1\\jobs_2022_cognitive_social_v0.1.parquet",
+      "sha256": "ecb33147250a1de3d4ed1d33f91d829a021a86cc864b9155b323fea27609b37f"
+    },
+    "cleaned_source": {
+      "path": "D:\\SRTP\\工作数据\\curated\\cleaned_v1\\jobs_2022_cleaned.parquet",
+      "sha256": "4d1da3c964b40a8c1184469f85559d25d09ed9a21c063b81c7fe8efb19f6326d"
+    }
+  },
+  "outputs": {
+    "csv": {
+      "path": "D:\\SRTP科研\\outputs\\qc\\non_ai_skill_unified_review_2022_v0.1.csv",
+      "sha256": "032a8f6d830a5ec923b822bc7c8ca729b4b5d2a879771d128b17c088b4b25302"
+    },
+    "json_for_workbook": {
+      "path": "D:\\SRTP科研\\outputs\\qc\\non_ai_skill_unified_review_2022_v0.1.json",
+      "sha256": "d61bb839e0950ac3a69e0bdf599607781e2b8a7e93b3c43ed5400417dd72485a"
+    }
+  }
+}
