@@ -166,10 +166,11 @@ powershell -ExecutionPolicy Bypass -File scripts/run_python_task.ps1 `
 
 `cleaned_v1`的工资规则只处理非数值、≤0、上下限颠倒和单端缺失，不检查单位。已证实的成批单位错误有三处：2018年平台11（月薪≥3万实际是年薪）、2021年平台72（≥6万是年薪）、2018—2019年平台64（整平台约放大10倍）。修正结果保存在`D:\SRTP\工作数据\features\wage_fix_v1`，共修正135,930条，其余记录原值不动。字段`wage_mid_orig`保留原值、`wage_mid_fixed`为修正值、`wage_fix_flag`标记是否修正，按`source_record_id`与`confirmed_core_v2`一一连接。
 
-- 规则：`config/wage_fix_rules_v1.json`（v2另见`config/wage_fix_rules_v2.json`）
-- 构建：`code/python/40_build_wage_fix_v1.py`、`code/python/43_build_wage_fix_v2.py`；独立复核：`code/python/41_validate_wage_fix_v1.py`、`code/python/44_validate_wage_fix_v2.py`；完整性扫描：`code/python/42_scan_wage_anomalies.py`
+- 规则：`config/wage_fix_rules_v1.json`（v2另见`config/wage_fix_rules_v2.json`，v3另见`config/wage_fix_rules_v3.json`）
+- 方案（自包含，建议先看）：`docs/工资清洗方案_2026-11-19.md`
+- 构建：`code/python/40_build_wage_fix_v1.py`、`code/python/43_build_wage_fix_v2.py`、`code/python/45_build_wage_fix_v3.py`；独立复核：`41_validate_wage_fix_v1.py`、`44_validate_wage_fix_v2.py`、`46_validate_wage_fix_v3.py`；完整性扫描：`code/python/42_scan_wage_anomalies.py`
 - 说明：`docs/工资极端值修正_wage_fix_v1_2026-11-19.md`
-- 复核报告：`outputs/qc/wage_fix_v1_validation.md`、`outputs/qc/wage_fix_v2_validation.md`
+- 复核报告：`outputs/qc/wage_fix_v1_validation.md`、`outputs/qc/wage_fix_v2_validation.md`、`outputs/qc/wage_fix_v3_validation.md`
 
 v2 在 v1 基础上把2018年平台38的46条“面议”占位值（两端都是888,888）置为缺失，`wage_fix_flag=2` 标记，记录仍保留在表里、只是工资为空。v3 进一步处理修正后仍>10万的2,982条：2,896条按年薪÷12、86条明显无法修正的置为缺失，处理后全表月薪上限为10万元。**后续使用 v3**：`D:\SRTP\工作数据\features\wage_fix_v3`。
 
