@@ -1,0 +1,17 @@
+{
+  "workbook": "D:\\SRTP科研\\outputs\\non_ai_skill_review_20261119\\三类非AI技能人工复核表_2022_v0.1_B专用.xlsx",
+  "editable_b_rows": 150,
+  "editable_b_cells": 600,
+  "checks": {
+    "B或A+B记录的B输入区全部可编辑": true,
+    "A输入区全部锁定": true,
+    "仅A复核记录的B输入区全部锁定": true,
+    "三个工作表均启用保护": true
+  },
+  "sheet_protection": {
+    "填写说明": true,
+    "人工复核": true,
+    "程序结果": true
+  },
+  "note": "工作表保护未设置密码，用于防止误填，不作为安全控制。"
+}

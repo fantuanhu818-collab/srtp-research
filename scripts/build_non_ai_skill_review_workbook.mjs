@@ -8,7 +8,12 @@ const { SpreadsheetFile, Workbook } = await import(pathToFileURL(ARTIFACT_TOOL_E
 const PROJECT_ROOT = String.raw`D:\SRTP科研`;
 const DATA_PATH = `${PROJECT_ROOT}\\outputs\\qc\\non_ai_skill_unified_review_2022_v0.1.json`;
 const OUTPUT_DIR = `${PROJECT_ROOT}\\outputs\\non_ai_skill_review_20261119`;
-const OUTPUT_PATH = `${OUTPUT_DIR}\\三类非AI技能人工复核表_2022_v0.1.xlsx`;
+const REVIEWER_MODE = (process.env.REVIEWER_MODE ?? "COMBINED").toUpperCase();
+const IS_REVIEWER_B = REVIEWER_MODE === "B";
+const OUTPUT_PATH = IS_REVIEWER_B
+  ? `${OUTPUT_DIR}\\三类非AI技能人工复核表_2022_v0.1_B专用.xlsx`
+  : `${OUTPUT_DIR}\\三类非AI技能人工复核表_2022_v0.1.xlsx`;
+const QA_SUFFIX = IS_REVIEWER_B ? "_B专用" : "";
 
 const rows = JSON.parse(await fs.readFile(DATA_PATH, "utf8"));
 if (rows.length !== 240) throw new Error(`Expected 240 review rows, got ${rows.length}`);
@@ -87,8 +92,10 @@ guide.tabColor = colors.navy;
 setTitle(
   guide,
   "A2:H2",
-  "2022年三类非AI技能人工复核说明",
-  "软件技能、认知技能、社交技能统一复核｜先独立人工判断，再查看程序结果",
+  IS_REVIEWER_B ? "2022年三类非AI技能人工复核说明（B专用）" : "2022年三类非AI技能人工复核说明",
+  IS_REVIEWER_B
+    ? "B只填写蓝色区域；灰色区域已锁定。先独立人工判断，再查看程序结果"
+    : "软件技能、认知技能、社交技能统一复核｜先独立人工判断，再查看程序结果",
   "A3:H3",
 );
 
@@ -132,12 +139,19 @@ guide.getRange("A12:C15").format.borders = { preset: "all", style: "thin", color
 guide.getRange("A13:C15").format.wrapText = true;
 
 sectionHeader(guide, "A17", "三、复核步骤");
-guide.getRange("A18:H21").values = [
-  ["1", "先看“人工复核”工作表，只阅读岗位名称和职位描述。不要提前打开“程序结果”。", "", "", "", "", "", ""],
-  ["2", "按“分配给”列填写：A填黄色区域，B填蓝色区域；双人样本必须独立判断，不能先讨论。", "", "", "", "", "", ""],
-  ["3", "软件、认知、社交三列都要填1/0/9。拿不准时选9，并在备注中写清原因。", "", "", "", "", "", ""],
-  ["4", "两人完成后，再打开“程序结果”对照程序识别。双人意见不一致的样本进入裁决。", "", "", "", "", "", ""],
-];
+guide.getRange("A18:H21").values = IS_REVIEWER_B
+  ? [
+      ["1", "先看“人工复核”工作表，只阅读岗位名称和职位描述。不要提前打开“程序结果”。", "", "", "", "", "", ""],
+      ["2", "只填写分配给B或A+B的蓝色区域。A区域以及仅A复核记录已经锁定，不能填写。", "", "", "", "", "", ""],
+      ["3", "软件、认知、社交三列都要填1/0/9。拿不准时选9，并在备注中写清原因。", "", "", "", "", "", ""],
+      ["4", "完成全部150条B复核后，再由项目负责人汇总A、B结果并进行裁决。", "", "", "", "", "", ""],
+    ]
+  : [
+      ["1", "先看“人工复核”工作表，只阅读岗位名称和职位描述。不要提前打开“程序结果”。", "", "", "", "", "", "", ""],
+      ["2", "按“分配给”列填写：A填黄色区域，B填蓝色区域；双人样本必须独立判断，不能先讨论。", "", "", "", "", "", ""],
+      ["3", "软件、认知、社交三列都要填1/0/9。拿不准时选9，并在备注中写清原因。", "", "", "", "", "", ""],
+      ["4", "两人完成后，再打开“程序结果”对照程序识别。双人意见不一致的样本进入裁决。", "", "", "", "", "", ""],
+    ];
 for (let r = 18; r <= 21; r += 1) {
   guide.mergeCells(`B${r}:H${r}`);
 }
@@ -158,7 +172,7 @@ guide.getRange("A18:H21").format.rowHeight = 34;
 sectionHeader(guide, "A23", "四、分工与完成进度");
 guide.getRange("A24:E27").values = [
   ["对象", "需复核", "已完成", "剩余", "完成率"],
-  ["复核员A", 150, "", "", ""],
+  [IS_REVIEWER_B ? "复核员A（本文件不填写）" : "复核员A", 150, "", "", ""],
   ["复核员B", 150, "", "", ""],
   ["双人样本（两人均完成）", 60, "", "", ""],
 ];
@@ -204,8 +218,10 @@ review.tabColor = colors.gold;
 setTitle(
   review,
   "A2:Q2",
-  "人工复核｜2022年统一样本（240条）",
-  "只根据岗位文本独立判断；A填写黄色区域，B填写蓝色区域。1=明确要求，0=没有要求，9=无法判断。",
+  IS_REVIEWER_B ? "人工复核｜B专用（需填写150条）" : "人工复核｜2022年统一样本（240条）",
+  IS_REVIEWER_B
+    ? "B只填写蓝色区域；灰色区域不可填写。1=明确要求，0=没有要求，9=无法判断。"
+    : "只根据岗位文本独立判断；A填写黄色区域，B填写蓝色区域。1=明确要求，0=没有要求，9=无法判断。",
   "A3:Q3",
 );
 const reviewHeaders = [
@@ -227,14 +243,22 @@ const reviewTable = review.tables.add("A5:Q245", true, "ManualReviewTable");
 reviewTable.style = "TableStyleMedium2";
 reviewTable.showFilterButton = true;
 review.getRange("A5:G5").format = { fill: colors.navy, font: { name: fontFamily, bold: true, color: colors.white } };
-review.getRange("H5:K5").format = { fill: colors.gold, font: { name: fontFamily, bold: true, color: colors.white } };
+review.getRange("H5:K5").format = { fill: IS_REVIEWER_B ? colors.gray : colors.gold, font: { name: fontFamily, bold: true, color: colors.white } };
 review.getRange("L5:O5").format = { fill: colors.teal, font: { name: fontFamily, bold: true, color: colors.white } };
 review.getRange("P5:Q5").format = { fill: colors.gray, font: { name: fontFamily, bold: true, color: colors.white } };
-review.getRange("H6:K245").format.fill = colors.goldLight;
+review.getRange("H6:K245").format.fill = IS_REVIEWER_B ? colors.grayLight : colors.goldLight;
 review.getRange("L6:O245").format.fill = colors.navyLight;
 review.getRange("P6:Q245").format.fill = colors.grayLight;
-review.getRange("H6:J245").dataValidation = { rule: { type: "list", values: ["0", "1", "9"] } };
+if (!IS_REVIEWER_B) {
+  review.getRange("H6:J245").dataValidation = { rule: { type: "list", values: ["0", "1", "9"] } };
+}
 review.getRange("L6:N245").dataValidation = { rule: { type: "list", values: ["0", "1", "9"] } };
+if (IS_REVIEWER_B) {
+  review.getRange("L6:O245").conditionalFormats.addCustom('=$G6="A"', {
+    fill: colors.grayLight,
+    font: { color: "#A6A6A6" },
+  });
+}
 review.getRange("A5:Q245").format.font.name = fontFamily;
 review.getRange("A5:Q245").format.verticalAlignment = "center";
 review.getRange("A5:Q245").format.borders = { preset: "all", style: "thin", color: "#E7E6E6" };
@@ -357,19 +381,19 @@ const inspection = await workbook.inspect({
   tableMaxCols: 8,
   options: { maxResults: 100 },
 });
-await fs.writeFile(`${OUTPUT_DIR}\\workbook_inspection.ndjson`, inspection.ndjson ?? String(inspection), "utf8");
+await fs.writeFile(`${OUTPUT_DIR}\\workbook_inspection${QA_SUFFIX}.ndjson`, inspection.ndjson ?? String(inspection), "utf8");
 
 const formulaCheck = {
   guide: guide.getRange("A24:E27").formulaInfos,
   review: review.getRange("P5:Q10").formulaInfos,
   results: results.getRange("R5:X10").formulaInfos,
 };
-await fs.writeFile(`${OUTPUT_DIR}\\formula_check.json`, JSON.stringify(formulaCheck, null, 2), "utf8");
+await fs.writeFile(`${OUTPUT_DIR}\\formula_check${QA_SUFFIX}.json`, JSON.stringify(formulaCheck, null, 2), "utf8");
 
 for (const [sheetName, fileName, scale] of [
-  ["填写说明", "preview_填写说明.png", 1],
-  ["人工复核", "preview_人工复核.png", 0.35],
-  ["程序结果", "preview_程序结果.png", 0.3],
+  ["填写说明", `preview_填写说明${QA_SUFFIX}.png`, 1],
+  ["人工复核", `preview_人工复核${QA_SUFFIX}.png`, 0.35],
+  ["程序结果", `preview_程序结果${QA_SUFFIX}.png`, 0.3],
 ]) {
   const preview = await workbook.render({ sheetName, autoCrop: "all", scale, format: "png" });
   await fs.writeFile(`${OUTPUT_DIR}\\${fileName}`, new Uint8Array(await preview.arrayBuffer()));
@@ -378,4 +402,4 @@ for (const [sheetName, fileName, scale] of [
 const output = await SpreadsheetFile.exportXlsx(workbook);
 await output.save(OUTPUT_PATH);
 
-console.log(JSON.stringify({ output: OUTPUT_PATH, rows: rows.length, sheets: ["填写说明", "人工复核", "程序结果"] }, null, 2));
+console.log(JSON.stringify({ output: OUTPUT_PATH, reviewerMode: REVIEWER_MODE, rows: rows.length, sheets: ["填写说明", "人工复核", "程序结果"] }, null, 2));
